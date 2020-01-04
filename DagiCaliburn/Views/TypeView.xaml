@@ -1,0 +1,524 @@
+﻿<UserControl x:Class="DagiCaliburn.Views.TypeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DagiCaliburn.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             
+              d:DesignWidth="500">
+    <Grid>
+        <Grid x:Name="TFormIsVisible">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <materialDesign:Card Grid.Row="1" Margin="20"
+                  Width="Auto"
+                  Padding="8">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <ToggleButton Grid.Row="0"  Margin="10,30,10,10"
+                              Height="75" Width="75" FontWeight="Light" 
+                                    Content="{Binding Path=EditIcon, Mode=OneWay}" FontSize="30"
+                                    Style="{StaticResource MaterialDesignActionToggleButton}"
+                                    ToolTip="MaterialDesignActionToggleButton"
+                                    materialDesign:ShadowAssist.ShadowDepth="Depth0" />
+                        <Button Grid.Column="2" Margin="0,5,5,0" Grid.Row="0" x:Name="CloseType" Height="20" Width="20" Background="Red" HorizontalAlignment="Right" VerticalAlignment="Top"
+                          Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                          ToolTip="MaterialDesignFloatingActionMiniLightButton">
+                            <materialDesign:PackIcon
+                            Foreground="White"
+                            Kind="Close"
+                            Height="14"
+                            Width="14" />
+                        </Button>
+                        <Grid Grid.Row="1" Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox Grid.Column="0" Margin="5" FontSize="25" 
+                      materialDesign:HintAssist.Hint="Name"
+                       x:Name="Name"     
+                                     materialDesign:HintAssist.Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
+                            <Grid x:Name="TypesIsVisible" Grid.Column="1" Grid.Row="0" >
+                                <ComboBox  VerticalAlignment="Bottom"  Margin="0,5,5,5" 
+                                           FontSize="15" ItemsSource="{Binding FileTypes}" 
+                                           materialDesign:HintAssist.Hint=" File Type" 
+                                           materialDesign:HintAssist.Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                                           Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                           SelectedItem="{Binding CurrentType}">
+
+                                </ComboBox>
+                            </Grid>
+                            <TextBox Grid.Column="2" Margin="5,5,5,5" FontSize="15"
+                      materialDesign:HintAssist.Hint="Icon" MaxLength="2"
+                                     materialDesign:HintAssist.Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                       x:Name="Initial"      
+                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
+                        </Grid>
+                        <Grid Grid.Row="2" Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="*"/>
+
+                            </Grid.ColumnDefinitions>
+                            <TextBox materialDesign:HintAssist.Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                                     Grid.Column="0" Margin="5,10,5,10" FontSize="25"
+                      materialDesign:HintAssist.Hint="Reference"
+                       x:Name="Reference"      
+                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                            <Grid x:Name="PriceIsVisible" Grid.Column="1">
+                                <TextBox  Margin="5,10,5,10" FontSize="25" 
+                      materialDesign:HintAssist.Hint="Price"
+                                          materialDesign:HintAssist.Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                             x:Name="Price"
+                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                            </Grid>
+                            <Grid x:Name="OthersPriceIsVisible" Grid.Column="1">
+                                <TextBox  Margin="5,10,0,10" 
+                      materialDesign:HintAssist.Hint="Lowest Price" FontWeight="Light" FontSize="15"
+                           Text="{Binding Price}"  
+                                          materialDesign:HintAssist.Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                            </Grid>
+
+                        </Grid>
+                        
+                        <Grid Visibility="Collapsed" x:Name="AudioIsVisible" Grid.Row="3" HorizontalAlignment="Stretch" Margin="5,5,10,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+
+                            </Grid.ColumnDefinitions>
+                            <materialDesign:Card Grid.Column="0" Margin="5"
+                                Width="Auto"
+                                Padding="8">
+                                <TextBox Grid.Column="0" Margin="5,10,5,10" FontSize="20"
+                                    materialDesign:HintAssist.Hint="Price Per GB"
+                                    x:Name="AudioPricePerGB"      
+                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                            </materialDesign:Card>
+
+                            <materialDesign:Card Grid.Column="1" Margin="5"
+                                Width="Auto"
+                                Padding="8">
+
+                                <TextBox Grid.Column="0" Margin="5,10,5,10" FontSize="20"
+                                    materialDesign:HintAssist.Hint="Album Price"
+                                    x:Name="AudioAlbumPrice"      
+                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                
+                            </materialDesign:Card>
+                        </Grid>
+
+                        <Grid MaxHeight="200" x:Name="OthersIsVisible" Grid.Row="3" HorizontalAlignment="Stretch" Margin="5,5,10,10">
+                            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <materialDesign:Card Grid.Row="0" Margin="5"
+                                Width="Auto"
+                                Padding="15,0,0,0">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,5,0,5" Grid.Column="0" Grid.Row="1">
+                                        <TextBlock Grid.Row="0"  FontWeight="Light" VerticalAlignment="Center" Grid.Column="1" Margin="0,5,5,0" FontSize="15"  TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                    If Product is larger than :  
+                                        </TextBlock>
+                                        <TextBox MinWidth="20" HorizontalContentAlignment="Center" materialDesign:HintAssist.Hint="0" Grid.Column="0" Margin="5" FontSize="20"
+                                   x:Name="OGB1"     
+                                                 materialDesign:TransitionAssist.DisableTransitions="True"
+                                    />
+                                        <TextBlock Grid.Row="0"  FontWeight="Light" VerticalAlignment="Center" Grid.Column="1" Margin="10,5,5,0" FontSize="15"  TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                    GB
+                                        </TextBlock>
+                                    </StackPanel>
+                                    <materialDesign:Card  Grid.Column="1" VerticalContentAlignment="Center" VerticalAlignment="Stretch"
+                                          Background="{DynamicResource PrimaryHueLightBrush}"
+                                          Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
+                                          Padding="5">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Column="0" Grid.Row="1">
+                                            
+                                            <TextBox MinWidth="20" HorizontalContentAlignment="Center" materialDesign:HintAssist.Hint="0" Grid.Column="0" Margin="5" FontSize="20"
+                                   x:Name="OBIRR1"     
+                                                 materialDesign:TransitionAssist.DisableTransitions="True"
+                                    />
+                                            <TextBlock Grid.Row="0"  FontWeight="Light" VerticalAlignment="Center" Grid.Column="1" Margin="10,5,5,0" FontSize="15"  TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                    BIRR
+                                            </TextBlock>
+                                        </StackPanel>
+
+                                    </materialDesign:Card>
+
+                                </Grid>
+                            </materialDesign:Card>
+                                    <materialDesign:Card Grid.Row="1" Margin="5"
+                                Width="Auto"
+                                Padding="15,0,0,0">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,5,0,5" Grid.Column="0" Grid.Row="1">
+                                                <TextBlock Grid.Row="0"  FontWeight="Light" VerticalAlignment="Center" Grid.Column="1" Margin="0,5,5,0" FontSize="15"  TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                    If Product is larger than :
+                                                </TextBlock>
+                                                <TextBox MinWidth="20" HorizontalContentAlignment="Center" materialDesign:HintAssist.Hint="0" Grid.Column="0" Margin="5" FontSize="20"
+                                   x:Name="OGB2"     
+                                                 materialDesign:TransitionAssist.DisableTransitions="True"
+                                    />
+                                                <TextBlock Grid.Row="0"  FontWeight="Light" VerticalAlignment="Center" Grid.Column="1" Margin="10,5,5,0" FontSize="15"  TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                    GB
+                                                </TextBlock>
+                                            </StackPanel>
+                                            <materialDesign:Card  Grid.Column="1" VerticalContentAlignment="Center" VerticalAlignment="Stretch"
+                                          Background="{DynamicResource PrimaryHueLightBrush}"
+                                          Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
+                                          Padding="5">
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Column="0" Grid.Row="1">
+
+                                                    <TextBox MinWidth="20" HorizontalContentAlignment="Center" materialDesign:HintAssist.Hint="0" Grid.Column="0" Margin="5" FontSize="20"
+                                   x:Name="OBIRR2"     
+                                                 materialDesign:TransitionAssist.DisableTransitions="True"
+                                    />
+                                                    <TextBlock Grid.Row="0"  FontWeight="Light" VerticalAlignment="Center" Grid.Column="1" Margin="10,5,5,0" FontSize="15"  TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                    BIRR
+                                                    </TextBlock>
+                                                </StackPanel>
+
+                                            </materialDesign:Card>
+
+                                        </Grid>
+                                    </materialDesign:Card>
+                                    <materialDesign:Card Grid.Row="2" Margin="5"
+                                Width="Auto"
+                                Padding="15,0,0,0">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,5,0,5" Grid.Column="0" Grid.Row="1">
+                                                <TextBlock Grid.Row="0"  FontWeight="Light" VerticalAlignment="Center" Grid.Column="1" Margin="0,5,5,0" FontSize="15"  TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                    If Product is larger than :
+                                                </TextBlock>
+                                                <TextBox MinWidth="20" HorizontalContentAlignment="Center" materialDesign:HintAssist.Hint="0" Grid.Column="0" Margin="5" FontSize="20"
+                                   x:Name="OGB3"     
+                                                 materialDesign:TransitionAssist.DisableTransitions="True"
+                                    />
+                                                <TextBlock Grid.Row="0"  FontWeight="Light" VerticalAlignment="Center" Grid.Column="1" Margin="10,5,5,0" FontSize="15"  TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                    GB
+                                                </TextBlock>
+                                            </StackPanel>
+                                            <materialDesign:Card  Grid.Column="1" VerticalContentAlignment="Center" VerticalAlignment="Stretch"
+                                          Background="{DynamicResource PrimaryHueLightBrush}"
+                                          Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
+                                          Padding="5">
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Column="0" Grid.Row="1">
+
+                                                    <TextBox MinWidth="20" HorizontalContentAlignment="Center" materialDesign:HintAssist.Hint="0" Grid.Column="0" Margin="5" FontSize="20"
+                                   x:Name="OBIRR3"     
+                                                 materialDesign:TransitionAssist.DisableTransitions="True"
+                                    />
+                                                    <TextBlock Grid.Row="0"  FontWeight="Light" VerticalAlignment="Center" Grid.Column="1" Margin="10,5,5,0" FontSize="15"  TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                    BIRR
+                                                    </TextBlock>
+                                                </StackPanel>
+
+                                            </materialDesign:Card>
+
+                                        </Grid>
+                                    </materialDesign:Card>
+                                    <materialDesign:Card Grid.Row="3" Margin="5"
+                                Width="Auto"
+                                Padding="15,0,0,0">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,5,0,5" Grid.Column="0" Grid.Row="1">
+                                                <TextBlock Grid.Row="0"  FontWeight="Light" VerticalAlignment="Center" Grid.Column="1" Margin="0,5,5,0" FontSize="15"  TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                    If Product is larger than :
+                                                </TextBlock>
+                                                <TextBox MinWidth="20" HorizontalContentAlignment="Center" materialDesign:HintAssist.Hint="0" Grid.Column="0" Margin="5" FontSize="20"
+                                   x:Name="OGB4"     
+                                                 materialDesign:TransitionAssist.DisableTransitions="True"
+                                    />
+                                                <TextBlock Grid.Row="0"  FontWeight="Light" VerticalAlignment="Center" Grid.Column="1" Margin="10,5,5,0" FontSize="15"  TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                    GB
+                                                </TextBlock>
+                                            </StackPanel>
+                                            <materialDesign:Card  Grid.Column="1" VerticalContentAlignment="Center" VerticalAlignment="Stretch"
+                                          Background="{DynamicResource PrimaryHueLightBrush}"
+                                          Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
+                                          Padding="5">
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Column="0" Grid.Row="1">
+
+                                                    <TextBox MinWidth="20" HorizontalContentAlignment="Center" materialDesign:HintAssist.Hint="0" Grid.Column="0" Margin="5" FontSize="20"
+                                   x:Name="OBIRR4"     
+                                                 materialDesign:TransitionAssist.DisableTransitions="True"
+                                    />
+                                                    <TextBlock Grid.Row="0"  FontWeight="Light" VerticalAlignment="Center" Grid.Column="1" Margin="10,5,5,0" FontSize="15"  TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                    BIRR
+                                                    </TextBlock>
+                                                </StackPanel>
+
+                                            </materialDesign:Card>
+
+                                        </Grid>
+                                    </materialDesign:Card>
+                                    <materialDesign:Card Grid.Row="4" Margin="5"
+                                Width="Auto"
+                                Padding="15,0,0,0">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,5,0,5" Grid.Column="0" Grid.Row="1">
+                                                <TextBlock Grid.Row="0"  FontWeight="Light" VerticalAlignment="Center" Grid.Column="1" Margin="0,5,5,0" FontSize="15"  TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                    If Product is larger than :
+                                                </TextBlock>
+                                                <TextBox MinWidth="20" HorizontalContentAlignment="Center" materialDesign:HintAssist.Hint="0" Grid.Column="0" Margin="5" FontSize="20"
+                                   x:Name="OGB5"     
+                                                 materialDesign:TransitionAssist.DisableTransitions="True"
+                                    />
+                                                <TextBlock Grid.Row="0"  FontWeight="Light" VerticalAlignment="Center" Grid.Column="1" Margin="10,5,5,0" FontSize="15"  TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                    GB
+                                                </TextBlock>
+                                            </StackPanel>
+                                            <materialDesign:Card  Grid.Column="1" VerticalContentAlignment="Center" VerticalAlignment="Stretch"
+                                          Background="{DynamicResource PrimaryHueLightBrush}"
+                                          Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
+                                          Padding="5">
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Column="0" Grid.Row="1">
+
+                                                    <TextBox MinWidth="20" HorizontalContentAlignment="Center" materialDesign:HintAssist.Hint="0" Grid.Column="0" Margin="5" FontSize="20"
+                                   x:Name="OBIRR5"     
+                                                 materialDesign:TransitionAssist.DisableTransitions="True"
+                                    />
+                                                    <TextBlock Grid.Row="0"  FontWeight="Light" VerticalAlignment="Center" Grid.Column="1" Margin="10,5,5,0" FontSize="15"  TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                    BIRR
+                                                    </TextBlock>
+                                                </StackPanel>
+
+                                            </materialDesign:Card>
+
+                                        </Grid>
+                                    </materialDesign:Card>
+                                </Grid>
+                            </ScrollViewer>
+                        </Grid>
+
+
+                        <DataGrid Grid.Row="4"
+                      Margin="0 8 0 8"
+                      CanUserReorderColumns="False"    
+                      ItemsSource="{Binding Dirs, Mode=OneWay}"
+                      Width="Auto"
+                      SelectedIndex="{Binding SelectedIndex}"
+                      CanUserResizeColumns="True"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="False"        
+                      VerticalScrollBarVisibility="Auto"    
+                      CanUserDeleteRows="True"
+                      CanUserSortColumns="True"
+                      SelectedItem="{Binding SelectedSell, Mode=TwoWay}"
+                      CanUserAddRows="True">
+                            <DataGrid.Columns>
+                                <DataGridCheckBoxColumn
+      Binding="{Binding IsSelected}"
+      ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
+      EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
+                                    <DataGridCheckBoxColumn.Header>
+                                        <!--padding to allow hit test to pass thru for sorting -->
+                                        <Border
+          Background="Transparent"
+          Padding="6 0 6 0"
+          HorizontalAlignment="Center">
+                                            <CheckBox
+            HorizontalAlignment="Center"
+            DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext}"
+            IsChecked="{Binding IsAllItems3Selected}" />
+                                        </Border>
+                                    </DataGridCheckBoxColumn.Header>
+                                </DataGridCheckBoxColumn>
+                                <DataGridTextColumn Header="Dir" MinWidth="300" Binding="{Binding Path = dir}" />
+
+
+
+                            </DataGrid.Columns>
+
+                        </DataGrid>
+                        
+
+                        <Button Grid.Row="5" HorizontalAlignment="Right" Margin="5,5,10,10"
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        Width="80"
+                        x:Name="Save"
+                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
+                            SAVE
+                        </Button>
+
+                    </Grid>
+                </materialDesign:Card>
+            </ScrollViewer>
+        </Grid>
+        <Grid x:Name="ERRORIsVisible" Visibility="Collapsed">
+            <materialDesign:Card Grid.Row="1" Margin="40" Foreground="Red"
+                  Width="Auto"
+                  
+                  Padding="8">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Margin="10" Grid.Row="0" Text="{Binding IconC}" HorizontalAlignment="Center"
+                            Style="{StaticResource MaterialDesignSubheadingTextBlock}">
+                        </TextBlock>
+
+                        <TextBlock Margin="10" Grid.Row="1" Text="{Binding NameC}" HorizontalAlignment="Center"
+                            Style="{StaticResource MaterialDesignSubheadingTextBlock}">
+                        </TextBlock>
+
+                        <TextBlock Margin="10" Grid.Row="2" Text="{Binding PriceC}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center"
+                            Style="{StaticResource MaterialDesignSubheadingTextBlock}">
+                        </TextBlock>
+
+                        <TextBlock Margin="10" Grid.Row="3" Text="{Binding TypeC}" HorizontalAlignment="Center"
+                            Style="{StaticResource MaterialDesignSubheadingTextBlock}">
+                        </TextBlock>
+
+                        <TextBlock Margin="10" Grid.Row="4" Text="{Binding RefC}" HorizontalAlignment="Center"
+                            Style="{StaticResource MaterialDesignSubheadingTextBlock}">
+                        </TextBlock>
+
+                        <ItemsControl x:Name="DirsC" Margin="10" Grid.Row="5" HorizontalAlignment="Center">
+
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <materialDesign:Card Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                                      materialDesign:ShadowAssist.ShadowDepth="Depth3"        
+                                      Padding="10"
+                                      Margin="5"                           
+                                      UniformCornerRadius="6">
+                                        <TextBlock Text="{Binding dir}" FontSize="13"
+                                            Style="{StaticResource MaterialDesignSubheadingTextBlock}">
+                                        </TextBlock>
+                                    </materialDesign:Card>
+
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <Button Grid.Row="6" HorizontalAlignment="Center" Margin="0,5,0,10"
+                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                            Width="80"
+                            x:Name="OKC"
+                            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
+                            OK
+                        </Button>
+
+
+                    </Grid>
+                </ScrollViewer>
+            </materialDesign:Card>
+        </Grid>
+        <Grid x:Name="SuccessIsVisible" Visibility="Collapsed">
+            <materialDesign:Card Grid.Row="1" Margin="40"
+                  Width="Auto"
+                  
+                  Padding="8">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <ToggleButton Grid.Row="0"  Margin="10,30,10,10"
+                              Height="75" Width="75" FontWeight="Light" 
+                                    Content="{Binding Path=EditIcon, Mode=OneWay}" FontSize="30"
+                                    Style="{StaticResource MaterialDesignActionDarkToggleButton}"
+                                    ToolTip="MaterialDesignActionDarkToggleButton"
+                                    materialDesign:ShadowAssist.ShadowDepth="Depth0" />
+
+
+                        <TextBlock Margin="10" Grid.Row="1" FontSize="25"  Text="{Binding Name}" HorizontalAlignment="Center"
+                            Style="{StaticResource MaterialDesignSubheadingTextBlock}">
+                        </TextBlock>
+
+                        
+
+                        <TextBlock Margin="10" Grid.Row="2" FontWeight="Light" FontSize="20" TextWrapping="WrapWithOverflow" Text="has been successfuly added !" HorizontalAlignment="Center"
+                            Style="{StaticResource MaterialDesignSubheadingTextBlock}">
+                        </TextBlock>
+
+                        
+                        <Button Grid.Row="3" HorizontalAlignment="Center" Margin="0,5,0,10"
+                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                            Width="80"
+                            x:Name="SuccessOk"
+                            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
+                            OK
+                        </Button>
+
+
+                    </Grid>
+                </ScrollViewer>
+            </materialDesign:Card>
+        </Grid>
+    </Grid>
+</UserControl>

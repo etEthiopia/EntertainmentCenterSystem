@@ -1,0 +1,193 @@
+﻿<UserControl x:Class="DagiCaliburn.Views.GBView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DagiCaliburn.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             mc:Ignorable="d" 
+             Width="Auto">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid  Width="Auto" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <ComboBox Grid.Column="1" Grid.Row="0" FontSize="20" x:Name="AudioTypes" SelectedItem="{Binding CurrentAudio}"
+                 
+                      
+                  >
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Button Grid.Column="2" Margin="0,5,5,0" Grid.Row="0" x:Name="CloseGBSelected" Height="25" Width="25" Background="Red" HorizontalAlignment="Right" VerticalAlignment="Top"
+                          Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                          ToolTip="MaterialDesignFloatingActionMiniLightButton">
+                <materialDesign:PackIcon
+                            Foreground="White"
+                            Kind="Close"
+                            Height="14"
+                            Width="14" />
+            </Button>
+        </Grid>
+        <DataGrid Grid.Row="1" Grid.Column="1"  
+                  Margin="0 8 0 8"
+                  CanUserReorderColumns="False"    
+                  ItemsSource="{Binding GBMusicSells, Mode=OneWay}"
+                  Width="Auto"
+                  HorizontalAlignment="Left"
+                 
+                  SelectedIndex="{Binding SelectedIndex}"
+                  CanUserResizeColumns="True"
+                  AutoGenerateColumns="False"
+                  HorizontalScrollBarVisibility="Auto"
+                  IsReadOnly="True"
+                  CanUserDeleteRows="False"
+                  CanUserSortColumns="True"
+                  SelectedItem="{Binding SelectedSell, Mode=TwoWay}"
+                  CanUserAddRows="False" >
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Name" Width="0.5*" Binding="{Binding Path= Name }">
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Size"  Binding="{Binding Path= Size}" >
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Dir" Width="0.4*"  Binding="{Binding Path= Dir }">
+                </DataGridTextColumn>
+               
+
+
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <materialDesign:Card Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"
+  Background="{DynamicResource PrimaryHueLightBrush}"
+  materialDesign:ShadowAssist.ShadowDepth="Depth5"
+  Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
+  Width="300"
+  Padding="20">
+
+            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" Orientation="Vertical">
+                
+                <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                            Orientation="Vertical">
+                    <TextBlock x:Name="TotalSum" Margin="0,0,0,0"  HorizontalAlignment="Center" 
+    Style="{StaticResource MaterialDesignDisplay1TextBlock}">
+                    
+                    </TextBlock>
+                    <Grid   HorizontalAlignment="Stretch" >
+                        
+                        <TextBox  HorizontalAlignment="Center" IsReadOnly ="True" x:Name="GBmoney" FontSize="25" Margin="0,0,0,0" 
+  
+  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <Button Margin="20,0,0,0"  HorizontalAlignment="Right" Height="20" Width="20" Click="EditGBMoney"
+  Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+  ToolTip="MaterialDesignFloatingActionMiniAccentButton">
+                            <materialDesign:PackIcon
+    Kind="Edit"
+    Height="15"
+    Width="15" />
+                        </Button>
+
+
+                    </Grid>
+                    
+
+                </StackPanel>
+                
+            </StackPanel>
+        </materialDesign:Card>
+        <TextBlock Grid.Row="3" Margin="20,10,0,0"
+    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+        Copy To:
+        </TextBlock>
+
+        <ScrollViewer HorizontalAlignment="Stretch" Grid.Row="4" VerticalScrollBarVisibility="Auto" Margin="0 0 0 0">
+            <ItemsControl x:Name="Drives" VerticalAlignment="Top" HorizontalAlignment="Stretch" >
+
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="2"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <materialDesign:Card VerticalAlignment="Center" Cursor="Hand" HorizontalAlignment="Stretch"
+                  materialDesign:ShadowAssist.ShadowDepth="Depth3" 
+                  cal:Message.Attach="[Event MouseDoubleClick] = [Action GBClick(Address)]"                               
+                  Background="{DynamicResource PrimaryHueDarkBrush}"
+                  Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                  
+                                                 
+                  Padding="10"
+                  Margin="10"                           
+                  UniformCornerRadius="6">
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="3*"/>
+
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Grid.Column="0" Margin="0,0,10,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <materialDesign:PackIcon HorizontalAlignment="Center" HorizontalContentAlignment="Left" VerticalAlignment="Top" Height="20" Width="Auto" Grid.Row="0" Grid.Column="0" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Kind="Harddisk" />
+                                    <TextBlock x:Name="Address" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" FontSize="25" Text="{Binding Port}"
+                            Style="{StaticResource MaterialDesignSubheadingTextBlock}">
+
+                                    </TextBlock>
+
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" HorizontalAlignment="Center" FontSize="10" Text="{Binding Props}" FontWeight="Light"
+                            Style="{StaticResource MaterialDesignSubheadingTextBlock}">
+
+                                    </TextBlock>
+                                    <TextBlock Grid.Row="1" HorizontalAlignment="Center" Text="{Binding Cost}"
+                            Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+
+                                    </TextBlock>
+                                    <TextBlock HorizontalAlignment="Center" Grid.Row="2" FontSize="10" Text="{Binding Items}"
+                            Style="{StaticResource MaterialDesignSubheadingTextBlock}">
+
+                                    </TextBlock>
+                                </Grid>
+
+                            </Grid>
+                        </materialDesign:Card>
+
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+
+        
+
+    </Grid>
+</UserControl>

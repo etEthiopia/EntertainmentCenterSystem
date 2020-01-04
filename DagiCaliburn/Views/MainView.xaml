@@ -1,0 +1,835 @@
+﻿<UserControl x:Class="DagiCaliburn.Views.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DagiCaliburn.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:cal="http://www.caliburnproject.org"
+             mc:Ignorable="d" 
+             Height="Auto" Width="Auto" MinWidth="100">
+
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="ButtonsIsVisible" Grid.Row="0">
+                <StackPanel Grid.Row="0" MaxHeight="25" Orientation="Horizontal">
+                <Button x:Name="PerSize" 
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    Height="20"
+                    FontSize="10"    
+                    ToolTip="Resource name: MaterialDesignRaisedButton" Margin="0,-2,0,0.2">
+                    Per _Size
+                </Button>
+                <Button   x:Name="AddSale"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    Height="20"
+                    FontSize="10"    
+                    ToolTip="Resource name: MaterialDesignRaisedButton" Margin="5,-2,0,0.2">
+                    Add Sale
+                </Button>
+                <Grid Margin="5,-2,0,0.2" x:Name="ClearGBIsVisible" Height="Auto"
+   >
+                    <Button x:Name="ClearSize" Background="Red" FontSize="10"
+            Style="{StaticResource MaterialDesignRaisedButton}"
+            materialDesign:ButtonProgressAssist.Value="-1"
+            materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+            materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+            Content="{Binding ClearGBName}"
+            />
+                </Grid>
+
+            </StackPanel>
+            </Grid>
+            <Grid x:Name="GridInputsIsVisible" Margin="5" Visibility="Visible" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="61*"/>
+                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="74*"/>
+                    <ColumnDefinition Width="74*"/>
+                </Grid.ColumnDefinitions>
+                <ComboBox Grid.Column="0" Margin="10,0,15,0"
+                    materialDesign:HintAssist.Hint="View" SelectedItem="{Binding GridType}" 
+                    Style="{StaticResource MaterialDesignFloatingHintComboBox}" Grid.ColumnSpan="2" 
+                  >
+                    <ComboBoxItem>
+                        Simplified
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        Listed
+                    </ComboBoxItem>
+                </ComboBox>
+                <ComboBox Grid.Column="2" Margin="0,0,15,0" SelectedItem="{Binding GridCategory}"
+                    materialDesign:HintAssist.Hint="Category"
+                    Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    <ComboBoxItem>
+                        All
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        Video
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        Audio
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        Others
+                    </ComboBoxItem>
+                </ComboBox>
+                <ComboBox Grid.Column="3" Margin="0,0,15,0" SelectedItem="{Binding GridItemType}"
+                    materialDesign:HintAssist.Hint="Type" x:Name="CategoryTypes" ItemsSource="{Binding Path=CategoryTypes}"
+                    Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <DatePicker Grid.Column="4" x:Name="GridDate"
+                      MinWidth="50"
+                      MaxWidth="75"
+                      materialDesign:HintAssist.Hint="Date"
+                      Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="0,2" />
+
+            </Grid>
+            <Grid Grid.Row="1" x:Name="CopyingIsVisible">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="125*"/>
+                    <ColumnDefinition Width="189*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel  HorizontalAlignment="Stretch" Orientation="Horizontal" Margin="5" Grid.ColumnSpan="2">
+                    <materialDesign:Chip HorizontalAlignment="Stretch" 
+                Content="{Binding CopyingDetail}"                 
+                Icon="{Binding CopyingIcon}" />
+                    <Button Margin="10,0,0,0" Width="20" Background="Red" Height="20" VerticalAlignment="Center"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                    ToolTip="MaterialDesignFloatingActionMiniLightButton">
+                        <materialDesign:PackIcon Foreground="White"
+                    Kind="Close"
+                    Height="15"
+                    Width="15"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+            <!--<ScrollViewer Margin=" 0,0,25,0" Grid.Row="2" VerticalScrollBarVisibility="Auto">-->
+            <Grid Grid.Row="2" x:Name="DGIsVisible">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <DataGrid Grid.Row="0"
+                  Margin="0 8 0 8" 
+                  CanUserReorderColumns="False"    
+                  ItemsSource="{Binding Sells, Mode=OneWay}"
+                  MinWidth="300"
+                          
+                  HorizontalAlignment="Stretch"
+                  SelectedIndex="{Binding SelectedIndex}"
+                  CanUserResizeColumns="True"
+                  AutoGenerateColumns="False"
+                  
+                  IsReadOnly="True"
+                     
+                  VerticalScrollBarVisibility="Auto" 
+                  HorizontalScrollBarVisibility="Auto"    
+                  CanUserDeleteRows="True"
+                  cal:Message.Attach="[Event MouseDoubleClick] = [Action SellDClick()]"
+                  
+                  CanUserSortColumns="True"
+                  SelectedItem="{Binding SelectedSell, Mode=TwoWay}"
+                  CanUserAddRows="True" >
+
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="Type"   >
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ToggleButton Grid.Row="0" Width="20" Height="20" HorizontalAlignment="Center"
+                                    Content="{Binding Initials}" FontSize="10" FontWeight="Light"
+                                    Style="{StaticResource MaterialDesignActionToggleButton}"
+                                    ToolTip="MaterialDesignFloatingActionMiniDarkButton"          
+                                    
+                                    materialDesign:ShadowAssist.ShadowDepth="Depth0" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Name" Width="0.8*" FontWeight="Light" Binding="{Binding Path= Name }">
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Header="Price" FontWeight="Light" Binding="{Binding Path = Price}" >
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Size" Width="0.3*"  FontWeight="Light" Binding="{Binding Path= Size}" >
+                        </DataGridTextColumn>
+
+
+
+                    </DataGrid.Columns>
+                </DataGrid>
+                <!-- the following based on https://material.io/guidelines/components/buttons.html#buttons-toggle-buttons -->
+                <Grid x:Name="PagIsVisible"  Grid.Row="1" >
+                    <ListBox Height="30" HorizontalAlignment="Right" Margin="0"
+                             
+            Style="{StaticResource MaterialDesignToolToggleListBox}"
+  
+                        >
+                        <ListBox.ToolTip>
+                            <StackPanel>
+                                <TextBlock
+        Text="MaterialDesignToolToggleListBox" />
+                                <TextBlock
+        Text="Exclusive selection" />
+                                <TextBlock
+        Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
+                            </StackPanel>
+                        </ListBox.ToolTip>
+                        <ListBoxItem IsSelected="False" Selected="gridfirstpage_Selected" Name="gridfirstpage">
+                            <materialDesign:PackIcon Height="20"
+      Kind="Home" />
+                        </ListBoxItem>
+                        <ListBoxItem IsSelected="False" Selected="gridbackpage_Selected" Name="gridbackpage">
+                            <materialDesign:PackIcon Height="20"
+      Kind="SkipPrevious" />
+                        </ListBoxItem>
+                        <ListBoxItem IsSelected="False"  Selected="gridnextpage_Selected" Name="gridnextpage">
+                            <materialDesign:PackIcon Height="20"
+      Kind="SkipNext" />
+                        </ListBoxItem>
+
+                    </ListBox>
+                </Grid>
+            </Grid>
+
+            <Grid x:Name="SelectedFIsVisible"  Visibility="Collapsed" Margin="20" Grid.RowSpan="3"  Grid.Row="0"  >
+                <!--<ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,10,0,0">-->
+                <materialDesign:Card Margin="0"
+                  Width="Auto"
+                  Padding="20">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+
+                        </Grid.RowDefinitions>
+                        <Grid HorizontalAlignment="Stretch" Grid.Row="0" Margin="0,0,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="30"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0"  FontWeight="Light"  Text="{Binding Path = SelectedName}" Grid.Column="0" Margin="0,5,5,0" FontSize="15" TextWrapping="WrapWithOverflow"
+                        Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+
+                            </TextBlock>
+                            <Button Grid.Column="1" Margin="0,5,5,0" Grid.Row="0" x:Name="DeleteFSellSelected" Height="20" Width="20" HorizontalAlignment="Right" VerticalAlignment="Center"
+                          Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                          ToolTip="MaterialDesignFloatingActionMiniLightButton" Background="Red">
+                                <materialDesign:PackIcon
+                            Foreground="White"
+                            Kind="DeleteForever"
+                            Height="14"
+                            Width="14" />
+                            </Button>
+
+                            <Button Grid.Column="2" Margin="0,5,5,0" Grid.Row="0" x:Name="CloseSellFSelected" Height="20" Width="20" Background="Red" HorizontalAlignment="Right" VerticalAlignment="Top"
+                          Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                          ToolTip="MaterialDesignFloatingActionMiniLightButton">
+                                <materialDesign:PackIcon
+                            Foreground="White"
+                            Kind="Close"
+                            Height="14"
+                            Width="14" />
+                            </Button>
+                        </Grid>
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Grid.Row="1"  Margin="0,0,0,0">
+                            <TextBlock Grid.Row="0" VerticalAlignment="Center" Grid.Column="1" FontWeight="Light" Margin="0,5,5,0" FontSize="8"  TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                    Dir
+                            </TextBlock>
+                            <TextBlock Grid.Row="0" VerticalAlignment="Center" Grid.Column="1"  FontWeight="Light" Text="{Binding Path = SelectedDir }"  Margin="0,0,5,5" FontSize="12" TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+
+                            </TextBlock>
+                        </StackPanel>
+                        <Grid Grid.Row="2"  Margin="0,0,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0" VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock FontWeight="Light"  Grid.Row="0" Text="{Binding Path = SelectedPrice }"  VerticalAlignment="Center" Grid.Column="0" Margin="0,5,5,5" FontSize="12" TextWrapping="WrapWithOverflow"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+
+                                </TextBlock>
+
+                                <TextBlock  FontWeight="Light"  Grid.Row="0" VerticalAlignment="Center" Grid.Column="1" Margin="5" FontSize="12" TextWrapping="WrapWithOverflow"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                    BIRR
+                                </TextBlock>
+
+                            </Grid>
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="15,0,0,0" Grid.Column="1">
+                                <TextBlock Grid.Row="0" FontWeight="Light"  VerticalAlignment="Center" Grid.Column="1" Margin="0,5,5,0" FontSize="8"  TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                    Date and Time
+                                </TextBlock>
+                                <TextBlock  FontWeight="Light"  Grid.Row="0" VerticalAlignment="Center" Grid.Column="1" Text="{Binding Path = SelectedDate}"  Margin="0,0,5,5" FontSize="12" TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,0,15,0" Grid.Column="2">
+                                <TextBlock Grid.Row="0"  FontWeight="Light"  VerticalAlignment="Center" Grid.Column="1" Margin="0,5,5,0" FontSize="8"  TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                    Size
+                                </TextBlock>
+                                <TextBlock Grid.Row="0" FontWeight="Light" VerticalAlignment="Center" Grid.Column="1" Text="{Binding Path = SelectedSize }"  Margin="0,0,5,5" FontSize="12" TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="15,0,0,0" Grid.Column="3">
+                                <TextBlock Grid.Row="0"  FontWeight="Light" VerticalAlignment="Center" Grid.Column="1" Margin="0,5,5,0" FontSize="8"  TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                    Reciever
+                                </TextBlock>
+                                <TextBlock  FontWeight="Light"  Grid.Row="0" VerticalAlignment="Center" Grid.Column="1" Text="{Binding Path = SelectedReciever }"  Margin="0,0,5,5" FontSize="12" TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+
+                                </TextBlock>
+                            </StackPanel>
+
+
+                        </Grid>
+                        <DataGrid Grid.Row="3"
+                  Margin="0" 
+                                  
+                  CanUserReorderColumns="False"    
+                  ItemsSource="{Binding FSells, Mode=OneWay}"
+                  SelectedIndex="{Binding SelectedIndex}"
+                  CanUserResizeColumns="True"
+                  AutoGenerateColumns="False"
+                  HorizontalAlignment="Stretch"
+                  IsReadOnly="True"
+                  FontSize="12"   
+                  VerticalScrollBarVisibility="Auto" 
+                  HorizontalScrollBarVisibility="Auto"    
+                  CanUserDeleteRows="True"
+                  cal:Message.Attach="[Event MouseDoubleClick] = [Action SellDClick()]"
+                  
+                  CanUserSortColumns="True"
+                  SelectedItem="{Binding SelectedSell, Mode=TwoWay}"
+                  CanUserAddRows="True" >
+
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn  Header="Type"   >
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ToggleButton HorizontalAlignment="Center" FontWeight="Light" FontSize="8" Content="{Binding Initials}" Grid.Row="0" Width="15" Height="15" 
+                                    Style="{StaticResource MaterialDesignActionToggleButton}"
+                                    ToolTip="MaterialDesignFloatingActionMiniDarkButton"          
+                                    
+                                    materialDesign:ShadowAssist.ShadowDepth="Depth0" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn  Header="Name" FontWeight="Light" Binding="{Binding Path= Name }">
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Price" FontWeight="Light" Binding="{Binding Path = Price}" >
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Size" FontWeight="Light" Binding="{Binding Path= Size}" >
+                                </DataGridTextColumn>
+
+
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                    </Grid>
+                </materialDesign:Card>
+                <!--</ScrollViewer>-->
+            </Grid>
+
+            <Grid Visibility="Collapsed" x:Name="SelectedIsVisible" Margin="20"  Grid.RowSpan="3"  Grid.Row="0"  >
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,10,0,0">
+                    <materialDesign:Card Grid.Row="1" Margin="0"
+                  Width="Auto"
+                  Padding="20">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid HorizontalAlignment="Stretch" Grid.Row="0" Margin="0,0,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="30"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Row="0"  FontWeight="Light"  Text="{Binding Path = SelectedName}" Grid.Column="0" Margin="0,5,5,0" FontSize="20" TextWrapping="WrapWithOverflow"
+                        Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+
+                                </TextBlock>
+                                <StackPanel Orientation="Vertical" Grid.Column="1">
+                                    <Button Grid.Column="1" Margin="0,5,5,0" Grid.Row="0" x:Name="CloseSellSelected" Height="20" Width="20" Background="Red" HorizontalAlignment="Right" VerticalAlignment="Top"
+                          Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                          ToolTip="MaterialDesignFloatingActionMiniLightButton">
+                                        <materialDesign:PackIcon
+                            Foreground="White"
+                            Kind="Close"
+                            Height="14"
+                            Width="14" />
+                                    </Button>
+                                 </StackPanel>
+                            </Grid>
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Grid.Row="1"  Margin="0,0,0,0">
+                                <TextBlock Grid.Row="0" VerticalAlignment="Center" Grid.Column="1" FontWeight="Light" Margin="0,5,5,0" FontSize="10"  TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                    Dir
+                                </TextBlock>
+                                <TextBlock Grid.Row="0" VerticalAlignment="Center" Grid.Column="1"  FontWeight="Light" Text="{Binding Path = SelectedDir }"  Margin="0,0,5,5" FontSize="15" TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+
+                                </TextBlock>
+                            </StackPanel>
+                            <Grid Grid.Row="2"  Margin="0,0,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock FontWeight="Light"  Grid.Row="0" Text="{Binding Path = SelectedPrice }"  VerticalAlignment="Center" Grid.Column="0" Margin="0,5,5,5" FontSize="20" TextWrapping="WrapWithOverflow"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+
+                                    </TextBlock>
+
+                                    <TextBlock  FontWeight="Light"  Grid.Row="0" VerticalAlignment="Center" Grid.Column="1" Margin="5" FontSize="20" TextWrapping="WrapWithOverflow"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                    BIRR
+                                    </TextBlock>
+
+                                </Grid>
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Margin="15,0,0,0" Grid.Column="1">
+                                    <TextBlock Grid.Row="0" FontWeight="Light"  VerticalAlignment="Center" Grid.Column="1" Margin="0,5,5,0" FontSize="10"  TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                    Date and Time
+                                    </TextBlock>
+                                    <TextBlock  FontWeight="Light"  Grid.Row="0" VerticalAlignment="Center" Grid.Column="1" Text="{Binding Path = SelectedDate}"  Margin="0,0,5,5" FontSize="15" TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+
+                                    </TextBlock>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Row="3"  Margin="0,0,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <ToggleButton  VerticalAlignment="Center" Grid.Column="0" Width="30" Height="30" HorizontalAlignment="Left"
+                                    Content="{Binding SelectedInitials}" FontSize="15" FontWeight="Light"
+                                    Style="{StaticResource MaterialDesignActionToggleButton}"
+                                    ToolTip="MaterialDesignFloatingActionMiniDarkButton"          
+                                    
+                                    materialDesign:ShadowAssist.ShadowDepth="Depth0" />
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,0,15,0" Grid.Column="1">
+                                    <TextBlock Grid.Row="0"  FontWeight="Light"  VerticalAlignment="Center" Grid.Column="1" Margin="0,5,5,0" FontSize="10"  TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                    Size
+                                    </TextBlock>
+                                    <TextBlock Grid.Row="0" FontWeight="Light" VerticalAlignment="Center" Grid.Column="1" Text="{Binding Path = SelectedSize }"  Margin="0,0,5,5" FontSize="20" TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+
+                                    </TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="15,0,0,0" Grid.Column="2">
+                                    <TextBlock Grid.Row="0"  FontWeight="Light" VerticalAlignment="Center" Grid.Column="1" Margin="0,5,5,0" FontSize="10"  TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                    Reciever
+                                    </TextBlock>
+                                    <TextBlock  FontWeight="Light"  Grid.Row="0" VerticalAlignment="Center" Grid.Column="1" Text="{Binding Path = SelectedReciever }"  Margin="0,0,5,5" FontSize="20" TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+
+                                    </TextBlock>
+                                </StackPanel>
+                                <Button Grid.Column="3" Margin="0,5,5,0" Grid.Row="0" x:Name="DeleteSellSelected" Height="30" Width="30" HorizontalAlignment="Right" VerticalAlignment="Center"
+                          Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                          ToolTip="MaterialDesignFloatingActionMiniLightButton" Background="Red">
+                                    <materialDesign:PackIcon
+                            Foreground="White"
+                            Kind="DeleteForever"
+                            Height="20"
+                            Width="20" />
+                                </Button>
+
+
+                            </Grid>
+                        </Grid>
+                    </materialDesign:Card>
+                </ScrollViewer>
+            </Grid>
+
+            <Grid Visibility="Collapsed" x:Name="SuccessIsVisible" Grid.Row="1" Grid.RowSpan="3" VerticalAlignment="Center">
+
+                <materialDesign:Card Grid.Row="1" Margin="20"
+                  Width="Auto"
+                  
+                  Padding="8">
+                    <Grid>
+                        <TextBlock Text="{Binding SpecialMessage}" FontSize="20" FontWeight="Light" TextWrapping="WrapWithOverflow" Margin="30,100" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Style="{StaticResource MaterialDesignDisplay1TextBlock}">
+
+                        </TextBlock>
+                        <Button x:Name="CloseSuccess" VerticalAlignment="Bottom" Margin="0,0,0,10"
+    Style="{StaticResource MaterialDesignRaisedAccentButton}"
+    Width="100"
+    ToolTip="Resource name: MaterialDesignRaisedAccentButton">
+                            OK
+                        </Button>
+                    </Grid>
+                </materialDesign:Card>
+            </Grid>
+            
+            <Grid Visibility="Collapsed" x:Name="DPromptIsVisible" Grid.Row="1" Grid.RowSpan="3" VerticalAlignment="Center">
+
+                <materialDesign:Card Grid.Row="1" Margin="20"
+                  Width="Auto"
+                  
+                  Padding="8">
+                    <Grid>
+                        <TextBlock Text="{Binding SpecialMessage}" FontSize="20" FontWeight="Light" TextWrapping="WrapWithOverflow" Margin="30,30,30,50" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Style="{StaticResource MaterialDesignDisplay1TextBlock}">
+
+                        </TextBlock>
+                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <Button x:Name="CancelDelete" VerticalAlignment="Bottom" Margin="0,0,5,10"
+    Style="{StaticResource MaterialDesignRaisedLightButton}"
+    Width="100"
+    ToolTip="Resource name: MaterialDesignRaisedLightButton">
+                                NO
+                            </Button>
+                            <Button x:Name="OkDelete" VerticalAlignment="Bottom" Margin="5,0,0,10"
+    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+    Width="100"
+    ToolTip="Resource name: MaterialDesignRaisedAccentButton">
+                                YES
+                            </Button>
+
+                        </StackPanel>
+
+                    </Grid>
+                </materialDesign:Card>
+            </Grid>
+            <!--</ScrollViewer>-->
+        </Grid>
+
+        <Grid x:Name="DrivesIsVisible"   Grid.Row="1">
+            <ScrollViewer HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" Margin="0 0 0 0">
+                <ItemsControl x:Name="Drives" VerticalAlignment="Top" HorizontalAlignment="Stretch" >
+
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="2"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <materialDesign:Card VerticalAlignment="Center" Cursor="Hand" HorizontalAlignment="Stretch"
+                  materialDesign:ShadowAssist.ShadowDepth="Depth3" 
+                  cal:Message.Attach="[Event MouseDoubleClick] = [Action DriveSelected(Port)]"                               
+                  Background="{DynamicResource PrimaryHueDarkBrush}"
+                  Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                  
+                                                 
+                  Padding="10"
+                  Margin="10"                           
+                  UniformCornerRadius="6">
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="3*"/>
+
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid Grid.Column="0" Margin="0,0,10,0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <materialDesign:PackIcon HorizontalAlignment="Center" HorizontalContentAlignment="Left" VerticalAlignment="Top" Height="20" Width="Auto" Grid.Row="0" Grid.Column="0" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Kind="Harddisk" />
+                                        <TextBlock x:Name="Port" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" FontSize="25" Text="{Binding Port}"
+                            Style="{StaticResource MaterialDesignSubheadingTextBlock}">
+
+                                        </TextBlock>
+
+                                    </Grid>
+                                    <Grid Grid.Column="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" HorizontalAlignment="Center" FontSize="10" Text="{Binding Props}" FontWeight="Light"
+                            Style="{StaticResource MaterialDesignSubheadingTextBlock}">
+
+                                        </TextBlock>
+                                        <TextBlock Grid.Row="1" HorizontalAlignment="Center" Text="{Binding Cost}"
+                            Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+
+                                        </TextBlock>
+                                        <TextBlock HorizontalAlignment="Center" Grid.Row="2" FontSize="10" Text="{Binding Items}"
+                            Style="{StaticResource MaterialDesignSubheadingTextBlock}">
+
+                                        </TextBlock>
+                                    </Grid>
+
+                                </Grid>
+                            </materialDesign:Card>
+
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+
+        </Grid>
+
+        <Grid x:Name="DailyIsVisible" Grid.Row="2">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch">
+                <Grid Grid.Row="2" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Margin="10" Orientation="Vertical" Grid.Column="0">
+                        <TextBlock
+                    Style="{StaticResource MaterialDesignSubheadingTextBlock}" FontWeight="Light">
+                        Todays Earnings
+                        </TextBlock>
+                        <TextBlock Text="{Binding TodaysEarnings}"
+                    Style="{StaticResource MaterialDesignDisplay1TextBlock}" >
+
+                        </TextBlock>
+                    </StackPanel>
+                    <Grid   x:Name="ProgressGridIsVisible" Grid.Column="1" HorizontalAlignment="Right">
+                        <StackPanel Margin="10" Orientation="Vertical" Grid.Column="1">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <TextBlock Foreground="Gray"
+                        Style="{StaticResource MaterialDesignCaptionTextBlock}" FontWeight="Light">
+                        Goal :
+                                </TextBlock>
+                                <TextBlock Text="{Binding Goal}"  Margin="5,0,20,0"
+                        Style="{StaticResource MaterialDesignCaptionTextBlock}" FontWeight="Light">
+
+                                </TextBlock>
+                            </StackPanel>
+                            <Grid Margin="10" Visibility="Collapsed" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Width="Auto">
+                                <Button
+                        Style="{StaticResource MaterialDesignRaisedButton}" FontWeight="Light"
+                        materialDesign:ButtonProgressAssist.Value="-1"
+                        materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                        materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                        Content="Set Todays Goal"
+                        Margin="2,0" />
+                            </Grid>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                    <TextBlock Grid.Row="1" Margin="0,0,0,0"  Text="{Binding ProgressValue}"
+                        Style="{StaticResource MaterialDesignSubheadingTextBlock}" FontWeight="Light">
+
+                                    </TextBlock>
+                                    <ProgressBar x:Name="TodaysProgress" MinWidth="150" Margin="10,0,0,0" VerticalAlignment="Center" Height="10" />
+                                </StackPanel>
+
+                                <TextBlock Text="{Binding ProgressToGo}" FontWeight="Light" Grid.Row="2" Margin="0,0,0,0"
+                        Style="{StaticResource MaterialDesignSubheadingTextBlock}">
+
+                                </TextBlock>
+                            </Grid>
+
+                        </StackPanel>
+                    </Grid>
+                    <Grid x:Name="SetGoalIsVisible" Grid.Column="1">
+                        <materialDesign:Card Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right"
+                        Background="{DynamicResource PrimaryHueDarkBrush}"
+                        Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                        
+                        Padding="10">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock FontWeight="Light" Margin="0,0,0,5" FontSize="15" Grid.Row="0" HorizontalAlignment="Center" Grid.ColumnSpan="2"
+                                Style="{StaticResource MaterialDesignSubheadingTextBlock}">
+                                Set your Daily Goal !
+                                </TextBlock>
+                                <TextBox x:Name="GoalAmount" Grid.Row="1" Grid.Column="0" 
+                                         HorizontalAlignment="Left"
+                                        materialDesign:HintAssist.Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                                materialDesign:HintAssist.Hint="Enter Amount" FontSize="15"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                <Button HorizontalAlignment="Right" x:Name="SetGoalAmount" Grid.Row="1" Grid.Column="1"
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    Margin="10,0,0,0" FontSize="12" FontWeight="Light" 
+    ToolTip="Resource name: MaterialDesignRaisedAccentButton"
+    materialDesign:RippleAssist.Feedback="#DD000000">
+                                    START
+                                </Button>
+                            </Grid>
+                        </materialDesign:Card>
+                    </Grid>
+                </Grid>
+            </ScrollViewer>
+
+        </Grid>
+
+        <Grid x:Name="DriveDIsVisible" Grid.Row="1" Grid.RowSpan="2" >
+            <materialDesign:Card VerticalAlignment="Stretch" Cursor="Hand" HorizontalAlignment="Stretch"
+                  materialDesign:ShadowAssist.ShadowDepth="Depth3" 
+                  Background="{DynamicResource PrimaryHueDarkBrush}"
+                  Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                  Padding="10,10,10,0"
+                  Margin="10,10,10,5"                           
+                  UniformCornerRadius="6">
+
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+
+                    </Grid.RowDefinitions>
+                    <Button Grid.Column="2" Grid.Row="0" Margin="0,0,0,0" x:Name="CloseDriveSelected" Height="20" Width="20" Background="Red" HorizontalAlignment="Right" VerticalAlignment="Center"
+                          Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                          ToolTip="MaterialDesignFloatingActionMiniLightButton">
+                        <materialDesign:PackIcon
+                            Foreground="White"
+                            Kind="Close"
+                            Height="14"
+                            Width="14" />
+                    </Button>
+                    <materialDesign:PackIcon Grid.Column="0" Grid.Row="1" Margin="20,0,0,0" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" Height="60" Width="35" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Kind="Harddisk" />
+
+                    <Grid Grid.Column="1" Grid.Row="1" Margin="0,0,20,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" HorizontalAlignment="Left" FontSize="20" Text="{Binding DPort}" FontWeight="Light" Margin="20 0 0 0"
+                            Style="{StaticResource MaterialDesignSubheadingTextBlock}"/>
+                        <TextBlock Grid.Column="1" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" HorizontalAlignment="Left" FontSize="10" Text="{Binding DName}"  TextWrapping="WrapWithOverflow"  FontWeight="Light" Margin="20 0 0 0"
+                            Style="{StaticResource MaterialDesignSubheadingTextBlock}"/>
+                    </Grid>
+                    <TextBlock TextWrapping="WrapWithOverflow" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" HorizontalAlignment="Left" FontSize="15" Text="{Binding DProps}" FontWeight="Light" Margin="20 0 5 0"
+                            Style="{StaticResource MaterialDesignSubheadingTextBlock}"/>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="15,0,20,0" Grid.Column="2" Grid.Row="1">
+                        <TextBlock Grid.Row="0"  FontWeight="Light" VerticalAlignment="Center" Grid.Column="1" Margin="0,5,5,0" FontSize="7"  TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                    Cost
+                        </TextBlock>
+                        <TextBlock  FontWeight="Light" Grid.Row="0" VerticalAlignment="Center" Grid.Column="1" Text="{Binding Path = DCost }"  Margin="0,0,5,5" FontSize="20" TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="15,0,20,0" Grid.Column="2" Grid.Row="2">
+
+                        <TextBlock  FontWeight="Light" Grid.Row="0" VerticalAlignment="Center" Grid.Column="1" Text="{Binding Path = DItems }"  Margin="0,0,5,5" FontSize="15" TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+
+                        </TextBlock>
+                    </StackPanel>
+
+                    <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" x:Name="PurchasedDG">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <DataGrid Grid.Row="0"  Background="Transparent"
+                  Margin="8 8 8 0" 
+                  Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                  CanUserReorderColumns="False"    
+                  ItemsSource="{Binding DPurchased, Mode=OneWay}"
+                  HorizontalAlignment="Stretch"
+                  SelectedIndex="{Binding SelectedIndex}"
+                  CanUserResizeColumns="True"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"   
+                  VerticalScrollBarVisibility="Auto" 
+                  HorizontalScrollBarVisibility="Auto"    
+                  CanUserDeleteRows="True"
+                  CanUserSortColumns="True"
+                  SelectedItem="{Binding SelectedSell, Mode=TwoWay}"
+                  CanUserAddRows="True" >
+
+                            <DataGrid.Columns>
+
+                                <DataGridTextColumn Header="Name" Width="*" FontWeight="Light" Binding="{Binding Path= Name }">
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="Price" FontWeight="Light" Binding="{Binding Path = Price}" >
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Size"  FontWeight="Light" Binding="{Binding Path= Size}" >
+                                </DataGridTextColumn>
+
+
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <!-- the following based on https://material.io/guidelines/components/buttons.html#buttons-toggle-buttons -->
+
+                    </Grid>
+
+                </Grid>
+            </materialDesign:Card>
+        </Grid>
+
+    </Grid>
+</UserControl>

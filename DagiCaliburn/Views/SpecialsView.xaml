@@ -1,0 +1,173 @@
+﻿<UserControl x:Class="DagiCaliburn.Views.SpecialsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DagiCaliburn.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             xmlns:cal="http://www.caliburnproject.org"
+             d:DesignWidth="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+
+        <DataGrid Grid.Row="0"
+                  Margin="0 8 0 8"
+                  CanUserReorderColumns="False"    
+                  ItemsSource="{Binding Specials, Mode=OneWay}"
+                  MaxHeight="250"
+                  Width="Auto"
+                  SelectedIndex="{Binding SelectedIndex}"
+                  CanUserResizeColumns="True"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  VerticalScrollBarVisibility="Auto"    
+                  CanUserDeleteRows="False"
+                  CanUserSortColumns="True"
+                  cal:Message.Attach="[Event MouseDoubleClick] = [Action SellDClick()]"
+                  
+                  SelectedItem="{Binding SelectedSpecial, Mode=TwoWay}"
+                  CanUserAddRows="False" >
+
+            <DataGrid.Columns>
+                
+                <DataGridTextColumn Header="Name" Width="0.4*" Binding="{Binding Path= Name }" FontWeight="Light">
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Price"  Binding="{Binding Path = Price}" FontWeight="Light">
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Expire Date" Width="0.4*" Binding="{Binding Path= AcDate}" FontWeight="Light">
+                </DataGridTextColumn>
+
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid x:Name="SpecialIsVisible" Grid.Row="1">
+            <materialDesign:Card Grid.Row="1" Margin="20"
+                  Width="Auto"
+                  Padding="8">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Margin="10" Text="{Binding SpecialTitle}"
+                        Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                        
+                    </TextBlock>
+                    
+                    <Grid Grid.Row="1" Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox Grid.Column="0" Margin="5" FontSize="25"  materialDesign:HintAssist.Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                      materialDesign:HintAssist.Hint="Name" FontWeight="Light"
+                       x:Name="Name"   Text="{Binding SpName}"   
+                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
+                        <TextBox Grid.Column="1" FontWeight="Light" Margin="5" FontSize="25" materialDesign:HintAssist.Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                      materialDesign:HintAssist.Hint="Price"
+                             x:Name="Price" Text="{Binding SpPrice}"
+                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"  />
+                    </Grid>
+                    <Grid x:Name="ExisitingExpiryIsVisible" Grid.Row="2">
+                    <TextBox  Grid.Column="1" FontWeight="Light" Margin="15,5" FontSize="20" materialDesign:HintAssist.Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                      materialDesign:HintAssist.Hint="Existing Expiry Date"
+                              Text="{Binding SpExp}"
+                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"  />
+                    </Grid>
+                    <ComboBox Grid.Row="3" Margin="15,5" ItemsSource="{Binding ExpireDates}"
+  materialDesign:HintAssist.Hint="Expire Date" SelectedValue="{Binding SpExp}"
+  Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+
+                    </ComboBox>
+                    <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Grid HorizontalAlignment="Right" x:Name="DeleteIsVisible">
+                    
+                            <Button Foreground="White" BorderBrush="Red" Background="Red" HorizontalAlignment="Left" Margin="5"
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        Width="80"
+                        x:Name="Delete"
+                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
+                                DELETE
+                            </Button>
+                        </Grid>
+                        <Button  x:Name="Cancel"
+    Style="{StaticResource MaterialDesignRaisedLightButton}"
+    
+    ToolTip="Resource name: MaterialDesignRaisedLightButton">
+                            CANCEL
+                        </Button>
+                        <Button HorizontalAlignment="Right" Margin="5"
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        Width="80"
+                        x:Name="Save"
+                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
+                            SAVE
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Card>
+        </Grid>
+        <Grid Visibility="Collapsed" x:Name="SuccessIsVisible" Grid.Row="1">
+            
+            <materialDesign:Card Grid.Row="1" Margin="20"
+                  Width="Auto"
+                  
+                  Padding="8">
+                <Grid>
+                    <TextBlock Text="{Binding SpecialMessage}" FontSize="20" FontWeight="Light" TextWrapping="WrapWithOverflow" Margin="30,100" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Style="{StaticResource MaterialDesignDisplay1TextBlock}">
+                    
+                </TextBlock>
+                    <Button x:Name="CloseSuccess" VerticalAlignment="Bottom" Margin="0,0,0,10"
+    Style="{StaticResource MaterialDesignRaisedAccentButton}"
+    Width="100"
+    ToolTip="Resource name: MaterialDesignRaisedAccentButton">
+                        OK
+                    </Button>
+                </Grid>
+            </materialDesign:Card>
+        </Grid>
+        <Grid  x:Name="DPromptIsVisible" Grid.Row="1">
+
+            <materialDesign:Card Grid.Row="1" Margin="20"
+                  Width="Auto"
+                  
+                  Padding="8">
+                <Grid>
+                    <TextBlock Text="{Binding SpecialMessage}" FontSize="20" FontWeight="Light" TextWrapping="WrapWithOverflow" Margin="30,30,30,50" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Style="{StaticResource MaterialDesignDisplay1TextBlock}">
+
+                    </TextBlock>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Bottom">
+                        <Button x:Name="CancelDelete" VerticalAlignment="Bottom" Margin="0,0,5,10"
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    Width="100"
+    ToolTip="Resource name: MaterialDesignRaisedAccentButton">
+                            NO
+                        </Button>
+                        <Button x:Name="OkDelete" VerticalAlignment="Bottom" Margin="5,0,0,10"
+    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+    Width="100"
+    ToolTip="Resource name: MaterialDesignRaisedAccentButton">
+                            YES
+                        </Button>
+
+                    </StackPanel>
+                    
+                </Grid>
+            </materialDesign:Card>
+        </Grid>
+    </Grid>
+</UserControl>

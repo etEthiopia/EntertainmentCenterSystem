@@ -1,0 +1,283 @@
+﻿<UserControl x:Class="DagiCaliburn.Views.DailyDataView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DagiCaliburn.Views"
+             xmlns:MetroChart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart"
+             mc:Ignorable="d"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="650" d:DesignWidth="500">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            
+        </Grid.RowDefinitions>
+            <MetroChart:PieChart Grid.Row="0"  HorizontalAlignment="Left" Width="200" TextElement.Foreground="{DynamicResource ResourceKey=MaterialDesignBody}"
+        Background="{DynamicResource ResourceKey=MaterialDesignPaper}"
+                ChartTitle="500 BIRR"  Grid.Column="0" Margin="0"  ChartSubTitle="300 SELLS"  >
+                <MetroChart:PieChart.Series>
+                    <MetroChart:ChartSeries ItemsSource="{Binding Path = TodaysEarnings}"
+                     DisplayMember="Element"
+                     SeriesTitle="Doughnut" 
+                     
+                        ValueMember="Percent"/>
+                </MetroChart:PieChart.Series>
+
+            </MetroChart:PieChart>
+
+            <Grid HorizontalAlignment="Right">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="1" VerticalAlignment="Top" Margin="5,5,0,0" 
+                    Style="{StaticResource MaterialDesignSubheadingTextBlock}" FontSize="12" FontWeight="Light">
+                    Top Sellers
+                </TextBlock>
+                <ScrollViewer Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="200"  VerticalScrollBarVisibility="Auto">
+                    <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                        <materialDesign:Card Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                  materialDesign:ShadowAssist.ShadowDepth="Depth1" 
+                  
+                  Width="Auto"
+                  Height="Auto"               
+                  Padding="10,5"
+                  Margin="5"                           
+                  UniformCornerRadius="6">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="2*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                    <ToggleButton Grid.Row="0" Width="20" Height="20" FontWeight="Light"
+                                    Content="KS" FontSize="10"
+                                    Style="{StaticResource MaterialDesignActionToggleButton}"
+                                    ToolTip="MaterialDesignFloatingActionMiniDarkButton"          
+                                    
+                                    materialDesign:ShadowAssist.ShadowDepth="Depth0" />
+
+
+
+                                
+                            </Grid>
+
+                            <Grid Grid.Column="1" Margin="20,0,10,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" FontSize="10" Text="The.Wire.2x10- ab movie center 0912413713.avi" FontWeight="Light"
+                            Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                </TextBlock>
+                                <Grid Grid.Row="1">
+                                        <TextBlock Text="10 BIRR" FontWeight="Light"
+                                Style="{StaticResource MaterialDesignCaptionTextBlock}">
+
+                                    </TextBlock>
+                                        <TextBlock Text="10 SOLD" FontSize="10" HorizontalAlignment="Right" FontWeight="Light"
+                                Style="{StaticResource MaterialDesignCaptionTextBlock}">
+
+                                    </TextBlock>
+                                   </Grid>
+                            </Grid>
+
+
+
+                        </Grid>
+                    </materialDesign:Card>
+                        <materialDesign:Card Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                  materialDesign:ShadowAssist.ShadowDepth="Depth1" 
+                  
+                  Width="Auto"
+                  Height="Auto"               
+                  Padding="10,5"
+                  Margin="5"                           
+                  UniformCornerRadius="6">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="2*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                    <ToggleButton Grid.Row="0" Width="20" Height="20" FontWeight="Light"
+                                    Content="M" FontSize="10"
+                                    Style="{StaticResource MaterialDesignActionToggleButton}"
+                                    ToolTip="MaterialDesignFloatingActionMiniDarkButton"          
+                                    
+                                    materialDesign:ShadowAssist.ShadowDepth="Depth0" />
+
+
+
+                                
+                            </Grid>
+
+                            <Grid Grid.Column="1" Margin="20,0,10,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" FontSize="10" Text="Death.at.a.Funeral.2010.720p.BluRay.DL.mkv" FontWeight="Light"
+                            Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                </TextBlock>
+                                <Grid Grid.Row="1">
+                                        <TextBlock Text="9 BIRR" FontWeight="Light"
+                                Style="{StaticResource MaterialDesignCaptionTextBlock}">
+
+                                    </TextBlock>
+                                        <TextBlock Text="3 SOLD" FontSize="10" HorizontalAlignment="Right" FontWeight="Light"
+                                Style="{StaticResource MaterialDesignCaptionTextBlock}">
+
+                                    </TextBlock>
+                                </Grid>
+                            </Grid>
+
+
+
+                        </Grid>
+                    </materialDesign:Card>
+                        <materialDesign:Card Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+                  materialDesign:ShadowAssist.ShadowDepth="Depth1" 
+                  
+                  Width="Auto"
+                  Height="Auto"               
+                  Padding="10,5"
+                  Margin="5"                           
+                  UniformCornerRadius="6">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="2*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                    <ToggleButton Grid.Row="0" Width="20" Height="20" FontWeight="Light"
+                                    Content="S" FontSize="10"
+                                    Style="{StaticResource MaterialDesignActionToggleButton}"
+                                    ToolTip="MaterialDesignFloatingActionMiniDarkButton"          
+                                    
+                                    materialDesign:ShadowAssist.ShadowDepth="Depth0" />
+
+
+
+                                
+                            </Grid>
+
+                            <Grid Grid.Column="1" Margin="20,0,10,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" FontSize="10" Text="The.Wire.2E09- ab movie center 0912413713.avi" FontWeight="Light"
+                            Style="{StaticResource MaterialDesignHeadlineTextBlock}">
+                                </TextBlock>
+                                <Grid Grid.Row="1">
+                                        <TextBlock Text="5 BIRR" FontWeight="Light"
+                                Style="{StaticResource MaterialDesignCaptionTextBlock}">
+
+                                    </TextBlock>
+                                        <TextBlock Text="5 SOLD" FontSize="10" HorizontalAlignment="Right" FontWeight="Light"
+                                Style="{StaticResource MaterialDesignCaptionTextBlock}">
+
+                                    </TextBlock>
+                                </Grid>
+                            </Grid>
+
+
+
+                        </Grid>
+                    </materialDesign:Card>
+
+                </Grid>
+                </ScrollViewer>
+
+                <StackPanel Margin="5,10,5,0" Grid.Row="3" Orientation="Vertical">
+                    <TextBlock FontWeight="Light" FontSize="12"
+                        Style="{StaticResource MaterialDesignBody1TextBlock}">
+                        Average Income Per Day
+                    </TextBlock>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock 
+                        Style="{StaticResource MaterialDesignBody1TextBlock}">
+                        451 BIRR
+                        </TextBlock>
+                        <TextBlock VerticalAlignment="Bottom" Margin="15,0,0,0" FontWeight="Light" FontSize="10"
+                        Style="{StaticResource MaterialDesignBody1TextBlock}">
+                        300 SELLS
+                        </TextBlock>
+                    </StackPanel>
+                    
+                </StackPanel>
+            <DatePicker HorizontalAlignment="Right" Grid.Row="0" VerticalAlignment="Top" Margin="10,0"
+            Width="100"
+            materialDesign:HintAssist.Hint="Pick Date"
+            Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+            </Grid>
+
+            <MetroChart:StackedBarChart Grid.Row="1" TextElement.Foreground="{DynamicResource ResourceKey=MaterialDesignBody}"
+        Background="{DynamicResource ResourceKey=MaterialDesignPaper}"
+                ChartTitle="Sells of the day in 2 hours duration "  Grid.Column="0" Margin="0"  ChartSubTitle="Starting from morining upto NIGHT 4:00 (10 PM) "  >
+            <MetroChart:StackedBarChart.Series>
+                <MetroChart:ChartSeries Margin="10" ItemsSource="{Binding Path = Earnings810am}"
+                     DisplayMember="Element"
+                                        
+                     SeriesTitle="-4" 
+                        ValueMember="Percent"/>
+                <MetroChart:ChartSeries ItemsSource="{Binding Path = Earnings1012pm}"
+                     DisplayMember="Element"
+                                        Name="Tuesday"
+                     SeriesTitle="4-6" 
+                        ValueMember="Percent"/>
+                <MetroChart:ChartSeries ItemsSource="{Binding Path = Earnings122pm}"
+                     DisplayMember="Element"
+                     SeriesTitle="6-8" 
+                        ValueMember="Percent"/>
+                <MetroChart:ChartSeries ItemsSource="{Binding Path = Earnings24pm}"
+                     DisplayMember="Element"
+                     SeriesTitle="8-10" 
+                        ValueMember="Percent"/>
+                <MetroChart:ChartSeries ItemsSource="{Binding Path = Earnings46pm}"
+                     DisplayMember="Element"
+                     SeriesTitle="10-12" 
+                        ValueMember="Percent"/>
+                <MetroChart:ChartSeries ItemsSource="{Binding Path = Earnings68pm}"
+                     DisplayMember="Element"
+                     SeriesTitle="12-2" 
+                        ValueMember="Percent"/>
+                <MetroChart:ChartSeries ItemsSource="{Binding Path = Earnings810pm}"
+                     DisplayMember="Element"
+                     SeriesTitle="2-4" 
+                        ValueMember="Percent"/>
+            </MetroChart:StackedBarChart.Series>
+
+        </MetroChart:StackedBarChart>
+            
+                
+            
+        </Grid>
+    </ScrollViewer>
+</UserControl>

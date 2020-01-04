@@ -1,0 +1,112 @@
+﻿<Window x:Class="DagiCaliburn.Views.UnknownDirView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DagiCaliburn.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        
+        mc:Ignorable="d"
+        Title="UnknownDirView" Height="250" Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="246.4"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Margin="20" x:Name="DirectoryTitle" Grid.Column="0" Grid.ColumnSpan="2"
+              Style="{StaticResource MaterialDesignSubheadingTextBlock}">
+
+        </TextBlock>
+        <materialDesign:Card HorizontalContentAlignment="Center" Margin="5" Grid.Row="1" Grid.Column="0"
+    materialDesign:ShadowAssist.ShadowDepth="Depth1"
+    Padding="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+
+                </Grid.RowDefinitions>
+                <CheckBox Grid.Row="0"
+                     Style="{StaticResource MaterialDesignCheckBox}">
+                    Add to Specials
+                </CheckBox>
+                <StackPanel x:Name="SpecialIsVisible" Orientation="Horizontal" Grid.Row="1">
+                    <TextBox Width="50" 
+                          materialDesign:HintAssist.Hint="Price"
+                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,0,10,0" />
+                    <ComboBox
+  materialDesign:HintAssist.Hint="Exprie After :"
+  Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                        <ComboBoxItem>
+                            After Copy
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            1 Hour
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            3 Hours
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            6 Hours
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            1 Day
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            2 Days
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            Undefined
+                        </ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
+        </materialDesign:Card>
+        <materialDesign:Card HorizontalContentAlignment="Center" Margin="5" Grid.Row="1" Grid.Column="1"
+    materialDesign:ShadowAssist.ShadowDepth="Depth1"
+    Padding="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+
+                </Grid.RowDefinitions>
+                <CheckBox Grid.Row="0" FontSize="10"
+                     Style="{StaticResource MaterialDesignCheckBox}">
+                    Add to Type Directories
+                </CheckBox>
+                <StackPanel x:Name="TypeIsVisible" Orientation="Horizontal" Grid.Row="1">
+                    <TextBlock Margin="0,0,20,0" VerticalAlignment="Center"
+                            Style="{StaticResource MaterialDesignBody1TextBlock}">
+                          Type :
+                    </TextBlock>
+                    <ComboBox 
+                          materialDesign:HintAssist.Hint="Search"
+                          IsEditable="True"
+                          Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+
+                    </ComboBox>
+                </StackPanel>
+
+            </Grid>
+        </materialDesign:Card>
+        <StackPanel x:Name="SaveIsEnabled" VerticalAlignment="Bottom" Margin="10" HorizontalAlignment="Right" Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+
+            <Button 
+                x:Name="Save"
+    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+    MinWidth="70" MaxWidth="100"
+    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
+                Save
+            </Button>
+        </StackPanel>
+
+    </Grid>
+</Window>
