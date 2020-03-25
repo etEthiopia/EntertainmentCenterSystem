@@ -18,31 +18,31 @@ namespace DagiCaliburn.ViewModels
         public StatsViewModel()
         {
             statsView = this;
-            weeklyData = new WeeklyDataViewModel();
-            monthlyData = new MonthlyDataViewModel();
-            dailyData = new DailyDataViewModel();
-            customerData = new CustomersViewModel();
-            ActivateItem(dailyData);
+            
+            DailyBtn();
         }
 
         public void DailyBtn()
         {
+            dailyData = new DailyDataViewModel();
             ActivateItem(dailyData);
         }
 
         public void WeeklyBtn()
         {
+            weeklyData = new WeeklyDataViewModel();
             ActivateItem(weeklyData);
         }
 
         public void MonthlyBtn()
         {
+            monthlyData = new MonthlyDataViewModel();
             ActivateItem(monthlyData);
         }
 
         public void CusomterBtn()
         {
-            Console.WriteLine("Btn");
+            customerData = new CustomersViewModel();
             ActivateItem(customerData);
         }
 
