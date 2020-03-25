@@ -19,10 +19,25 @@ namespace DagiCaliburn.ViewModels
         private List<ChartModel> _e68pm = new List<ChartModel>();
         private List<ChartModel> _e810pm = new List<ChartModel>();
         private StatisticsModel statisticsModel = new StatisticsModel();
+        private BindableCollection<TopSellModel> _topSellers = new BindableCollection<TopSellModel>();
+
+
+
         private string _tsitems = "0 SELLS";
         private string _tsbirr = "0 BIRR";
 
-        
+        public BindableCollection<TopSellModel> TopSellers
+        {
+            get
+            {
+                return _topSellers;
+            }
+            set
+            {
+                _topSellers = value;
+                NotifyOfPropertyChange(() => TopSellers);
+            }
+        }
 
         public string TodaysSoldMoney
         {
@@ -138,7 +153,7 @@ namespace DagiCaliburn.ViewModels
 
         private Dictionary<string, double> getMainDailySells()
         {
-            statisticsModel.getMainTopDailySell();
+            TopSellers = new BindableCollection<TopSellModel>(statisticsModel.getMainTopDailySell());
             return statisticsModel.getMainDailySell();
         }
 

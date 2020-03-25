@@ -203,10 +203,10 @@ namespace DagiCaliburn.Models
 
             DateTime theDate = DateTime.Now;
             String today = theDate.ToString("yyyy-MM-dd");
-
-            string query = $"SELECT name, sum(price) AS sm,type,count(name) FROM fdb.audiosells where datetime like '{today}%' GROUP BY type UNION ALL " +
-                $"SELECT name,sum(price) AS sm,type,count(name) FROM fdb.videosells where datetime like '{today}%' GROUP BY type UNION ALL " +
-                $"SELECT name,sum(price) AS sm,type,count(name) FROM fdb.othersells where datetime like '{today}%' GROUP BY type order by sm DESC LIMIT 3;";
+            
+            string query = $"SELECT name, sum(price) AS sm,type,count(name) AS cn FROM fdb.audiosells where datetime like '{today}%' GROUP BY name UNION ALL " +
+                $"SELECT name,sum(price) AS sm,type,count(name) AS cn FROM fdb.videosells where datetime like '{today}%' GROUP BY name UNION ALL " +
+                $"SELECT name,sum(price) AS sm,type,count(name) AS cn FROM fdb.othersells where datetime like '{today}%' GROUP BY name order by cn DESC LIMIT 3;";
 
            
 
@@ -228,8 +228,8 @@ namespace DagiCaliburn.Models
                     TopSellModel tm = new TopSellModel();
 
                     tm.Name = reader["name"].ToString();
-                    tm.Count = int.Parse(reader["count(name)"].ToString());
-                     tm.TotalPrice = float.Parse(reader["sm"].ToString());
+                    tm.Count = int.Parse(reader["cn"].ToString()) + " SOLD";
+                     tm.TotalPrice = float.Parse(reader["sm"].ToString()) +" BIRR";
                     
                     if (int.Parse(reader["type"].ToString()) == 0)
                     {

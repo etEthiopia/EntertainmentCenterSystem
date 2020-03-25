@@ -10,7 +10,7 @@ namespace DagiCaliburn.Models
     {
         public string Name { get; set; }
         public string Initials { get; set; }
-        public float TotalPrice { get; set; }
-        public int Count { get; set; }
+        public string TotalPrice { get; set; }
+        public string Count { get; set; }
     }
 }
