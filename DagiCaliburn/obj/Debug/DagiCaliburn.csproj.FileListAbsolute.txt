@@ -268,3 +268,5 @@ C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\PrintStatsView.g.
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\ProfileView.g.cs
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\PrintStatsView.baml
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\ProfileView.baml
+C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\PropmtView.g.cs
+C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\PropmtView.baml

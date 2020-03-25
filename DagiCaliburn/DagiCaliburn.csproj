@@ -184,6 +184,7 @@
     <Compile Include="ViewModels\MusicViewModel.cs" />
     <Compile Include="ViewModels\PrintStatsViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
+    <Compile Include="ViewModels\PropmtViewModel.cs" />
     <Compile Include="ViewModels\SaleViewModel.cs" />
     <Compile Include="ViewModels\SellViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
@@ -224,6 +225,9 @@
     </Compile>
     <Compile Include="Views\ProfileView.xaml.cs">
       <DependentUpon>ProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PropmtView.xaml.cs">
+      <DependentUpon>PropmtView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SaleView.xaml.cs">
       <DependentUpon>SaleView.xaml</DependentUpon>
@@ -329,6 +333,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ProfileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PropmtView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

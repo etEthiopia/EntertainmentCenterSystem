@@ -13,6 +13,7 @@ namespace DagiCaliburn.ViewModels
     class StartViewModel : Conductor<object>
     {
         public static MainViewModel mainview;
+        public static PropmtViewModel promptView;
         public static StartViewModel startview;
         public static SettingsViewModel settingsview;
         public static GBViewModel gbview;
@@ -21,6 +22,7 @@ namespace DagiCaliburn.ViewModels
         public static SpecialsViewModel specialview;
         public static bool INGB = false;
         public static int news = 0;
+        public static bool okSign = false;
         public static Dictionary<string, FileSystemWatcher> watchers;
         SharpClipboard clipboard = new SharpClipboard();
         Watcher watcher;
@@ -30,6 +32,7 @@ namespace DagiCaliburn.ViewModels
             startview = this;
             mainview =  new MainViewModel();
             statsView = new StatsViewModel();
+            promptView = new PropmtViewModel();
             gbview = new GBViewModel();
             sellview = new SellViewModel();
             settingsview = new SettingsViewModel();
@@ -45,27 +48,55 @@ namespace DagiCaliburn.ViewModels
             watchers = new Dictionary<string, FileSystemWatcher>();
             setupListeners();
             watcher = new Watcher();
-            ActivateItem(mainview);
+            ProfileModel p = new ProfileModel();
+            p = p.GetProfile();
+            if (p.EntName != "" && p.Password != "")
+            {
+                promptView.PName = p.EntName;
+                promptView.Pwd = p.Password;
+                ActivateItem(promptView);
+                
+            }
+            else
+            {
+                ActivateItem(mainview);
+            }
+            
         }
+
+
+        
 
         public void HomeBtn()
         {
-            ActivateItem(mainview);
+            if (okSign)
+            {
+                ActivateItem(mainview);
+            }
         }
 
         public void SettingsBtn()
         {
-            ActivateItem(settingsview);
+            if (okSign)
+            {
+                ActivateItem(settingsview);
+            }
         }
 
         public void SpecialBtn()
         {
-            ActivateItem(specialview);
+            if (okSign)
+            {
+                ActivateItem(specialview);
+            }
         }
 
         public void ChartsBtn()
         {
-            ActivateItem(statsView);
+            if (okSign)
+            {
+                ActivateItem(statsView);
+            }
         }
 
         private void ClipboardChanged(Object sender, ClipboardChangedEventArgs e)
