@@ -36,10 +36,10 @@ namespace DagiCaliburn.Views
             {
                 MonthlyBtn.IsChecked = true;
             }
-            else
-            {
-                CusomterBtn.IsChecked = true;
-            }
+            //else
+            //{
+            //    CusomterBtn.IsChecked = true;
+            //}
         }
 
         private void DailyBtn_Checked(object sender, RoutedEventArgs e)
@@ -57,9 +57,9 @@ namespace DagiCaliburn.Views
             i = 3;
         }
 
-        private void CusomterBtn_Checked(object sender, RoutedEventArgs e)
-        {
-            i = 4;
-        }
+        //private void CusomterBtn_Checked(object sender, RoutedEventArgs e)
+        //{
+        //    i = 4;
+        //}
     }
 }

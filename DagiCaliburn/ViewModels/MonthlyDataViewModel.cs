@@ -81,7 +81,7 @@ namespace DagiCaliburn.ViewModels
 
         private Dictionary<string, double> getMainDailySells()
         {
-            return statisticsModel.getMainDailySell();
+            return statisticsModel.getMainMonthlySell();
         }
 
         public void Refresh()

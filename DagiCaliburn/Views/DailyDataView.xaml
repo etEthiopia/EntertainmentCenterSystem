@@ -79,9 +79,8 @@
                                             </Grid.RowDefinitions>
                                             <ToggleButton Grid.Row="0" Width="20" Height="20" FontWeight="Light"
                                     Content="{Binding Initials}" FontSize="10"
-                                    Style="{StaticResource MaterialDesignActionToggleButton}"
-                                    ToolTip="MaterialDesignFloatingActionMiniDarkButton"          
-                                    
+                                    Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
+                                    ToolTip="MaterialDesignFloatingActionAccentButton"  
                                     materialDesign:ShadowAssist.ShadowDepth="Depth0" />
 
 

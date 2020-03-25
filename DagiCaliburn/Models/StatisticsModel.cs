@@ -449,6 +449,54 @@ namespace DagiCaliburn.Models
 
         // Monthly Stats === START
 
+        // Get Monthly Sells Pie-Chart
+        public Dictionary<string, double> getMainMonthlySell()
+        {
+            Dictionary<string, double> dailysells = new Dictionary<string, double>();
+
+            DateTime theDate = DateTime.Now;
+            String today = theDate.ToString("yyyy-MM");
+
+            string query = $"SELECT sum(price),type FROM fdb.audiosells where datetime like '{today}%' GROUP BY type UNION ALL " +
+                $"SELECT sum(price),type FROM fdb.videosells where datetime like '{today}%' GROUP BY type UNION ALL " +
+                $"SELECT sum(price),type FROM fdb.othersells where datetime like '{today}%' GROUP BY type;";
+
+            Console.WriteLine($"GET DAILY SELL QUERY: {query}");
+            try
+            {
+                MySqlConnection conn = DBUtils.GetDBConnection();
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+
+                conn.Open();
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Console.WriteLine($" TYPE:  " + int.Parse(reader["type"].ToString()));
+                    string ic = tm.GetIconFromId(int.Parse(reader["type"].ToString()));
+                    double price = double.Parse(reader["sum(price)"].ToString());
+                    if (dailysells.ContainsKey(ic))
+                    {
+                        dailysells[ic] += price;
+                    }
+                    else
+                    {
+                        dailysells[ic] = price;
+                    }
+
+
+                }
+                conn.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Get Daily Sell Exception, {e.Message}");
+            }
+
+            return dailysells;
+        }
+
         // Get Top three sells of the month
         public List<TopSellModel> getMainTopMonthlySell()
         {

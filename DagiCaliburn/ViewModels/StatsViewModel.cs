@@ -13,7 +13,7 @@ namespace DagiCaliburn.ViewModels
         public static WeeklyDataViewModel weeklyData;
         public static MonthlyDataViewModel monthlyData;
         public static DailyDataViewModel dailyData;
-        public static CustomersViewModel customerData;
+        //public static CustomersViewModel customerData;
 
         public StatsViewModel()
         {
@@ -40,11 +40,11 @@ namespace DagiCaliburn.ViewModels
             ActivateItem(monthlyData);
         }
 
-        public void CusomterBtn()
-        {
-            customerData = new CustomersViewModel();
-            ActivateItem(customerData);
-        }
+        //public void CusomterBtn()
+        //{
+        //    customerData = new CustomersViewModel();
+        //    ActivateItem(customerData);
+        //}
 
     }
 }

@@ -29,11 +29,11 @@
             Margin="4" FontSize="12"
             IsChecked="False"
             Content="MONTHLY DATA" />
-            <RadioButton x:Name="CusomterBtn" Checked="CusomterBtn_Checked"
+            <!--<RadioButton x:Name="CusomterBtn" Checked="CusomterBtn_Checked"
             Style="{StaticResource MaterialDesignTabRadioButton}"
             Margin="4" FontSize="12"
             IsChecked="False"
-            Content="TOP CUSOMERS" />
+            Content="TOP CUSOMERS" />-->
         </StackPanel>
         <ContentControl
             Grid.Row="1"
