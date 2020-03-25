@@ -19,6 +19,7 @@ namespace DagiCaliburn.ViewModels
         private List<ChartModel> _e810pm = new List<ChartModel>();
         private StatisticsModel statisticsModel = new StatisticsModel();
         private BindableCollection<TopSellModel> _topSellers = new BindableCollection<TopSellModel>();
+        private string _tsbirr = "0 BIRR";
 
         public BindableCollection<TopSellModel> TopSellers
         {
@@ -30,6 +31,19 @@ namespace DagiCaliburn.ViewModels
             {
                 _topSellers = value;
                 NotifyOfPropertyChange(() => TopSellers);
+            }
+        }
+
+        public string TodaysSoldMoney
+        {
+            get
+            {
+                return _tsbirr;
+            }
+            set
+            {
+                _tsbirr = value + " BIRR";
+                NotifyOfPropertyChange(() => TodaysSoldMoney);
             }
         }
 
@@ -110,7 +124,12 @@ namespace DagiCaliburn.ViewModels
             }
         }
 
-        
+        public void Refresh()
+        {
+            StatsViewModel.statsView.WeeklyBtn();
+        }
+
+
 
         private void CalculateToday()
         {
@@ -121,6 +140,7 @@ namespace DagiCaliburn.ViewModels
 
             int[] hs = hours.Keys.ToArray();
             double[] dinero = hours.Values.ToArray();
+            TodaysSoldMoney = dinero.Sum().ToString();
             Console.WriteLine("hs length: " + hs.Length);
 
             for (int i = 0; i < hs.Length; i++)

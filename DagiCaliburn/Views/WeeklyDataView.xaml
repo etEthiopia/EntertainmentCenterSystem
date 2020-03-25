@@ -13,12 +13,20 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <TextBlock Margin="10"
             Style="{StaticResource MaterialDesignCaptionTextBlock}" FontWeight="Light" FontSize="20">
             Top Sells this week
             </TextBlock>
+            <Button Grid.Column="1"  x:Name="Refresh" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Right" Height="20" Width="20"
+                      Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                      ToolTip="MaterialDesignFloatingActionMiniAccentButton">
+                <materialDesign:PackIcon
+                        Kind="Refresh"
+                        Height="17"
+                        Width="17" />
+            </Button>
             <ScrollViewer Grid.Row="1" Margin="10,0,10,5" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="Auto"  VerticalScrollBarVisibility="Auto">
                 <ItemsControl x:Name="TopSellers" >
 
@@ -85,9 +93,9 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </ScrollViewer>
-            <MetroChart:StackedBarChart Grid.Row="2" TextElement.Foreground="{DynamicResource ResourceKey=MaterialDesignBody}"
+            <MetroChart:StackedBarChart Grid.Row="2" VerticalContentAlignment="Bottom" TextElement.Foreground="{DynamicResource ResourceKey=MaterialDesignBody}"
         Background="{DynamicResource ResourceKey=MaterialDesignPaper}"  ChartLegendVisibility="Hidden"
-                ChartTitle="1500 BIRR"  Grid.Column="0" Margin="0"  ChartSubTitle="723 SELLS were recorded this week"  >
+                ChartTitle="{Binding TodaysSoldMoney}"  Grid.Column="0" Margin="0" ChartSubTitle="Total Sales Data in the current Week"  >
                 <MetroChart:StackedBarChart.Series>
                     <MetroChart:ChartSeries Margin="10" ItemsSource="{Binding Path = Earnings810am}"
                      DisplayMember="Element"
