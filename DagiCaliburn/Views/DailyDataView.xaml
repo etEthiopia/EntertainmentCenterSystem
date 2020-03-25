@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
             <MetroChart:PieChart Grid.Row="0"  HorizontalAlignment="Left" Width="200" TextElement.Foreground="{DynamicResource ResourceKey=MaterialDesignBody}"
         Background="{DynamicResource ResourceKey=MaterialDesignPaper}"
-                ChartTitle="500 BIRR"  Grid.Column="0" Margin="0"  ChartSubTitle="300 SELLS"  >
+                ChartTitle="{Binding Path=TodaysSoldMoney}"  Grid.Column="0" Margin="0"  ChartSubTitle="{Binding Path=TodaysSoldItems}" >
                 <MetroChart:PieChart.Series>
                     <MetroChart:ChartSeries ItemsSource="{Binding Path = TodaysEarnings}"
                      DisplayMember="Element"
@@ -239,8 +239,8 @@
             </Grid>
 
             <MetroChart:StackedBarChart Grid.Row="1" TextElement.Foreground="{DynamicResource ResourceKey=MaterialDesignBody}"
-        Background="{DynamicResource ResourceKey=MaterialDesignPaper}"
-                ChartTitle="Sells of the day in 2 hours duration "  Grid.Column="0" Margin="0"  ChartSubTitle="Starting from morining upto NIGHT 4:00 (10 PM) "  >
+        Background="{DynamicResource ResourceKey=MaterialDesignPaper}" ChartLegendVisibility="Hidden"
+                ChartTitle="Sells of the day in 2 hours duration " Grid.Column="0" Margin="0"  ChartSubTitle="Starting from morining upto NIGHT 4:00 (10 PM) "  >
             <MetroChart:StackedBarChart.Series>
                 <MetroChart:ChartSeries Margin="10" ItemsSource="{Binding Path = Earnings810am}"
                      DisplayMember="Element"

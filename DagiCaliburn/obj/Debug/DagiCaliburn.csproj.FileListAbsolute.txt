@@ -256,3 +256,11 @@ C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\DagiCaliburn.exe
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\DagiCaliburn.pdb
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\SellView.g.cs
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\SellView.baml
+C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\bin\Debug\Dapper.dll
+C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\bin\Debug\EntityFramework.dll
+C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\bin\Debug\Dapper.xml
+C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\bin\Debug\EntityFramework.xml
+C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\bin\Debug\EntityFramework.SqlServer.xml

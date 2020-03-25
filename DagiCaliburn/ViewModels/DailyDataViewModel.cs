@@ -19,7 +19,35 @@ namespace DagiCaliburn.ViewModels
         private List<ChartModel> _e68pm = new List<ChartModel>();
         private List<ChartModel> _e810pm = new List<ChartModel>();
         private StatisticsModel statisticsModel = new StatisticsModel();
+        private string _tsitems = "0 SELLS";
+        private string _tsbirr = "0 BIRR";
+
         
+
+        public string TodaysSoldMoney
+        {
+            get
+            {
+                return _tsbirr;
+            }
+            set
+            {
+                _tsbirr = value + " BIRR";
+                NotifyOfPropertyChange(() => TodaysSoldMoney);
+            }
+        }
+
+        public string TodaysSoldItems {
+            get
+            {
+                return _tsitems;
+            }
+            set
+            {
+                _tsitems = value + " SELLS";
+                NotifyOfPropertyChange(() => TodaysSoldItems);
+            }
+        }
 
         public List<ChartModel> TodaysEarnings
         {
@@ -103,7 +131,8 @@ namespace DagiCaliburn.ViewModels
         public DailyDataViewModel()
         {
             
-            CalculateToday(getMainDailySells());
+            CalculateToday(getMainDailySells(), statisticsModel.getMainDailySellByHours());
+            
             
         }
 
@@ -113,50 +142,66 @@ namespace DagiCaliburn.ViewModels
             return statisticsModel.getMainDailySell();
         }
 
-        private void CalculateToday(Dictionary<string, double> dsells)
+        private void CalculateToday(Dictionary<string, double> dsells, Dictionary<int, double> hours)
         {
             string[] types = dsells.Keys.ToArray();
             double[] money = dsells.Values.ToArray();
-            Console.WriteLine("types length: " + types.Length);
-
-            //double[] money = { 50, 100, 34, 30, 90, 39, 10, 0 };
+            
             for(int i=0; i < types.Length; i++)
             {
                 Console.WriteLine("type:, money: " + types[i] + ", " + money[i]);
                 ChartModel c = new ChartModel(types[i], money[i]);
 
                 TodaysEarnings.Add(c);
-                if(i < 3)
+
+                TodaysSoldMoney = money.Sum().ToString();
+                TodaysSoldItems = statisticsModel.getMainDailySellItems().ToString();
+
+            }
+
+
+
+            int[] hs = hours.Keys.ToArray();
+            double[] dinero = hours.Values.ToArray();
+            Console.WriteLine("hs length: " + hs.Length);
+
+            for (int i = 0; i < hs.Length; i++)
+            {
+                Console.WriteLine("type:, money: " + hs[i] + ", " + dinero[i]);
+                ChartModel c = new ChartModel(hs[i].ToString(), dinero[i]);
+
+
+                if (hs[i] == 10)
                 {
                     Earnings810am.Add(c);
                 }
-                if (i < 7 && i > 3)
+                if (hs[i] == 12)
                 {
                     Earnings1012pm.Add(c);
                 }
-                if (i < 6 && i > 1)
+                if (hs[i] == 14)
                 {
                     Earnings122pm.Add(c);
                 }
-                if (i < 8 && i > 0)
+                if (hs[i] == 16)
                 {
                     Earnings24pm.Add(c);
                 }
-                if (i < 6 && i > 0)
+                if (hs[i] == 18)
                 {
                     Earnings46pm.Add(c);
                 }
-                if (i < 7)
+                if (hs[i] == 20)
                 {
                     Earnings68pm.Add(c);
                 }
-                if (i < 8 && i > 3)
+                if (hs[i] == 22)
                 {
                     Earnings810pm.Add(c);
                 }
 
             }
-            
+
         }
     }
 }

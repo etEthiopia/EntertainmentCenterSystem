@@ -61,6 +61,142 @@ namespace DagiCaliburn.Models
             return dailysells;
         }
 
+        public Dictionary<int, double> getMainDailySellByHours()
+        {
+            Dictionary<int, double> dailysells = new Dictionary<int, double>();
+
+            DateTime theDate = DateTime.Now;
+            
+            
+
+            
+            try
+            {
+                MySqlConnection conn = DBUtils.GetDBConnection();
+                string query = "";
+                for (int h = 10; h <= 22; h = h+2)
+                {
+                    String today = theDate.ToString("yyyy-MM-dd");
+                    string dt = today;
+                    if (h == 10)
+                    {
+                        today += " 09:59:59";
+                         query = $"SELECT sum(price) FROM fdb.audiosells where datetime like '{dt}%' AND datetime < '{today}' UNION ALL " +
+                $"SELECT sum(price) FROM fdb.videosells where datetime like '{dt}%' AND datetime < '{today}' UNION ALL " +
+                $"SELECT sum(price) FROM fdb.othersells where datetime like '{dt}%' AND datetime < '{today}';";
+
+                    }
+                    else
+                    {
+                        today = theDate.ToString("yyyy-MM-dd");
+                        string up = "";
+                        string down = "";
+                        if((h-1).ToString().Length < 2)
+                        {
+                            up = today + $" 0{h - 1}:59:59";
+                        }
+                        else
+                        {
+                            up = today + $" {h - 1}:59:59";
+                        }
+                        if ((h - 2).ToString().Length < 2)
+                        {
+                            down = today + $" 0{h - 2}:00:00";
+                        }
+                        else
+                        {
+                            down = today + $" {h - 2}:00:00";
+                        }
+                        query = $"SELECT sum(price) FROM fdb.audiosells where datetime like '{today}%' AND datetime < '{up}' AND datetime > '{down}' UNION ALL " +
+                    $"SELECT sum(price) FROM fdb.videosells where datetime like '{today}%' AND datetime < '{up}' AND datetime > '{down}' UNION ALL " +
+                    $"SELECT sum(price) FROM fdb.othersells where datetime like '{today}%' AND datetime < '{up}' AND datetime > '{down}';";
+
+                    }
+                    Console.WriteLine($"GET DAILY SELL QUERY {h}: {query}");
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+
+                    conn.Open();
+
+                    MySqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        double price = 0.0;
+                        double.TryParse(reader["sum(price)"].ToString(), out price);
+                        Console.WriteLine($"{h}, price= {price}");
+                        if (dailysells.ContainsKey(h))
+                        {
+                            dailysells[h] += price;
+                        }
+                        else
+                        {
+                            dailysells[h] = price;
+                        }
+                        
+
+
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Get Daily Hours Sell Exception, {e.Message}");
+            }
+
+            return dailysells;
+        }
+
+        public int getMainDailySellItems()
+        {
+            int dailysells = 0;
+
+            DateTime theDate = DateTime.Now;
+
+
+
+
+            try
+            {
+                MySqlConnection conn = DBUtils.GetDBConnection();
+                string query = "";
+                
+                        string today = theDate.ToString("yyyy-MM-dd");
+                        
+                        query = $"SELECT count(id) FROM fdb.audiosells where datetime like '{today}%' UNION ALL " +
+                    $"SELECT count(id) FROM fdb.videosells where datetime like '{today}%' UNION ALL " +
+                    $"SELECT count(id) FROM fdb.othersells where datetime like '{today}%';";
+
+                    
+                    Console.WriteLine($"GET DAILY SELL QUERY ITEM : {query}");
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+
+                    conn.Open();
+
+                    MySqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        int items = 0;
+                        int.TryParse(reader["count(id)"].ToString(), out items);
+                    dailysells += items;
+
+
+
+                    }
+                    conn.Close();
+                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Get Daily Hours Sell Exception, {e.Message}");
+            }
+
+            return dailysells;
+        }
+
         public List<TopSellModel> getMainTopDailySell()
         {
             List<TopSellModel> dailytsells = new List<TopSellModel>();
