@@ -14,6 +14,7 @@ namespace DagiCaliburn.ViewModels
         public static TypesViewModel tsvm;
         public static TypeViewModel tvm;
         public static ConfigViewModel cvm;
+        public static ProfileViewModel pvm;
         
 
         public SettingsViewModel()
@@ -21,6 +22,7 @@ namespace DagiCaliburn.ViewModels
             tvm = new TypeViewModel();
             tsvm = new TypesViewModel();
             cvm = new ConfigViewModel();
+            pvm = new ProfileViewModel();
             settingsvm = this;
             ActivateItem(tsvm);
         }
@@ -42,7 +44,7 @@ namespace DagiCaliburn.ViewModels
 
         public void ProfileMenu()
         {
-
+            ActivateItem(pvm);
         }
 
         public void AdType()

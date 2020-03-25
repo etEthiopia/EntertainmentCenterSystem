@@ -264,3 +264,7 @@ C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\MyEnt_MarkupCompile.lre
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\MyEnt.g.resources
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\MyEnt.exe
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\MyEnt.pdb
+C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\PrintStatsView.g.cs
+C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\ProfileView.g.cs
+C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\PrintStatsView.baml
+C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\ProfileView.baml

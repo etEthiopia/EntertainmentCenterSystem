@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\
+C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Release\
 DagiCaliburn
 none
 false
-DEBUG;TRACE
+TRACE
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\App.xaml
 221810539891
 
-781575440468
-101-2018072036
+74-38650887
+101-718392686
 Views\ConfigView.xaml;Views\CopyView.xaml;Views\CustomersView.xaml;Views\DailyDataView.xaml;Views\GBView.xaml;Views\HomeView.xaml;Views\MainView.xaml;Views\MonthlyDataView.xaml;Views\MusicView.xaml;Views\PrintStatsView.xaml;Views\ProfileView.xaml;Views\SaleView.xaml;Views\SellView.xaml;Views\SettingsView.xaml;Views\ShellView.xaml;Views\SpecialsView.xaml;Views\StartView.xaml;Views\StatsView.xaml;Views\TypesView.xaml;Views\TypeView.xaml;Views\UnknownDirView.xaml;Views\WeeklyDataView.xaml;
 
-False
+True
 
