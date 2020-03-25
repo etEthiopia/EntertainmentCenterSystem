@@ -75,7 +75,7 @@ namespace DagiCaliburn.ViewModels
         {
             if (Pwd.Equals(PPassword))
             {
-                StartViewModel.okSign = true;
+                StartViewModel.startview.OkaySignIsVisible = true;
                 StartViewModel.startview.HomeBtn();
             }
             else

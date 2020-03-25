@@ -22,15 +22,17 @@ namespace DagiCaliburn.ViewModels
         public static SpecialsViewModel specialview;
         public static bool INGB = false;
         public static int news = 0;
-        public static bool okSign = false;
+        private bool _okaySignIsVisible;
         public static Dictionary<string, FileSystemWatcher> watchers;
         SharpClipboard clipboard = new SharpClipboard();
         Watcher watcher;
 
+
+
         public StartViewModel()
         {
             startview = this;
-            mainview =  new MainViewModel();
+            mainview = new MainViewModel();
             statsView = new StatsViewModel();
             promptView = new PropmtViewModel();
             gbview = new GBViewModel();
@@ -41,7 +43,7 @@ namespace DagiCaliburn.ViewModels
             {
                 clipboard.ClipboardChanged += ClipboardChanged;
             }
-            catch(Exception svme)
+            catch (Exception svme)
             {
                 Console.WriteLine($"STARTVIEWMODEL CLIPBOARD CHANGED: {svme.Message}");
             }
@@ -55,48 +57,57 @@ namespace DagiCaliburn.ViewModels
                 promptView.PName = p.EntName;
                 promptView.Pwd = p.Password;
                 ActivateItem(promptView);
-                
+
             }
             else
             {
+                OkaySignIsVisible = true;
                 ActivateItem(mainview);
             }
-            
+
         }
 
 
-        
+        public bool OkaySignIsVisible
+        {
+            get
+            {
+                return _okaySignIsVisible;
+            }
+            set
+            {
+                _okaySignIsVisible = value;
+                NotifyOfPropertyChange(() => OkaySignIsVisible);
+            }
+
+        }
 
         public void HomeBtn()
         {
-            if (okSign)
-            {
-                ActivateItem(mainview);
-            }
+            
+               ActivateItem(mainview);
+            
         }
 
         public void SettingsBtn()
         {
-            if (okSign)
-            {
+            
                 ActivateItem(settingsview);
-            }
+            
         }
 
         public void SpecialBtn()
         {
-            if (okSign)
-            {
+            
                 ActivateItem(specialview);
-            }
+            
         }
 
         public void ChartsBtn()
         {
-            if (okSign)
-            {
+            
                 ActivateItem(statsView);
-            }
+            
         }
 
         private void ClipboardChanged(Object sender, ClipboardChangedEventArgs e)

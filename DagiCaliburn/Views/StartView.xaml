@@ -13,13 +13,13 @@
         Title="MyEnt" 
          Width="Auto"
         >
-    <Grid Margin="5" >
+    <Grid  Margin="5" >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             
         </Grid.RowDefinitions>
-        <Grid Margin="0,5,0,10" Grid.Row="0" HorizontalAlignment="Stretch" >
+        <Grid x:Name="OkaySignIsVisible" Margin="0,5,0,10" Grid.Row="0" HorizontalAlignment="Stretch" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
