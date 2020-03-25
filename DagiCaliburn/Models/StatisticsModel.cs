@@ -14,6 +14,9 @@ namespace DagiCaliburn.Models
        
         TypeModel tm = new TypeModel();
 
+        // Daily Stats === START
+
+        // Get Daily Sells Pie-Chart
         public Dictionary<string, double> getMainDailySell()
         {
             Dictionary<string, double> dailysells = new Dictionary<string, double>();
@@ -61,6 +64,7 @@ namespace DagiCaliburn.Models
             return dailysells;
         }
 
+        // Get Daily Sells interms of 2 hours
         public Dictionary<int, double> getMainDailySellByHours()
         {
             Dictionary<int, double> dailysells = new Dictionary<int, double>();
@@ -148,6 +152,7 @@ namespace DagiCaliburn.Models
             return dailysells;
         }
 
+        // Get number of total counts of items
         public int getMainDailySellItems()
         {
             int dailysells = 0;
@@ -197,6 +202,7 @@ namespace DagiCaliburn.Models
             return dailysells;
         }
 
+        // Get Top three sells of the day
         public List<TopSellModel> getMainTopDailySell()
         {
             List<TopSellModel> dailytsells = new List<TopSellModel>();
@@ -256,44 +262,75 @@ namespace DagiCaliburn.Models
             return dailytsells;
         }
 
-        public static List<SellModel> GetAllSpecials()
+        // Daily Stats === END
+
+
+
+        // Weekly Stats === START
+
+        public List<TopSellModel> getMainTopWeeklySell()
         {
-            List<SellModel> ts = new List<SellModel>();
-            MySqlConnection conn = DBUtils.GetDBConnection();
-            DateTime theDate = DateTime.Now;
+            List<TopSellModel> weeklytsells = new List<TopSellModel>();
+
+            DateTime theDate = DateTime.Now.AddDays(1);
+            DateTime theWDate = DateTime.Now.AddDays(-7);
             String today = theDate.ToString("yyyy-MM-dd");
-            string query = $"SELECT name,sum(price),count(id),type FROM fdb.audiosells where datetime like '{today}%' GROUP BY name UNION ALL " +
-                $"SELECT name,sum(price),count(id),type FROM fdb.videosells where datetime like '{today}%' GROUP BY name UNION ALL " +
-                $"SELECT name,sum(price),count(id),type FROM fdb.othersells where datetime like '{today}%' GROUP BY name order by 2 DESC LIMIT 3;";
+            string week = theWDate.ToString("yyyy-MM-dd");
+
+            string query = $"SELECT name, sum(price) AS sm,type,count(name) AS cn FROM fdb.audiosells where datetime < '{today}%' AND datetime > '{week}%' GROUP BY name UNION ALL " +
+                $"SELECT name,sum(price) AS sm,type,count(name) AS cn FROM fdb.videosells where datetime < '{today}%' AND datetime > '{week}%' GROUP BY name UNION ALL " +
+                $"SELECT name,sum(price) AS sm,type,count(name) AS cn FROM fdb.othersells where datetime < '{today}%' AND datetime > '{week}%' GROUP BY name order by cn DESC LIMIT 3;";
+
+
+
+            Console.WriteLine($"GET TOP WWEKLY SELL QUERY: {query}");
             try
             {
-                Console.WriteLine($"DAta query {query}");
+                MySqlConnection conn = DBUtils.GetDBConnection();
                 MySqlCommand cmd = new MySqlCommand(query, conn);
+
 
                 conn.Open();
 
                 MySqlDataReader reader = cmd.ExecuteReader();
 
+
+
                 while (reader.Read())
                 {
-                    SellModel tm = new SellModel();
+                    TopSellModel tm = new TopSellModel();
+
                     tm.Name = reader["name"].ToString();
-                    tm.Type = TypeModel.GetTypeToFile((int)reader["type"]);
-                    tm.Price = float.Parse(reader["sum(price)"].ToString());
-                    tm.Initials = tm.Type.Icon;
-                    tm.Item = int.Parse(reader["count(id)"].ToString());
-                    //MessageBox.Show($"{tm.Name}, {tm.Price}, {tm.Item}");
-                    ts.Add(tm);
+                    tm.Count = int.Parse(reader["cn"].ToString()) + " SOLD";
+                    tm.TotalPrice = float.Parse(reader["sm"].ToString()) + " BIRR";
+
+                    if (int.Parse(reader["type"].ToString()) == 0)
+                    {
+                        tm.Initials = "F";
+
+                        //tm.Folder = int.Parse(reader["folderserial"].ToString());
+                    }
+                    else
+                    {
+                        TypeModel mk = TypeModel.GetTypeToFile(int.Parse(reader["type"].ToString()));
+                        tm.Initials = mk.Icon;
+                    }
+                    Console.WriteLine($"NAME: {tm.Name}, COUNT: {tm.Count}, TOTALPRICE: {tm.TotalPrice}, INITIALS: {tm.Initials}");
+                    weeklytsells.Add(tm);
 
                 }
                 conn.Close();
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Get Top Sells Execption , {e.Message}");
+                Console.WriteLine($"Get Weekly Sell Exception, {e.Message}");
             }
-            return ts;
 
+            return weeklytsells;
         }
+
+        // Weekly Stats === END
+
+        
     }
 }

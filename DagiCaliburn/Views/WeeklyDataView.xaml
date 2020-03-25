@@ -20,172 +20,70 @@
             Top Sells this week
             </TextBlock>
             <ScrollViewer Grid.Row="1" Margin="10,0,10,5" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="Auto"  VerticalScrollBarVisibility="Auto">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <materialDesign:Card Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left"
+                <ItemsControl x:Name="TopSellers" >
+
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="1"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <materialDesign:Card Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Stretch"
                   materialDesign:ShadowAssist.ShadowDepth="Depth1" 
                   Width="Auto"
                   Height="Auto"               
                   Padding="10,5"
                   Margin="5"                           
                   UniformCornerRadius="6">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
 
-                            </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="2*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <ToggleButton Grid.Row="0" Width="30" Height="30" FontWeight="Light"
-                                    Content="KS" FontSize="15"
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="2*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <ToggleButton Grid.Row="0" Width="30" Height="30" FontWeight="Light"
+                                    Content="{Binding Initials}" FontSize="15"
                                     Style="{StaticResource MaterialDesignActionToggleButton}"
                                     ToolTip="MaterialDesignFloatingActionMiniDarkButton"          
                                     
                                     materialDesign:ShadowAssist.ShadowDepth="Depth0" />
 
-                            </Grid>
+                                    </Grid>
 
-                            <Grid Grid.Column="1" Margin="20,0,10,0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" FontSize="15" Text="The.Wire.2x10- ab movie center 0912413713.avi" FontWeight="Light"
+                                    <Grid Grid.Column="1" Margin="20,0,10,0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" FontSize="15" Text="{Binding Name}" FontWeight="Light"
                             Style="{StaticResource MaterialDesignHeadlineTextBlock}">
-                                </TextBlock>
-                                <Grid Grid.Row="1">
-                                    <TextBlock Text="10 BIRR" FontSize="15"
+                                        </TextBlock>
+                                        <Grid Grid.Row="1">
+                                            <TextBlock Text="{Binding TotalPrice}" FontSize="15"
                                 Style="{StaticResource MaterialDesignCaptionTextBlock}">
 
-                                    </TextBlock>
-                                    <TextBlock Text="10 SOLD" FontSize="10" HorizontalAlignment="Right"
+                                            </TextBlock>
+                                            <TextBlock Text="{Binding Count}" FontSize="10" HorizontalAlignment="Right"
                                 Style="{StaticResource MaterialDesignCaptionTextBlock}">
 
-                                    </TextBlock>
+                                            </TextBlock>
+                                        </Grid>
+                                    </Grid>
+
+
+
                                 </Grid>
-                            </Grid>
+                            </materialDesign:Card>
 
-
-
-                        </Grid>
-                    </materialDesign:Card>
-                    <materialDesign:Card Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left"
-                  materialDesign:ShadowAssist.ShadowDepth="Depth1" 
-                  Width="Auto"
-                  Height="Auto"               
-                  Padding="10,5"
-                  Margin="5"                           
-                  UniformCornerRadius="6">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-
-                            </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="2*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <ToggleButton Grid.Row="0" Width="30" Height="30" FontWeight="Light"
-                                    Content="M" FontSize="15"
-                                    Style="{StaticResource MaterialDesignActionToggleButton}"
-                                    ToolTip="MaterialDesignFloatingActionMiniDarkButton"          
-                                    
-                                    materialDesign:ShadowAssist.ShadowDepth="Depth0" />
-
-
-
-
-                            </Grid>
-
-                            <Grid Grid.Column="1" Margin="20,0,10,0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" FontSize="15" Text="Death.at.a.Funeral.2010.720p.BluRay.DL.mkv" FontWeight="Light"
-                            Style="{StaticResource MaterialDesignHeadlineTextBlock}">
-                                </TextBlock>
-                                <Grid Grid.Row="1">
-                                    <TextBlock Text="9 BIRR" FontSize="15"
-                                Style="{StaticResource MaterialDesignCaptionTextBlock}">
-
-                                    </TextBlock>
-                                    <TextBlock Text="3 SOLD" FontSize="10" HorizontalAlignment="Right"
-                                Style="{StaticResource MaterialDesignCaptionTextBlock}">
-
-                                    </TextBlock>
-                                </Grid>
-                            </Grid>
-
-
-
-                        </Grid>
-                    </materialDesign:Card>
-                    <materialDesign:Card Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left"
-                  materialDesign:ShadowAssist.ShadowDepth="Depth1" 
-                  Width="Auto"
-                  Height="Auto"               
-                  Padding="10,5"
-                  Margin="5"                           
-                  UniformCornerRadius="6">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-
-                            </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="2*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <ToggleButton Grid.Row="0" Width="30" Height="30" FontWeight="Light"
-                                    Content="S" FontSize="15"
-                                    Style="{StaticResource MaterialDesignActionToggleButton}"
-                                    ToolTip="MaterialDesignFloatingActionMiniDarkButton"          
-                                    
-                                    materialDesign:ShadowAssist.ShadowDepth="Depth0" />
-
-
-
-
-                            </Grid>
-
-                            <Grid Grid.Column="1" Margin="20,0,10,0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" FontSize="15" Text="The.Wire.2E09- ab movie center 0912413713.avi" FontWeight="Light"
-                            Style="{StaticResource MaterialDesignHeadlineTextBlock}">
-                                </TextBlock>
-                                <Grid Grid.Row="1">
-                                    <TextBlock Text="5 BIRR" FontSize="15"
-                                Style="{StaticResource MaterialDesignCaptionTextBlock}">
-
-                                    </TextBlock>
-                                    <TextBlock Text="5 SOLD" FontSize="10" HorizontalAlignment="Right"
-                                Style="{StaticResource MaterialDesignCaptionTextBlock}">
-
-                                    </TextBlock>
-                                </Grid>
-                            </Grid>
-
-
-
-                        </Grid>
-                    </materialDesign:Card>
-                </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </ScrollViewer>
             <MetroChart:StackedBarChart Grid.Row="2" TextElement.Foreground="{DynamicResource ResourceKey=MaterialDesignBody}"
         Background="{DynamicResource ResourceKey=MaterialDesignPaper}"

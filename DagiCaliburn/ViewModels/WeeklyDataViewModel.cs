@@ -17,6 +17,30 @@ namespace DagiCaliburn.ViewModels
         private List<ChartModel> _e46pm = new List<ChartModel>();
         private List<ChartModel> _e68pm = new List<ChartModel>();
         private List<ChartModel> _e810pm = new List<ChartModel>();
+        private StatisticsModel statisticsModel = new StatisticsModel();
+        private BindableCollection<TopSellModel> _topSellers = new BindableCollection<TopSellModel>();
+
+        public BindableCollection<TopSellModel> TopSellers
+        {
+            get
+            {
+                return _topSellers;
+            }
+            set
+            {
+                _topSellers = value;
+                NotifyOfPropertyChange(() => TopSellers);
+            }
+        }
+
+
+        public WeeklyDataViewModel()
+        {
+
+            CalculateToday();
+
+
+        }
 
         public List<ChartModel> Earnings810am
         {
@@ -86,13 +110,12 @@ namespace DagiCaliburn.ViewModels
             }
         }
 
-        public WeeklyDataViewModel()
-        {
-            CalculateToday();
-        }
+        
 
         private void CalculateToday()
         {
+            TopSellers = new BindableCollection<TopSellModel>(statisticsModel.getMainTopWeeklySell());
+
             string[] types = { "IM", "S", "M", "KS", "AS", "AM", "QM", "D" };
             double[] money = { 50, 100, 34, 30, 90, 39, 10, 100 };
             for (int i = 0; i < types.Length; i++)

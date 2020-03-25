@@ -161,7 +161,6 @@ C:\Users\Dagi\source\repos\DCaliburn\DagiCaliburn\obj\Debug\GeneratedInternalTyp
 C:\Users\Dagi\source\repos\DCaliburn\DagiCaliburn\bin\Debug\System.Data.SQLite.dll
 C:\Users\Dagi\source\repos\DCaliburn\DagiCaliburn\bin\Debug\System.Data.SQLite.xml
 C:\Users\Dagi\source\repos\DCaliburn\DagiCaliburn\bin\Debug\System.Data.SQLite.dll.config
-C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\bin\Debug\DagiCaliburn.exe
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\bin\Debug\BouncyCastle.Crypto.dll
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\bin\Debug\Caliburn.Micro.dll
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\bin\Debug\Caliburn.Micro.Platform.Core.dll
