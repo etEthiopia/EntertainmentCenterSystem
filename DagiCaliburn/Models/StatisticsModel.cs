@@ -446,5 +446,71 @@ namespace DagiCaliburn.Models
         // Weekly Stats === END
 
 
+
+        // Monthly Stats === START
+
+        // Get Top three sells of the month
+        public List<TopSellModel> getMainTopMonthlySell()
+        {
+            List<TopSellModel> monthlytsells = new List<TopSellModel>();
+
+            DateTime theDate = DateTime.Now;
+            String today = theDate.ToString("yyyy-MM");
+
+            string query = $"SELECT name, sum(price) AS sm,type,count(name) AS cn FROM fdb.audiosells where datetime like '{today}%' GROUP BY name UNION ALL " +
+                $"SELECT name,sum(price) AS sm,type,count(name) AS cn FROM fdb.videosells where datetime like '{today}%' GROUP BY name UNION ALL " +
+                $"SELECT name,sum(price) AS sm,type,count(name) AS cn FROM fdb.othersells where datetime like '{today}%' GROUP BY name order by cn DESC LIMIT 3;";
+
+
+
+            Console.WriteLine($"GET TOP MONTHLY SELL QUERY: {query}");
+            try
+            {
+                MySqlConnection conn = DBUtils.GetDBConnection();
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+
+
+                conn.Open();
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+
+
+                while (reader.Read())
+                {
+                    TopSellModel tm = new TopSellModel();
+
+                    tm.Name = reader["name"].ToString();
+                    tm.Count = int.Parse(reader["cn"].ToString()) + " SOLD";
+                    tm.TotalPrice = float.Parse(reader["sm"].ToString()) + " BIRR";
+
+                    if (int.Parse(reader["type"].ToString()) == 0)
+                    {
+                        tm.Initials = "F";
+
+                        //tm.Folder = int.Parse(reader["folderserial"].ToString());
+                    }
+                    else
+                    {
+                        TypeModel mk = TypeModel.GetTypeToFile(int.Parse(reader["type"].ToString()));
+                        tm.Initials = mk.Icon;
+                    }
+                    Console.WriteLine($"NAME: {tm.Name}, COUNT: {tm.Count}, TOTALPRICE: {tm.TotalPrice}, INITIALS: {tm.Initials}");
+                    monthlytsells.Add(tm);
+
+                }
+                conn.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Get monthly Sell Exception, {e.Message}");
+            }
+
+            return monthlytsells;
+        }
+
+        // Monthly Stats === END
+
+
     }
 }

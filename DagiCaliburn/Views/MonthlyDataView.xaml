@@ -93,9 +93,9 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </ScrollViewer>
-            <MetroChart:PieChart Grid.Row="2" HorizontalAlignment="Stretch" Width="200" TextElement.Foreground="{DynamicResource ResourceKey=MaterialDesignBody}"
+            <MetroChart:PieChart Grid.Row="2" HorizontalAlignment="Stretch" TextElement.Foreground="{DynamicResource ResourceKey=MaterialDesignBody}"
         Background="{DynamicResource ResourceKey=MaterialDesignPaper}"
-                ChartTitle="{Binding Path=MonthSoldMoney}"  Grid.Column="0" Margin="0"  ChartSubTitle="Types of files sold" >
+                ChartTitle="{Binding Path=MonthSoldMoney}"  Grid.Column="0" Margin="0"  ChartSubTitle="{Binding Path=MonthSoldST}" >
                 <MetroChart:PieChart.Series>
                     <MetroChart:ChartSeries ItemsSource="{Binding Path = MonthEarnings}"
                      DisplayMember="Element"
