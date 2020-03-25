@@ -329,8 +329,122 @@ namespace DagiCaliburn.Models
             return weeklytsells;
         }
 
+        // Get Weekly Sells interms of DAYS
+        public Dictionary<int, double> getMainWeeklySellByDays()
+        {
+            Dictionary<int, double> dailysells = new Dictionary<int, double>();
+
+
+
+            DateTime theDate = DateTime.Now;
+            int mond = 0;
+            switch (theDate.DayOfWeek.ToString())
+            {
+                case "Monday":
+                    mond = 0;
+                    break;
+                case "Tuesday":
+                    mond = 1;
+                    break;
+                case "Wednesday":
+                    mond = 2;
+                    break;
+                case "Thursday":
+                    mond = 3;
+                    break;
+                case "Friday":
+                    mond = 4;
+                    break;
+                case "Saturday":
+                    mond = 5;
+                    break;
+                case "Sunday":
+                    mond = 6;
+                    break;
+
+            }
+            String today = theDate.AddDays((-1 * (mond +  1))).ToString("yyyy-MM-dd");
+            string week = theDate.AddDays((7 - mond)).ToString("yyyy-MM-dd");
+
+            try
+            {
+                MySqlConnection conn = DBUtils.GetDBConnection();
+                string query = "";
+
+                today += " 23:59:59";
+                query = $"SELECT sum(price),datetime FROM fdb.audiosells where datetime > '{today}%' AND datetime < '{week}%' GROUP BY datetime UNION ALL " +
+               $"SELECT sum(price),datetime FROM fdb.videosells where datetime > '{today}%' AND datetime < '{week}%' GROUP BY datetime UNION ALL " +
+               $"SELECT sum(price),datetime FROM fdb.othersells where datetime > '{today}%' AND datetime < '{week}%' GROUP BY datetime;";
+
+                    
+                    Console.WriteLine($"GET WEEKLY PER DAY SELL QUERY : {query}");
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+
+                    conn.Open();
+
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    
+                
+                while (reader.Read())
+                    {
+                        double price = 0.0;
+                    string date = reader["datetime"].ToString();
+                        double.TryParse(reader["sum(price)"].ToString(), out price);
+
+                    int key = 0;
+                    switch (DateTime.Parse(date).DayOfWeek.ToString())
+                    {
+                        case "Monday":
+                            key = 1;
+                            break;
+                        case "Tuesday":
+                            key = 2;
+                            break;
+                        case "Wednesday":
+                            key = 3;
+                            break;
+                        case "Thursday":
+                            key = 4;
+                            break;
+                        case "Friday":
+                            key = 5;
+                            break;
+                        case "Saturday":
+                            key = 6;
+                            break;
+                        case "Sunday":
+                            key = 7;
+                            break;
+
+                    }
+                    Console.WriteLine(key + $", price= {price}");
+                        
+                        if (dailysells.ContainsKey(key))
+                        {
+                            dailysells[key] += price;
+                        }
+                        else
+                        {
+                            dailysells[key] = price;
+                        }
+
+
+
+                    }
+                    conn.Close();
+                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Get Weekly Per Day Sell Exception, {e.Message}");
+            }
+
+            return dailysells;
+        }
+
         // Weekly Stats === END
 
-        
+
     }
 }

@@ -86,7 +86,7 @@
                 </ItemsControl>
             </ScrollViewer>
             <MetroChart:StackedBarChart Grid.Row="2" TextElement.Foreground="{DynamicResource ResourceKey=MaterialDesignBody}"
-        Background="{DynamicResource ResourceKey=MaterialDesignPaper}"
+        Background="{DynamicResource ResourceKey=MaterialDesignPaper}"  ChartLegendVisibility="Hidden"
                 ChartTitle="1500 BIRR"  Grid.Column="0" Margin="0"  ChartSubTitle="723 SELLS were recorded this week"  >
                 <MetroChart:StackedBarChart.Series>
                     <MetroChart:ChartSeries Margin="10" ItemsSource="{Binding Path = Earnings810am}"

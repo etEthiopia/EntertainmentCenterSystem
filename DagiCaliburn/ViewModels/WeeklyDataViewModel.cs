@@ -116,37 +116,44 @@ namespace DagiCaliburn.ViewModels
         {
             TopSellers = new BindableCollection<TopSellModel>(statisticsModel.getMainTopWeeklySell());
 
-            string[] types = { "IM", "S", "M", "KS", "AS", "AM", "QM", "D" };
-            double[] money = { 50, 100, 34, 30, 90, 39, 10, 100 };
-            for (int i = 0; i < types.Length; i++)
+            Dictionary<int, double> hours = statisticsModel.getMainWeeklySellByDays();
+
+
+            int[] hs = hours.Keys.ToArray();
+            double[] dinero = hours.Values.ToArray();
+            Console.WriteLine("hs length: " + hs.Length);
+
+            for (int i = 0; i < hs.Length; i++)
             {
-                ChartModel c = new ChartModel(types[i], money[i]);
-                
-                if (i < 3)
+                Console.WriteLine("type:, money: " + hs[i] + ", " + dinero[i]);
+                ChartModel c = new ChartModel("Weekly PerDay Data", dinero[i]);
+
+
+                if (hs[i] == 1 )
                 {
                     Earnings810am.Add(c);
                 }
-                if (i < 7 && i > 3)
+                if (hs[i] == 2)
                 {
                     Earnings1012pm.Add(c);
                 }
-                if (i < 6 && i > 1)
+                if (hs[i] == 3)
                 {
                     Earnings122pm.Add(c);
                 }
-                if (i < 8 && i > 0)
+                if (hs[i] == 4)
                 {
                     Earnings24pm.Add(c);
                 }
-                if (i < 6 && i > 0)
+                if (hs[i] == 5)
                 {
                     Earnings46pm.Add(c);
                 }
-                if (i < 7)
+                if (hs[i] == 6)
                 {
                     Earnings68pm.Add(c);
                 }
-                if (i < 8 && i > 3)
+                if (hs[i] == 7)
                 {
                     Earnings810pm.Add(c);
                 }

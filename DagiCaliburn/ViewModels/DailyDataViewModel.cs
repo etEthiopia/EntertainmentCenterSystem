@@ -194,37 +194,30 @@ namespace DagiCaliburn.ViewModels
 
                 if (hs[i] == 10)
                 {
-                    Earnings810am.Clear();
                     Earnings810am.Add(c);
                 }
                 if (hs[i] == 12)
                 {
-                    Earnings1012pm.Clear();
                     Earnings1012pm.Add(c);
                 }
                 if (hs[i] == 14)
                 {
-                    Earnings122pm.Clear();
                     Earnings122pm.Add(c);
                 }
                 if (hs[i] == 16)
                 {
-                    Earnings24pm.Clear();
                     Earnings24pm.Add(c);
                 }
                 if (hs[i] == 18)
                 {
-                    Earnings46pm.Clear();
                     Earnings46pm.Add(c);
                 }
                 if (hs[i] == 20)
                 {
-                    Earnings68pm.Clear();
                     Earnings68pm.Add(c);
                 }
                 if (hs[i] == 22)
                 {
-                    Earnings810pm.Clear();
                     Earnings810pm.Add(c);
                 }
 
