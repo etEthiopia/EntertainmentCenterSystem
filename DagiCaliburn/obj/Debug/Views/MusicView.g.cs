@@ -129,7 +129,7 @@ namespace DagiCaliburn.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/DagiCaliburn;component/views/musicview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MyEnt;component/views/musicview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\Views\MusicView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

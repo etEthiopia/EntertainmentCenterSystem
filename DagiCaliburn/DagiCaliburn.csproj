@@ -8,7 +8,7 @@
     <ProjectGuid>{D89ECB5E-363D-403C-805F-F8D3A47F776B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>DagiCaliburn</RootNamespace>
-    <AssemblyName>DagiCaliburn</AssemblyName>
+    <AssemblyName>MyEnt</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -36,6 +36,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>DatasetSafariReadingList.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.3.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
@@ -376,6 +379,9 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="DatasetSafariReadingList.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

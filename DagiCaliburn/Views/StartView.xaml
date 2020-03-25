@@ -10,7 +10,7 @@
         Background="{DynamicResource ResourceKey=MaterialDesignPaper}"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         
-        Title="StartView" 
+        Title="MyEnt" 
          Width="Auto"
         >
     <Grid Margin="5" >

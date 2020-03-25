@@ -52,7 +52,7 @@ namespace DagiCaliburn.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/DagiCaliburn;component/views/monthlydataview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MyEnt;component/views/monthlydataview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\Views\MonthlyDataView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

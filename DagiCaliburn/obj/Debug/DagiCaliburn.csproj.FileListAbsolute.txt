@@ -161,9 +161,7 @@ C:\Users\Dagi\source\repos\DCaliburn\DagiCaliburn\obj\Debug\GeneratedInternalTyp
 C:\Users\Dagi\source\repos\DCaliburn\DagiCaliburn\bin\Debug\System.Data.SQLite.dll
 C:\Users\Dagi\source\repos\DCaliburn\DagiCaliburn\bin\Debug\System.Data.SQLite.xml
 C:\Users\Dagi\source\repos\DCaliburn\DagiCaliburn\bin\Debug\System.Data.SQLite.dll.config
-C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\bin\Debug\DagiCaliburn.exe.config
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\bin\Debug\DagiCaliburn.exe
-C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\bin\Debug\DagiCaliburn.pdb
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\bin\Debug\BouncyCastle.Crypto.dll
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\bin\Debug\Caliburn.Micro.dll
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\bin\Debug\Caliburn.Micro.Platform.Core.dll
@@ -226,8 +224,6 @@ C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\UnknownDirView.g.
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\WeeklyDataView.g.cs
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\App.g.cs
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\GeneratedInternalTypeHelper.g.cs
-C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\DagiCaliburn_MarkupCompile.cache
-C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\DagiCaliburn_MarkupCompile.lref
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\App.baml
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\ConfigView.baml
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\CustomersView.baml
@@ -247,13 +243,10 @@ C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\TypesView.baml
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\TypeView.baml
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\UnknownDirView.baml
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\WeeklyDataView.baml
-C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\DagiCaliburn.g.resources
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\DagiCaliburn.Properties.Resources.resources
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\DagiCaliburn.csproj.GenerateResource.cache
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\DagiCaliburn.csproj.CoreCompileInputs.cache
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\DagiCaliburn.csproj.CopyComplete
-C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\DagiCaliburn.exe
-C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\DagiCaliburn.pdb
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\SellView.g.cs
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\SellView.baml
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\bin\Debug\Dapper.dll
@@ -264,3 +257,11 @@ C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\bin\Debug\System.Data.SQLite.Linq
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\bin\Debug\Dapper.xml
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\bin\Debug\EntityFramework.xml
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\bin\Debug\MyEnt.exe.config
+C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\bin\Debug\MyEnt.exe
+C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\bin\Debug\MyEnt.pdb
+C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\MyEnt_MarkupCompile.cache
+C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\MyEnt_MarkupCompile.lref
+C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\MyEnt.g.resources
+C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\MyEnt.exe
+C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\MyEnt.pdb

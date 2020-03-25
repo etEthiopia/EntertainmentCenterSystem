@@ -111,7 +111,7 @@ namespace DagiCaliburn.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/DagiCaliburn;component/views/copyview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MyEnt;component/views/copyview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\Views\CopyView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

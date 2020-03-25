@@ -96,7 +96,7 @@ namespace DagiCaliburn.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/DagiCaliburn;component/views/unknowndirview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MyEnt;component/views/unknowndirview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\Views\UnknownDirView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
