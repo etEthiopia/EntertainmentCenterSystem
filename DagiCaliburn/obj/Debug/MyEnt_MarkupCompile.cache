@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\App.xaml
-23571377564
+241782921021
 
-78471297792
+84918395251
 101-2018072036
-Views\ConfigView.xaml;Views\CreditsView.xaml;Views\CustomersView.xaml;Views\DailyDataView.xaml;Views\GBView.xaml;Views\HomeView.xaml;Views\MainView.xaml;Views\MonthlyDataView.xaml;Views\MusicView.xaml;Views\PrintStatsView.xaml;Views\ProfileView.xaml;Views\PropmtView.xaml;Views\SaleView.xaml;Views\SellView.xaml;Views\SettingsView.xaml;Views\ShellView.xaml;Views\SpecialsView.xaml;Views\StartView.xaml;Views\StatsView.xaml;Views\TypesView.xaml;Views\TypeView.xaml;Views\UnknownDirView.xaml;Views\WeeklyDataView.xaml;
+Views\ConfigView.xaml;Views\CreditsView.xaml;Views\CustomersView.xaml;Views\DailyDataView.xaml;Views\GBView.xaml;Views\HomeView.xaml;Views\MainView.xaml;Views\MonthlyDataView.xaml;Views\MusicView.xaml;Views\PrintStatsView.xaml;Views\ProfileView.xaml;Views\PropmtView.xaml;Views\SaleView.xaml;Views\SellView.xaml;Views\SettingsView.xaml;Views\ShellView.xaml;Views\SpecialsView.xaml;Views\StartView.xaml;Views\StatsView.xaml;Views\TypeShowView.xaml;Views\TypesView.xaml;Views\TypeView.xaml;Views\UnknownDirView.xaml;Views\WeeklyDataView.xaml;
 
-False
+True
 

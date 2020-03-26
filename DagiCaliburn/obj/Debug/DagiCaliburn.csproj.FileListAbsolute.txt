@@ -270,3 +270,5 @@ C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\PropmtView.g.cs
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\PropmtView.baml
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\CreditsView.g.cs
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\CreditsView.baml
+C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\TypeShowView.g.cs
+C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\TypeShowView.baml

@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="DagiCaliburn.Views.TypeShowView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DagiCaliburn.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignWidth="580">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <materialDesign:Card Grid.Row="1" Margin="20"
+                  Width="Auto"
+                  Padding="8">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <ToggleButton Grid.Row="0"  Margin="10,30,10,10"
+                              Height="75" Width="75" FontWeight="Light" 
+                                    Content="{Binding Path=Icon, Mode=OneWay}" FontSize="30"
+                                    Style="{StaticResource MaterialDesignActionToggleButton}"
+                                    ToolTip="MaterialDesignActionToggleButton"
+                                    materialDesign:ShadowAssist.ShadowDepth="Depth0" />
+                    <Button Grid.Column="2" Margin="0,5,5,0" Grid.Row="0" x:Name="CloseType" Height="20" Width="20" Background="Red" HorizontalAlignment="Right" VerticalAlignment="Top"
+                          Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                          ToolTip="MaterialDesignFloatingActionMiniLightButton">
+                        <materialDesign:PackIcon
+                            Foreground="White"
+                            Kind="Close"
+                            Height="14"
+                            Width="14" />
+                    </Button>
+                </Grid>
+            </materialDesign:Card>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

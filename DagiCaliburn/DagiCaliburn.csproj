@@ -193,6 +193,7 @@
     <Compile Include="ViewModels\SpecialsViewModel.cs" />
     <Compile Include="ViewModels\StartViewModel.cs" />
     <Compile Include="ViewModels\StatsViewModel.cs" />
+    <Compile Include="ViewModels\TypeShowViewModel.cs" />
     <Compile Include="ViewModels\TypesViewModel.cs" />
     <Compile Include="ViewModels\TypeViewModel.cs" />
     <Compile Include="ViewModels\UnknownDirViewModel.cs" />
@@ -253,6 +254,9 @@
     </Compile>
     <Compile Include="Views\StatsView.xaml.cs">
       <DependentUpon>StatsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TypeShowView.xaml.cs">
+      <DependentUpon>TypeShowView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TypesView.xaml.cs">
       <DependentUpon>TypesView.xaml</DependentUpon>
@@ -369,6 +373,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\StatsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TypeShowView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
