@@ -613,10 +613,20 @@ namespace DagiCaliburn.ViewModels
             }
             set
             {
-                
-                string year = value.Substring(6, 4);
-                string date = value.Substring(3, 2);
-                string month = value.Substring(0, 2);
+                //3/25/2020 12:00:00 AM
+                //Console.WriteLine($"GRID DATE: {value}");
+                string[] divs = value.Split(' ')[0].Split('/');
+                string year = divs[2];
+                string date = divs[1];
+                if(divs[1].Trim().Length == 1)
+                {
+                    date = date.Insert(0, "0");
+                }
+                string month = divs[0];
+                if (divs[0].Trim().Length == 1)
+                {
+                    month = month.Insert(0, "0");
+                }
 
                 _gridDate = year+"-"+month+"-"+date;
                 NotifyOfPropertyChange(() => GridDate);

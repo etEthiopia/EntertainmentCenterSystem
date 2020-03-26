@@ -51,6 +51,7 @@ namespace DagiCaliburn.Models
             String today = theDate.ToString("yyyy-MM-dd");
             paged = paged * 6;
             string query = "";
+
             if (!date.Equals(""))
             {
                 today = date;
