@@ -36,7 +36,7 @@
                     </Button>
 
                 </Grid>
-                <ScrollViewer Grid.Row="1" HorizontalAlignment="Stretch">
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch">
                     <ItemsControl x:Name="Typpes" >
 
                         <ItemsControl.ItemsPanel>
