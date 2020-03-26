@@ -201,9 +201,7 @@ C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\DagiCaliburn.csprojAsse
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Interop.SHDocVw.dll
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Interop.Shell32.dll
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\DagiCaliburn.csproj.ResolveComReference.cache
-C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\CopyView.baml
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\ConfigView.g.cs
-C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\CopyView.g.cs
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\CustomersView.g.cs
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\DailyDataView.g.cs
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\GBView.g.cs
@@ -270,3 +268,5 @@ C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\PrintStatsView.ba
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\ProfileView.baml
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\PropmtView.g.cs
 C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\PropmtView.baml
+C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\CreditsView.g.cs
+C:\Users\Dagi\source\repos\TraceF\DagiCaliburn\obj\Debug\Views\CreditsView.baml

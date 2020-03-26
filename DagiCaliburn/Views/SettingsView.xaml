@@ -27,16 +27,16 @@
     Margin="4"
     IsChecked="False"
     Content="CONFIG" />
-            <RadioButton x:Name="CreditsMenu" Checked="CreditsMenu_Checked"
-    Style="{StaticResource MaterialDesignTabRadioButton}"
-    Margin="4"
-    IsChecked="False"
-    Content="CREDITS" />
             <RadioButton x:Name="ProfileMenu" Checked="ProfileMenu_Checked"
     Style="{StaticResource MaterialDesignTabRadioButton}"
     Margin="4"
     IsChecked="False"
     Content="PROFILE" />
+            <RadioButton x:Name="CreditsMenu" Checked="CreditsMenu_Checked"
+    Style="{StaticResource MaterialDesignTabRadioButton}"
+    Margin="4"
+    IsChecked="False"
+    Content="CREDITS" />
         </StackPanel>
         <Grid Visibility="Collapsed" Margin="0,10,0,10" Grid.Row="0" HorizontalAlignment="Stretch" >
             <Grid.ColumnDefinitions>

@@ -1,6 +1,7 @@
 ﻿
 FC:\Users\Dagi\source\repos\TraceF\DagiCaliburn\App.xaml;;
 FC:\Users\Dagi\source\repos\TraceF\DagiCaliburn\Views\ConfigView.xaml;;
+FC:\Users\Dagi\source\repos\TraceF\DagiCaliburn\Views\CreditsView.xaml;;
 FC:\Users\Dagi\source\repos\TraceF\DagiCaliburn\Views\CustomersView.xaml;;
 FC:\Users\Dagi\source\repos\TraceF\DagiCaliburn\Views\DailyDataView.xaml;;
 FC:\Users\Dagi\source\repos\TraceF\DagiCaliburn\Views\GBView.xaml;;
@@ -8,6 +9,9 @@ FC:\Users\Dagi\source\repos\TraceF\DagiCaliburn\Views\HomeView.xaml;;
 FC:\Users\Dagi\source\repos\TraceF\DagiCaliburn\Views\MainView.xaml;;
 FC:\Users\Dagi\source\repos\TraceF\DagiCaliburn\Views\MonthlyDataView.xaml;;
 FC:\Users\Dagi\source\repos\TraceF\DagiCaliburn\Views\MusicView.xaml;;
+FC:\Users\Dagi\source\repos\TraceF\DagiCaliburn\Views\PrintStatsView.xaml;;
+FC:\Users\Dagi\source\repos\TraceF\DagiCaliburn\Views\ProfileView.xaml;;
+FC:\Users\Dagi\source\repos\TraceF\DagiCaliburn\Views\PropmtView.xaml;;
 FC:\Users\Dagi\source\repos\TraceF\DagiCaliburn\Views\SaleView.xaml;;
 FC:\Users\Dagi\source\repos\TraceF\DagiCaliburn\Views\SellView.xaml;;
 FC:\Users\Dagi\source\repos\TraceF\DagiCaliburn\Views\SettingsView.xaml;;
@@ -19,7 +23,4 @@ FC:\Users\Dagi\source\repos\TraceF\DagiCaliburn\Views\TypesView.xaml;;
 FC:\Users\Dagi\source\repos\TraceF\DagiCaliburn\Views\TypeView.xaml;;
 FC:\Users\Dagi\source\repos\TraceF\DagiCaliburn\Views\UnknownDirView.xaml;;
 FC:\Users\Dagi\source\repos\TraceF\DagiCaliburn\Views\WeeklyDataView.xaml;;
-FC:\Users\Dagi\source\repos\TraceF\DagiCaliburn\Views\PrintStatsView.xaml;;
-FC:\Users\Dagi\source\repos\TraceF\DagiCaliburn\Views\ProfileView.xaml;;
-FC:\Users\Dagi\source\repos\TraceF\DagiCaliburn\Views\PropmtView.xaml;;
 

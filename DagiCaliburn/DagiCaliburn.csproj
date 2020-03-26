@@ -175,6 +175,7 @@
     <Compile Include="Models\Watcher.cs" />
     <Compile Include="ViewModels\ConfigViewModel.cs" />
     <Compile Include="ViewModels\CopyViewModel.cs" />
+    <Compile Include="ViewModels\CreditsViewModel.cs" />
     <Compile Include="ViewModels\CustomersViewModel.cs" />
     <Compile Include="ViewModels\DailyDataViewModel.cs" />
     <Compile Include="ViewModels\GBViewModel.cs" />
@@ -198,6 +199,9 @@
     <Compile Include="ViewModels\WeeklyDataViewModel.cs" />
     <Compile Include="Views\ConfigView.xaml.cs">
       <DependentUpon>ConfigView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreditsView.xaml.cs">
+      <DependentUpon>CreditsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CustomersView.xaml.cs">
       <DependentUpon>CustomersView.xaml</DependentUpon>
@@ -296,7 +300,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CopyView.xaml">
+    <Page Include="Views\CreditsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

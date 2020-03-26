@@ -16,15 +16,13 @@ using System.Windows.Shapes;
 namespace DagiCaliburn.Views
 {
     /// <summary>
-    /// Interaction logic for PropmtView.xaml
+    /// Interaction logic for CreditsView.xaml
     /// </summary>
-    public partial class PropmtView : UserControl
+    public partial class CreditsView : UserControl
     {
-        public PropmtView()
+        public CreditsView()
         {
             InitializeComponent();
         }
-
-        
     }
 }

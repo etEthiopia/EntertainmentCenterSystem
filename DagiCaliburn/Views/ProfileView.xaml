@@ -85,6 +85,7 @@
         </materialDesign:Card>
         </Grid>
         <Grid x:Name="ProfileIsVisible">
+            <ScrollViewer VerticalScrollBarVisibility ="Auto">
             <materialDesign:Card
     materialDesign:ShadowAssist.ShadowDepth="Depth3"
     Padding="32" Margin="25">
@@ -100,11 +101,11 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <Ellipse Margin="0,0,0,50" Height="150" Width="150">
+                    <Ellipse Margin="0,0,0,25" Height="125" Width="125">
                         <Ellipse.Fill>
                             <ImageBrush>
                                 <ImageBrush.ImageSource>
-                                    <BitmapImage x:Name="PictureS"  DecodePixelHeight="150" DecodePixelWidth="150" UriSource="../DatasetSafariReadingList.ico" />
+                                    <BitmapImage x:Name="PictureS"  DecodePixelHeight="100" DecodePixelWidth="100" UriSource="../DatasetSafariReadingList.ico" />
                                 </ImageBrush.ImageSource>
                             </ImageBrush>
                         </Ellipse.Fill>
@@ -118,35 +119,36 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <StackPanel Margin="50,50,50,0" Orientation="Vertical" Grid.Row="1">
-                            <TextBlock FontWeight="Light"
+                        <StackPanel Margin="25,5,25,0" HorizontalAlignment="Center" Orientation="Vertical" Grid.Row="1">
+                            <TextBlock FontWeight="Light" HorizontalAlignment="Center"
     Style="{StaticResource MaterialDesignSubheadingTextBlock}">
   Name
                             </TextBlock>
-                            <TextBlock FontWeight="Light" TextWrapping="WrapWithOverflow" FontSize="25"
+                                <TextBlock FontWeight="Light" TextWrapping="WrapWithOverflow" FontSize="25" HorizontalAlignment="Center"
     Style="{StaticResource MaterialDesignDisplay1TextBlock}" Text="{Binding PName}">
 
                             </TextBlock>
                         </StackPanel>
-                        <StackPanel Margin="50,50,50,0" Orientation="Vertical" Grid.Row="2">
-                            <TextBlock FontWeight="Light"
+                            <StackPanel Margin="25,25,25,0" HorizontalAlignment="Center" Orientation="Vertical" Grid.Row="2">
+                                <TextBlock FontWeight="Light" HorizontalAlignment="Center"
     Style="{StaticResource MaterialDesignSubheadingTextBlock}">
   Email
                             </TextBlock>
-                            <TextBlock FontWeight="Light" TextWrapping="WrapWithOverflow" FontSize="20"
+                                <TextBlock FontWeight="Light" TextWrapping="WrapWithOverflow" FontSize="20" HorizontalAlignment="Center"
     Style="{StaticResource MaterialDesignDisplay1TextBlock}" Text="{Binding PEmail}">
 
                             </TextBlock>
                         </StackPanel>
-                        <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="50" HorizontalAlignment="Right">
+                        <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="25,50,10,25" HorizontalAlignment="Right">
 
-
-                            <Button HorizontalAlignment="Right" Margin="5,5,0,5"
-                        Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                        x:Name="EditProfile"
-                        ToolTip="Resource name: MaterialDesignRaisedAccentButton">
-                                EDIT PROFILE
-                            </Button>
+                                <Button HorizontalAlignment="Right" Margin="0,0,0,5" x:Name="EditProfile"
+                                    Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                                    ToolTip="MaterialDesignFloatingActionMiniAccentButton">
+                                    <materialDesign:PackIcon
+                                        Kind="Edit"
+                                        Height="24" Width="24" />   
+                                </Button>
+                                
                         </StackPanel>
                     </Grid>
                     <Grid Grid.Row="1" x:Name="ProfileNewIsVisible">
@@ -163,6 +165,7 @@
                     </Grid>
                 </Grid>
             </materialDesign:Card>
+            </ScrollViewer>
         </Grid>
     </Grid>
    
