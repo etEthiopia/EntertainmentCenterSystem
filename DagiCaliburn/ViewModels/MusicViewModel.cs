@@ -158,7 +158,7 @@ namespace DagiCaliburn.ViewModels
                 NotifyOfPropertyChange(() => CurrentAudio);
                 NotifyOfPropertyChange(() => AudioIndex);
                 NotifyOfPropertyChange(() => TotalSum);
-                pricePerGB = TypeModel.getPricePerGB(AudioTypes[AudioIndex].Id);
+                pricePerGB = TypeModel.GetGBPrice(AudioTypes[AudioIndex].Id);
                 NotifyOfPropertyChange(() => TSum);
             }
         }
@@ -189,7 +189,7 @@ namespace DagiCaliburn.ViewModels
             TypeModel tt = new TypeModel();
             AudioTypes = new BindableCollection<TypeModel>(tt.getAudioTypes());
             CurrentAudio = AudioTypes[0].Name;
-            pricePerGB = TypeModel.getPricePerGB(AudioTypes[0].Id);
+            pricePerGB = TypeModel.GetGBPrice(AudioTypes[0].Id);
         }
 
         public static void SetClip()

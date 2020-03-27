@@ -1,10 +1,12 @@
 ﻿using Caliburn.Micro;
+using DagiCaliburn.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using static DagiCaliburn.Models.TypeModel;
 
 namespace DagiCaliburn.ViewModels
 {
@@ -21,13 +23,10 @@ namespace DagiCaliburn.ViewModels
         private string _ftype = "";
         private string _ref = "";
         private string _vprice = "";
-        private BindableCollection<Dir> _directories = new BindableCollection<Dir>();
-
-
-
-
-
-
+        private string _aprice = "";
+        private string _abprice = "";
+        private BindableCollection<Dir> _directories = new BindableCollection<Dir>(); 
+        private BindableCollection<OtherPrice> _othersPrices = new BindableCollection<OtherPrice>();
 
         public bool ReferenceIsVisible
         {
@@ -159,8 +158,45 @@ namespace DagiCaliburn.ViewModels
             }
         }
 
+        public BindableCollection<OtherPrice> OthersPrices
+        {
+            get
+            {
+                return _othersPrices;
+            }
+            set
+            {
+                _othersPrices = value;
+                NotifyOfPropertyChange(() => OthersPrices);
+            }
+        }
 
-        
+        public string GBPrice
+        {
+            get
+            {
+                return _aprice;
+            }
+            set
+            {
+                _aprice = value;
+                NotifyOfPropertyChange(() => GBPrice);
+            }
+        }
+
+        public string AlbumPrice
+        {
+            get
+            {
+                return _abprice;
+            }
+            set
+            {
+                _abprice = value;
+                NotifyOfPropertyChange(() => AlbumPrice);
+            }
+        }
+
         public void TypeShow()
         {
             Icon = SettingsViewModel.tvm.Initial;
@@ -180,6 +216,15 @@ namespace DagiCaliburn.ViewModels
                     VideoPriceIsVisible = true;
                     Price = SettingsViewModel.tvm.Price;
                     break;
+                case "Audio":
+                    AudioPriceIsVisible = true;
+                    GBPrice = SettingsViewModel.tvm.AudioPricePerGB;
+                    AlbumPrice = SettingsViewModel.tvm.AudioAlbumPrice;
+                    break;
+                case "Others":
+                    OthersPriceIsVisible = true;
+                    OthersPrices = new BindableCollection<OtherPrice>(TypeModel.GetOthersPrice(SettingsViewModel.tvm.idd));
+                    break;
             }
 
             
@@ -193,14 +238,21 @@ namespace DagiCaliburn.ViewModels
 
         public void CloseType()
         {
-            SettingsViewModel.tvm.idd = 0;
-            SettingsViewModel.tvm.Price = "";
-            SettingsViewModel.tvm.Name = "";
-            SettingsViewModel.tvm.EditIcon = "";
-            SettingsViewModel.tvm.Reference = "";
-            SettingsViewModel.tvm.CurrentType = "";
-            SettingsViewModel.tvm.Dirs = new BindableCollection<Dir>();
+            SettingsViewModel.tvm = new TypeViewModel();
             
+            Icon = "";
+            Name = "";
+            Price = "";
+            FileType = "";
+            Reference = "";
+            GBPrice = "";
+            AlbumPrice = "";
+            Directories = null;
+            ReferenceIsVisible = false;
+            VideoPriceIsVisible = false;
+            OthersPriceIsVisible = false;
+            AudioPriceIsVisible = false;
+
 
             SettingsViewModel.settingsvm.backToType();
         }

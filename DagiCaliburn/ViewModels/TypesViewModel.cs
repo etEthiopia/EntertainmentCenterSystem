@@ -86,6 +86,12 @@ namespace DagiCaliburn.ViewModels
                 SettingsViewModel.tvm.Reference = TypesViewModel.tmlClicked.Refrence;
                 SettingsViewModel.tvm.DataType = TypesViewModel.tmlClicked.DataType;
                 SettingsViewModel.tvm.Initial = TypesViewModel.tmlClicked.Icon;
+                if (SettingsViewModel.tvm.DataType == "Audio")
+                {
+                    SettingsViewModel.tvm.AudioAlbumPrice = TypeModel.GetAlbumPrice(idd).ToString();
+                    SettingsViewModel.tvm.AudioPricePerGB = TypeModel.GetGBPrice(idd).ToString();
+                }
+                
                 SettingsViewModel.tvm.Dirs = new BindableCollection<Dir>(TypeModel.GetDirs(TypesViewModel.tmlClicked.Id));
                 SettingsViewModel.tvm.TypesIsVisible = false;
                 SettingsViewModel.settingsvm.ShowType();

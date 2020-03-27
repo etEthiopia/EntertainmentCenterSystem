@@ -438,35 +438,6 @@ namespace DagiCaliburn.Models
             return false;
         }
 
-        public static double getPricePerGB(int type)
-        {
-            double count = 0;
-            MySqlConnection conn = DBUtils.GetDBConnection();
-            string query = $"SELECT bySize FROM filmdatabase.audio WHERE type = {type}";
-            try
-            {
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-
-                conn.Open();
-
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-                //Console.WriteLine($"getTodaysSales() - {query}");
-
-                while (reader.Read())
-                {
-                    count = (double)reader["bySize"];
-
-                }
-                conn.Close();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("GetType Execption");
-            }
-            return count;
-        }
-
         public List<TypeModel> getAudioTypes()
         {
             List<TypeModel> ts = getItemTypes();
@@ -702,6 +673,44 @@ namespace DagiCaliburn.Models
             return fdirs;
         }
 
+        public static List<OtherPrice> GetOthersPrice(int type)
+        {
+            List<OtherPrice> prices = new List<OtherPrice>();
+            MySqlConnection conn = DBUtils.GetDBConnection();
+            string query = $"SELECT gb,price FROM othersdetails WHERE type = {type} ORDER BY gb";
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+
+                conn.Open();
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    prices.Add(new OtherPrice(reader["gb"].ToString(), reader["price"].ToString()));
+
+                }
+                conn.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("GetOthersPrices Execption " + e.Message);
+            }
+            return prices;
+        }
+
+        public class OtherPrice
+        {
+            public string OtherGB { get; set; }
+            public string OtherGBPrice { get; set; }
+            public OtherPrice(string gb, string price)
+            {
+                OtherGB = gb;
+                OtherGBPrice = price;
+            }
+        }
         
     }
 }
