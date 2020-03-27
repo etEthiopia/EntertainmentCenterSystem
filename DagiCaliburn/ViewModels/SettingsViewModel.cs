@@ -16,6 +16,7 @@ namespace DagiCaliburn.ViewModels
         public static ConfigViewModel cvm;
         public static ProfileViewModel pvm;
         public static CreditsViewModel cdm;
+        public static TypeShowViewModel tsm;
         
 
         public SettingsViewModel()
@@ -25,6 +26,7 @@ namespace DagiCaliburn.ViewModels
             cvm = new ConfigViewModel();
             pvm = new ProfileViewModel();
             cdm = new CreditsViewModel();
+            tsm = new TypeShowViewModel();
             settingsvm = this;
             ActivateItem(tsvm);
         }
@@ -56,6 +58,11 @@ namespace DagiCaliburn.ViewModels
         public void backToType()
         {
             ActivateItem(tsvm);
+        }
+        public void ShowType()
+        {
+            SettingsViewModel.tsm.TypeShow();
+            ActivateItem(tsm);
         }
 
 

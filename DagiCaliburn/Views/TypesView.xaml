@@ -46,7 +46,7 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <materialDesign:Card Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                                <materialDesign:Card Grid.Row="1" cal:Message.Attach="[Event MouseDoubleClick] = [Action TypeSelected(Id)]" VerticalAlignment="Center" HorizontalAlignment="Stretch"
                   materialDesign:ShadowAssist.ShadowDepth="Depth3" 
                   
                   Height="75"               
@@ -91,7 +91,7 @@
                                                 <StackPanel Orientation="Horizontal">
                                                     <TextBlock Text="{Binding Price}" FontWeight="Light" 
                                 Style="{StaticResource MaterialDesignBody2TextBlock}"/>
-                                                    <TextBlock Name="Id" Text="{Binding Id}" Visibility="Collapsed"  FontWeight="Light"
+                                                    <TextBlock x:Name="Id" Text="{Binding Id}" Visibility="Collapsed"  FontWeight="Light"
                                 Style="{StaticResource MaterialDesignBody2TextBlock}"/>
                                                     <TextBlock Text="  BIRR"  FontWeight="Light" 
                                 Style="{StaticResource MaterialDesignBody2TextBlock}"/>

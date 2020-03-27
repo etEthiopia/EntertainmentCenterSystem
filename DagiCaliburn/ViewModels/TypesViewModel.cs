@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace DagiCaliburn.ViewModels
 {
@@ -28,17 +29,7 @@ namespace DagiCaliburn.ViewModels
                 NotifyOfPropertyChange(() => Typpes);
             }
         }
-        string[] Names = {
-                "Series",
-                "Movie",
-                "Korean Series",
-                "Kana Films",
-                "International Music",
-                "Amharic Movies",
-                "Amharic Songs"
-                };
-        string[] Initials = { "S", "M", "KS", "KF", "IM", "AM", "AS"};
-
+        
         public TypesViewModel()
         {
            Typpes = new BindableCollection<TypeModel>(TypeModel.GetAllTypes());
@@ -78,6 +69,28 @@ namespace DagiCaliburn.ViewModels
             SettingsViewModel.tvm.Dirs = new BindableCollection<Dir>(TypeModel.GetDirs(TypesViewModel.tmlClicked.Id));
             SettingsViewModel.tvm.TypesIsVisible = false;
             SettingsViewModel.settingsvm.AdType();
+
+        }
+
+        public void TypeSelected(string id)
+        {
+            //MessageBox.Show($"{id} Type");
+            int idd = 0;
+            int.TryParse(id, out idd);
+            if (idd != 0)
+            {
+                tmlClicked = TypeModel.GetTypeToFile(idd);
+                SettingsViewModel.tvm.idd = TypesViewModel.tmlClicked.Id;
+                SettingsViewModel.tvm.Price = TypesViewModel.tmlClicked.Price.ToString();
+                SettingsViewModel.tvm.Name = TypesViewModel.tmlClicked.Name;
+                SettingsViewModel.tvm.Reference = TypesViewModel.tmlClicked.Refrence;
+                SettingsViewModel.tvm.DataType = TypesViewModel.tmlClicked.DataType;
+                SettingsViewModel.tvm.Initial = TypesViewModel.tmlClicked.Icon;
+                SettingsViewModel.tvm.Dirs = new BindableCollection<Dir>(TypeModel.GetDirs(TypesViewModel.tmlClicked.Id));
+                SettingsViewModel.tvm.TypesIsVisible = false;
+                SettingsViewModel.settingsvm.ShowType();
+
+            }
 
         }
 

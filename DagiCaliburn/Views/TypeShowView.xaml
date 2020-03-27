@@ -19,7 +19,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <ToggleButton Grid.Row="0"  Margin="10,30,10,10"
                               Height="75" Width="75" FontWeight="Light" 
@@ -38,7 +38,6 @@
                     </Button>
                     <TextBlock Grid.Row="1" TextWrapping="WrapWithOverflow" FontSize="35" Margin="0,25,0,0" HorizontalAlignment="Center" Text="{Binding Name}"
                         Style="{StaticResource MaterialDesignHeadlineTextBlock}">
-                        
                     </TextBlock>
                     <StackPanel Grid.Row="2" Margin="0,25,0,0" HorizontalAlignment="Center" Orientation="Horizontal">
                         <TextBlock FontWeight="Light" VerticalAlignment="Center" Margin="0,0,10,0"
@@ -216,16 +215,16 @@
                         
                         
                     </Grid>
-                    <Grid Grid.Row="5" HorizontalAlignment="Center">
+                    <Grid Grid.Row="5" HorizontalAlignment="Center" Margin="0,50,0,25">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" FontSize="30" FontWeight="Light"
+                        <TextBlock Grid.Row="0" FontSize="30" FontWeight="Light" HorizontalAlignment="Center"
                         Style="{StaticResource MaterialDesignHeadlineTextBlock}">
                     Directories
                         </TextBlock>
-                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" >
+                        <ScrollViewer Margin="0,20,0,0" Grid.Row="1" VerticalScrollBarVisibility="Auto" >
                             <ItemsControl x:Name="Directories" >
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
@@ -234,16 +233,16 @@
                                 </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid Margin="5">
+                                        <Grid HorizontalAlignment="Stretch" >
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="Auto"/>
                                                 <RowDefinition Height="Auto"/>
                                             </Grid.RowDefinitions>
-                                            <TextBlock Grid.Row="0" Text="{Binding Dir}" FontWeight="Light"
+                                            <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="{Binding dir}" FontWeight="Light" FontSize="20"
                         Style="{StaticResource MaterialDesignHeadlineTextBlock}">
 
                                             </TextBlock>
-                                            <Separator Grid.Row="1"
+                                            <Separator Grid.Row="1" Height="10"
       Style="{StaticResource MaterialDesignLightSeparator}" />
 
                                         </Grid>

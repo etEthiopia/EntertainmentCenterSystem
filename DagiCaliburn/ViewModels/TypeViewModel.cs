@@ -230,6 +230,8 @@ namespace DagiCaliburn.ViewModels
             }
         }
 
+        public string DataType { get; set; }
+
         public string RefC
         {
             get
