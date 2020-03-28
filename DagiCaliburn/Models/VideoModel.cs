@@ -182,43 +182,53 @@ namespace DagiCaliburn.Models
             List<SellModel> todaysSales = new List<SellModel>();
             MySqlConnection conn = DBUtils.GetDBConnection();
             int id = 0;
-
+            foreach(Dir d in dirs)
+            {
+                Console.WriteLine($"dir recived : " + d.dir);
+                Console.WriteLine($"INSERT IGNORE INTO fdb.dirs (dir,type) values('{Utils.BackToFront(d.dir)}',{type})");
+            }
             string query = $"SELECT id FROM fdb.itemtypes WHERE name = '{Namme}'";
-            if (edit)
+            if (!edit)
             {
 
-            }
-            try
-            {
-                MySqlCommand cmd = new MySqlCommand(query, conn);
 
-                conn.Open();
-
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-                Console.WriteLine($"Get ID from Name() - {query}");
-
-                while (reader.Read())
+                try
                 {
-                    id = int.Parse(reader["id"].ToString());
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+
+                    conn.Open();
+
+                    MySqlDataReader reader = cmd.ExecuteReader();
+
+                    Console.WriteLine($"Get ID from Name() - {query}");
+
+                    while (reader.Read())
+                    {
+                        id = int.Parse(reader["id"].ToString());
+                    }
+                    conn.Close();
                 }
-                conn.Close();
+                catch (Exception e)
+                {
+                    Console.WriteLine("GetType ID Execption");
+                }
             }
-            catch (Exception e)
+            else
             {
-                Console.WriteLine("GetType ID Execption");
+                id = type;
             }
 
 
             if (id > 0)
             {
-                foreach (Dir dik in dirs)
+                try
                 {
-                    query = $"INSERT INTO fdb.dirs (dir,type) values('{Utils.BackToFront(dik.dir)}',{id})";
-
-
-                    try
+                    foreach (Dir dik in dirs)
                     {
+                        query = $"INSERT IGNORE INTO fdb.dirs (dir,type) values('{Utils.BackToFront(dik.dir)}',{id})";
+
+
+
                         MySqlConnection conn2 = DBUtils.GetDBConnection();
                         Console.WriteLine($"INSERT {dik}, {query}");
                         conn2.Open();
@@ -227,12 +237,15 @@ namespace DagiCaliburn.Models
                         cmd.ExecuteNonQuery();
 
                         conn2.Close();
-                        return true;
+
+
                     }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine("Add Dir Execption " + e.Message);
-                    }
+                    return true;
+                }
+
+                catch (Exception e)
+                {
+                    Console.WriteLine("Add Dir Execption " + e.Message);
                 }
             }
             return false;

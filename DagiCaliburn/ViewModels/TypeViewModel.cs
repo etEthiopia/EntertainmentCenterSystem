@@ -665,34 +665,37 @@ namespace DagiCaliburn.ViewModels
 
         public void TraceName()
         {
-            string[] names = Name.Split(' ');
-            Initial = "";
-            EditIcon = "";
-            int leng = names.Length;
-            if (names.Length <= 1)
+            if (Name.Length > 0)
             {
-                leng = names.Length;
-            }
-            else
-            {
-                leng = 2;
-            }
-            for (int k = 0; k < leng; k++)
-            {
-                try
+                string[] names = Name.Split(' ');
+                Initial = "";
+                EditIcon = "";
+                int leng = names.Length;
+                if (names.Length <= 1)
                 {
-
-                    string kk = names[k][0].ToString();
-                    if (kk.Length > 0)
+                    leng = names.Length;
+                }
+                else
+                {
+                    leng = 2;
+                }
+                for (int k = 0; k < leng; k++)
+                {
+                    try
                     {
 
-                        Initial += kk.ToUpper();
+                        string kk = names[k][0].ToString();
+                        if (kk.Length > 0)
+                        {
 
+                            Initial += kk.ToUpper();
+
+                        }
                     }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Trace Nma " + e.Message);
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Trace Nma " + e.Message);
+                    }
                 }
             }
         }
@@ -742,9 +745,17 @@ namespace DagiCaliburn.ViewModels
 
         public void Save()
         {
+            if (Dirs.Count > 0)
+            {
+                foreach (Dir d in Dirs)
+                {
+                    Console.WriteLine("DIR: " + d.dir);
+                }
+                
+            }
             bool eligdable = true;
-            bool checkIcon = TypeModel.CheckIcon(idd,EditIcon);
-            if(Initial == "F")
+            bool checkIcon = TypeModel.CheckIcon(idd, EditIcon);
+            if (Initial == "F")
             {
                 IconC = $"Icon 'F' is represents 'Folders' !";
                 eligdable = false;
@@ -754,25 +765,25 @@ namespace DagiCaliburn.ViewModels
                 IconC = $"Icon '{Initial}' is already registered !";
                 eligdable = false;
             }
-            bool checkName = TypeModel.CheckName(idd,Name);
+            bool checkName = TypeModel.CheckName(idd, Name);
             if (!checkName)
             {
                 NameC = $"Name '{Name}' is already registered !";
                 eligdable = false;
             }
-            if(Name.Length <= 0)
+            if (Name.Length <= 0)
             {
                 NameC = $"Name can't be Blank !";
                 eligdable = false;
             }
 
-            
-            
-            else if(CurrentType.Length == 0)
+
+
+            else if (CurrentType.Length == 0)
             {
                 TypeC = $"File Type is important !";
                 eligdable = false;
-                
+
             }
             else
             {
@@ -815,15 +826,15 @@ namespace DagiCaliburn.ViewModels
                     }
                     else
                     {
-                        for(int i = 0; i < 5; i++)
+                        for (int i = 0; i < 5; i++)
                         {
                             if (OGBS[i] == -1)
                             {
-                                PriceC = $"Error in Price by GB at Entry {i+1} !";
+                                PriceC = $"Error in Price by GB at Entry {i + 1} !";
                                 eligdable = false;
                                 break;
                             }
-                            else if(OGBS[i] != 0)
+                            else if (OGBS[i] != 0)
                             {
                                 if (OBIRRS[i] == -1f)
                                 {
@@ -831,7 +842,7 @@ namespace DagiCaliburn.ViewModels
                                     eligdable = false;
                                     break;
                                 }
-                                else  if(OBIRRS[i] != 0.0f)
+                                else if (OBIRRS[i] != 0.0f)
                                 {
                                     continue;
                                 }
@@ -842,28 +853,28 @@ namespace DagiCaliburn.ViewModels
                                     break;
                                 }
                             }
-                            
-                            
+
+
                         }
                     }
                 }
             }
-            
-            bool checkRef = TypeModel.CheckRef(idd,Reference);
+
+            bool checkRef = TypeModel.CheckRef(idd, Reference);
             if (!checkRef)
             {
                 RefC = $"Reference '{Reference}' is already registered !";
                 eligdable = false;
             }
 
-            foreach (string dirk in TypeModel.CheckDirs(Dirs.ToList()))
+            foreach (string dirk in TypeModel.CheckDirs(idd, Dirs.ToList()))
             {
                 Console.WriteLine($"MATCH DIR FOUND: {dirk}");
-                DirsC.Add(new Dir("The "+dirk+" is already registered !"));
+                DirsC.Add(new Dir("The " + dirk + " is already registered !"));
                 eligdable = false;
             }
 
-            if(Reference.Length == 0 && Dirs.Count() == 0)
+            if (Reference.Length == 0 && Dirs.Count() == 0)
             {
                 RefC = $"Both Reference and Directories can't be Blank !";
                 eligdable = false;
@@ -878,7 +889,7 @@ namespace DagiCaliburn.ViewModels
             {
                 if (CurrentType.Equals("Video"))
                 {
-                    if(VideoModel.AddVideoType(Edit, idd,Name, float.Parse(Price), "Video", Reference, Initial))
+                    if (VideoModel.AddVideoType(Edit, idd, Name, float.Parse(Price), "Video", Reference, Initial))
                     {
                         if (Dirs.Count() > 0)
                         {
@@ -888,7 +899,13 @@ namespace DagiCaliburn.ViewModels
                                 TFormIsVisible = false;
                                 ERRORIsVisible = false;
                             }
+                            else
+                            {
+                                DirsC.Add(new Dir("Succesfully Saved\n But there is a problem on the directories !"));
+                                eligdable = false;
+                            }
                         }
+
                         else
                         {
                             SuccessIsVisible = true;
@@ -902,7 +919,7 @@ namespace DagiCaliburn.ViewModels
                 {
                     if (Dirs.Count() > 0)
                     {
-                        if (AudioModel.AddDirs(Edit,AudioModel.AddAudioType(Edit,Name, "Audio", Reference,
+                        if (AudioModel.AddDirs(Edit, AudioModel.AddAudioType(Edit, Name, "Audio", Reference,
                             Initial, float.Parse(AudioPricePerGB), float.Parse(AudioAlbumPrice)), Dirs.ToList()))
                         {
 
@@ -913,7 +930,7 @@ namespace DagiCaliburn.ViewModels
                     }
                     else
                     {
-                        if(AudioModel.AddAudioType(Edit,Name, "Audio", Reference,
+                        if (AudioModel.AddAudioType(Edit, Name, "Audio", Reference,
                             Initial, float.Parse(AudioPricePerGB), float.Parse(AudioAlbumPrice)) > 1)
                         {
                             SuccessIsVisible = true;
@@ -927,7 +944,7 @@ namespace DagiCaliburn.ViewModels
                 {
                     if (Dirs.Count() > 0)
                     {
-                        if (OthersModel.AddDirs(Edit,OthersModel.AddOthersType(Edit,Name, "Others", Reference,
+                        if (OthersModel.AddDirs(Edit, OthersModel.AddOthersType(Edit, Name, "Others", Reference,
                             Initial, float.Parse(Price), OGBS, OBIRRS), Dirs.ToList()))
                         {
 
@@ -938,7 +955,7 @@ namespace DagiCaliburn.ViewModels
                     }
                     else
                     {
-                        if ((OthersModel.AddOthersType(Edit,Name, "Others", Reference,
+                        if ((OthersModel.AddOthersType(Edit, Name, "Others", Reference,
                             Initial, float.Parse(Price), OGBS, OBIRRS)) > 1)
                         {
                             SuccessIsVisible = true;
@@ -948,7 +965,7 @@ namespace DagiCaliburn.ViewModels
                     }
                     SuccessOk();
                 }
-                
+
             }
 
         }

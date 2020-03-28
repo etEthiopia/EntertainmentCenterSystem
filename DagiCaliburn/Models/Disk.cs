@@ -121,7 +121,6 @@ namespace DagiCaliburn.Models
             WqlEventQuery q;
             ManagementScope scope = new ManagementScope("root\\CIMV2");
             scope.Options.EnablePrivileges = true;
-
             try
             {
                 q = new WqlEventQuery();
@@ -146,11 +145,11 @@ namespace DagiCaliburn.Models
         static void USBInserted(object sender, EventArgs e)
         {
             Console.WriteLine($"A USB device is inserted");
-            //getDetails();
+            
             List <string> old = new List<string>();
             foreach (Disk dk in StartViewModel.mainview.Drives.ToList())
             {
-                Console.WriteLine($"SERIAL {dk.serial}");
+                //Console.WriteLine($"SERIAL {dk.serial}");
                 old.Add(dk.serial);
             }
             StartViewModel.mainview.Drives = new Caliburn.Micro.BindableCollection<Disk>(GetDrives());

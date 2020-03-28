@@ -351,7 +351,7 @@
                         <DataGrid Grid.Row="4"
                       Margin="0 8 0 8"
                       CanUserReorderColumns="False"    
-                      ItemsSource="{Binding Dirs, Mode=OneWay}"
+                      ItemsSource="{Binding Dirs, Mode=TwoWay}"
                       Width="Auto"
                       SelectedIndex="{Binding SelectedIndex}"
                       CanUserResizeColumns="True"
@@ -363,12 +363,12 @@
                       SelectedItem="{Binding SelectedSell, Mode=TwoWay}"
                       CanUserAddRows="True">
                             <DataGrid.Columns>
-                                <DataGridCheckBoxColumn
+                                <!--<DataGridCheckBoxColumn
       Binding="{Binding IsSelected}"
       ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
-      EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
-                                    <DataGridCheckBoxColumn.Header>
-                                        <!--padding to allow hit test to pass thru for sorting -->
+      EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">-->
+                                    <!--<DataGridCheckBoxColumn.Header>
+                                        --><!--padding to allow hit test to pass thru for sorting --><!--
                                         <Border
           Background="Transparent"
           Padding="6 0 6 0"
@@ -379,7 +379,7 @@
             IsChecked="{Binding IsAllItems3Selected}" />
                                         </Border>
                                     </DataGridCheckBoxColumn.Header>
-                                </DataGridCheckBoxColumn>
+                                </DataGridCheckBoxColumn>-->
                                 <DataGridTextColumn Header="Dir" MinWidth="300" Binding="{Binding Path = dir}" />
 
 

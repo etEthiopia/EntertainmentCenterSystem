@@ -635,12 +635,12 @@ namespace DagiCaliburn.Models
             return checkI;
         }
 
-        public static List<string> CheckDirs(List<Dir> dirr)
+        public static List<string> CheckDirs(int type, List<Dir> dirr)
         {
             //TypeModel tm = new TypeModel();
             List<string> dirs = new List<string>();
             List<string> fdirs = new List<string>();
-            string query = $"SELECT dir FROM dirs";
+            string query = $"SELECT dir FROM dirs WHERE type != {type}";
             try
             {
                 MySqlConnection conn = DBUtils.GetDBConnection();
