@@ -96,7 +96,7 @@
 
                         </Grid>
                         
-                        <Grid Visibility="Collapsed" x:Name="AudioIsVisible" Grid.Row="3" HorizontalAlignment="Stretch" Margin="5,5,10,10">
+                        <Grid  x:Name="AudioIsVisible" Grid.Row="3" HorizontalAlignment="Stretch" Margin="5,5,10,10">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>

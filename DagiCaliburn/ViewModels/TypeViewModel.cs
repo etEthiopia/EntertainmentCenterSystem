@@ -644,6 +644,14 @@ namespace DagiCaliburn.ViewModels
             EditIcon = tm.Icon;
             Name = tm.Name;
             idd = id;
+            if(tm.DataType == "Audio")
+            {
+                Console.WriteLine("IT IS AUDIO");
+                AudioIsVisible = true;
+                AudioAlbumPrice = TypeModel.GetAlbumPrice(idd).ToString();
+                AudioPricePerGB = TypeModel.GetGBPrice(idd).ToString();
+            }
+
             
         }
 
@@ -706,7 +714,7 @@ namespace DagiCaliburn.ViewModels
             }
         }
 
-        public void CloseType()
+        public void CloseType(bool back = true)
         {
             SettingsViewModel.tvm.idd = 0;
             SettingsViewModel.tvm.Price = "";
@@ -732,8 +740,9 @@ namespace DagiCaliburn.ViewModels
             }
             AudioIsVisible = false;
             TypesIsVisible = true;
-
-            SettingsViewModel.settingsvm.backToType();
+            
+                SettingsViewModel.settingsvm.backToType();
+            
         }
 
         public void OKC()
@@ -896,6 +905,7 @@ namespace DagiCaliburn.ViewModels
                             TFormIsVisible = false;
                             ERRORIsVisible = false;
                         }
+                        SuccessOk();
                     }
                 }
                 else if (CurrentType.Equals("Audio"))
@@ -921,6 +931,7 @@ namespace DagiCaliburn.ViewModels
                             ERRORIsVisible = false;
                         }
                     }
+                    SuccessOk();
                 }
                 else if (CurrentType.Equals("Others"))
                 {
@@ -945,20 +956,17 @@ namespace DagiCaliburn.ViewModels
                             ERRORIsVisible = false;
                         }
                     }
-                    //MessageBox.Show($"1| {OGBS[0]}: {OBIRRS[0]} \n" +
-                    //    $"2| {OGBS[1]}: {OBIRRS[1]} \n" +
-                    //    $"3| {OGBS[2]}: {OBIRRS[2]} \n" +
-                    //    $"4| {OGBS[3]}: {OBIRRS[3]} \n" +
-                    //    $"5| {OGBS[4]}: {OBIRRS[4]} \n");
+                    SuccessOk();
                 }
+                
             }
 
         }
 
         public void SuccessOk()
         {
-            SettingsViewModel.tsvm = new TypesViewModel();
-            CloseType();
+            SettingsViewModel.tsvm.Typpes = new BindableCollection<TypeModel>(TypeModel.GetAllTypes());
+            CloseType(false);
         }
     }
 

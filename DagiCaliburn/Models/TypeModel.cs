@@ -271,6 +271,7 @@ namespace DagiCaliburn.Models
 
                 while (reader.Read())
                 {
+                    Console.WriteLine($"ID FROM NAME : " + reader["id"].ToString());
                     return (int)reader["id"];
                     
 
@@ -279,7 +280,7 @@ namespace DagiCaliburn.Models
             }
             catch (Exception e)
             {
-                Console.WriteLine("GetTypeFromName Execption");
+                Console.WriteLine("GetTypeFromName Execption: "+e.Message);
             }
             return 0;
 
