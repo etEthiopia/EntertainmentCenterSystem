@@ -141,16 +141,20 @@ namespace DagiCaliburn.Models
         }
 
         //Adds the Type in itemTypes
-        public static bool AddVideoType(string Namme, float Pricce, string FileTyppe, string Referencce, string Initiaals)
+        public static bool AddVideoType(bool edit, int id, string Namme, float Pricce, string FileTyppe, string Referencce, string Initiaals)
         {
             
             string query = "";
             MySqlConnection conn = DBUtils.GetDBConnection();
-            DateTime theDate = DateTime.Now;
-            String today = theDate.ToString("yyyy-MM-dd H:mm:ss");
+
             query = $"INSERT INTO fdb.itemtypes" +
             $" (name, price, filetype, reference, initials) values" +
             $" ('{Namme}', {Pricce}, '{FileTyppe}', '{Referencce}', '{Initiaals}')";
+            if (edit)
+            {
+                query = $"UPDATE fdb.itemtypes SET name='{Namme}', price = '{Pricce}', filetype = '{FileTyppe}', " +
+                    $"reference = '{Referencce}', initials = '{Initiaals}' where id = {id}";
+            }
 
             try
             {
@@ -173,13 +177,17 @@ namespace DagiCaliburn.Models
         }
 
         //Adds Dirs by Using itemtype name
-        public static bool AddDirs(string Namme, List<Dir> dirs)
+        public static bool AddDirs(bool edit, int type, string Namme, List<Dir> dirs)
         {
             List<SellModel> todaysSales = new List<SellModel>();
             MySqlConnection conn = DBUtils.GetDBConnection();
             int id = 0;
 
             string query = $"SELECT id FROM fdb.itemtypes WHERE name = '{Namme}'";
+            if (edit)
+            {
+
+            }
             try
             {
                 MySqlCommand cmd = new MySqlCommand(query, conn);

@@ -67,7 +67,16 @@ namespace DagiCaliburn.ViewModels
             SettingsViewModel.tvm.EditIcon = TypesViewModel.tmlClicked.Icon;
             SettingsViewModel.tvm.Initial = TypesViewModel.tmlClicked.Icon;
             SettingsViewModel.tvm.Dirs = new BindableCollection<Dir>(TypeModel.GetDirs(TypesViewModel.tmlClicked.Id));
+            SettingsViewModel.tvm.DataType = TypesViewModel.tmlClicked.DataType;
+            SettingsViewModel.tvm.CurrentType = SettingsViewModel.tvm.DataType;
+            SettingsViewModel.tvm.ChangeType();
+            if (SettingsViewModel.tvm.DataType == "Audio")
+            {
+                SettingsViewModel.tvm.AudioAlbumPrice = TypeModel.GetAlbumPrice(SettingsViewModel.tvm.idd).ToString();
+                SettingsViewModel.tvm.AudioPricePerGB = TypeModel.GetGBPrice(SettingsViewModel.tvm.idd).ToString();
+            }
             SettingsViewModel.tvm.TypesIsVisible = false;
+            SettingsViewModel.tvm.Edit = true;
             SettingsViewModel.settingsvm.AdType();
 
         }
@@ -103,6 +112,7 @@ namespace DagiCaliburn.ViewModels
         public void AddType()
         {
             //tmlClicked = new TypeModel();
+            SettingsViewModel.tvm.Edit = false;
             SettingsViewModel.settingsvm.AdType();
             
         }

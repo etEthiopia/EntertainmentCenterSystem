@@ -527,11 +527,11 @@ namespace DagiCaliburn.Models
             return dirs;
         }
 
-        public static bool CheckIcon(string icon)
+        public static bool CheckIcon(int id, string icon)
         {
             bool checkI = false;
             List<Dir> dirs = new List<Dir>();
-            string query = $"SELECT COUNT(initials) FROM itemtypes WHERE initials = '{icon}'";
+            string query = $"SELECT COUNT(initials) FROM itemtypes WHERE initials = '{icon}' AND id != {id}";
             try
             {
                 MySqlConnection conn = DBUtils.GetDBConnection();
@@ -563,11 +563,11 @@ namespace DagiCaliburn.Models
             return checkI;
         }
 
-        public static bool CheckName(string icon)
+        public static bool CheckName(int id, string icon)
         {
             bool checkI = false;
             List<Dir> dirs = new List<Dir>();
-            string query = $"SELECT COUNT(name) FROM itemtypes WHERE name = '{icon}'";
+            string query = $"SELECT COUNT(name) FROM itemtypes WHERE name = '{icon}' AND id != {id}";
             try
             {
                 MySqlConnection conn = DBUtils.GetDBConnection();
@@ -599,11 +599,11 @@ namespace DagiCaliburn.Models
             return checkI;
         }
 
-        public static bool CheckRef(string icon)
+        public static bool CheckRef(int id, string icon)
         {
             bool checkI = false;
             List<Dir> dirs = new List<Dir>();
-            string query = $"SELECT COUNT(reference) FROM itemtypes WHERE reference = '{icon}'";
+            string query = $"SELECT COUNT(reference) FROM itemtypes WHERE BINARY reference = '{icon}' AND id != {id}";
             try
             {
                 MySqlConnection conn = DBUtils.GetDBConnection();

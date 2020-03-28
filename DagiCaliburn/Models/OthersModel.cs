@@ -33,7 +33,7 @@ namespace DagiCaliburn.Models
         MySqlConnection conn = DBUtils.GetDBConnection();
 
         //Adds the Type in itemTypes
-        public static int AddOthersType(string Namme, string FileTyppe, string Referencce, string Initiaals, float Pricce, int[] gbs, float[] gbprices)
+        public static int AddOthersType(bool edit,string Namme, string FileTyppe, string Referencce, string Initiaals, float Pricce, int[] gbs, float[] gbprices)
         {
             int id = 0;
             bool done = false;
@@ -121,7 +121,7 @@ namespace DagiCaliburn.Models
         }
 
         //Adds Dirs by Using itemtype id
-        public static bool AddDirs(int id, List<Dir> dirs)
+        public static bool AddDirs(bool edit, int id, List<Dir> dirs)
         {
             MySqlConnection conn = DBUtils.GetDBConnection();
 
