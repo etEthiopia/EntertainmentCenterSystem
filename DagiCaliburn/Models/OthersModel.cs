@@ -120,39 +120,7 @@ namespace DagiCaliburn.Models
             return 0;
         }
 
-        //Adds Dirs by Using itemtype id
-        public static bool AddDirs(bool edit, int id, List<Dir> dirs)
-        {
-            MySqlConnection conn = DBUtils.GetDBConnection();
-
-            if (id > 0)
-            {
-                foreach (Dir dik in dirs)
-                {
-                    string query = $"INSERT INTO fdb.dirs (dir,type) values('{Utils.BackToFront(dik.dir)}',{id})";
-
-
-                    try
-                    {
-                        MySqlConnection conn2 = DBUtils.GetDBConnection();
-                        Console.WriteLine($"INSERT {dik}, {query}");
-                        conn2.Open();
-                        MySqlCommand cmd = new MySqlCommand(query, conn2);
-
-                        cmd.ExecuteNonQuery();
-
-                        conn2.Close();
-                        return true;
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine("Add Dir Execption " + e.Message);
-                    }
-                }
-            }
-            return false;
-
-        }
+       
 
         //Returns OthersModel by reciveing path
         public static OthersModel FinalizeOthersSale(string item)

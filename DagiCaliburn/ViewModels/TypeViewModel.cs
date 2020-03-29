@@ -649,7 +649,7 @@ namespace DagiCaliburn.ViewModels
             }
             else if (CurrentType.Equals("Audio"))
             {
-                PriceIsVisible = false;
+                PriceIsVisible = true;
                 AudioIsVisible = true;
                 OthersIsVisible = false;
                 OthersPriceIsVisible = false;
@@ -893,7 +893,7 @@ namespace DagiCaliburn.ViewModels
                     {
                         if (Dirs.Count() > 0)
                         {
-                            if (VideoModel.AddDirs(Edit, idd, Name, Dirs.ToList()))
+                            if (SellModel.AddDirs(Edit, idd, Name, Dirs.ToList()))
                             {
                                 SuccessIsVisible = true;
                                 TFormIsVisible = false;
@@ -917,35 +917,32 @@ namespace DagiCaliburn.ViewModels
                 }
                 else if (CurrentType.Equals("Audio"))
                 {
-                    if (Dirs.Count() > 0)
+                    if (AudioModel.AddAudioType(Edit, Name, idd, "Audio", Reference,
+                            Initial, float.Parse(Price), float.Parse(AudioPricePerGB), float.Parse(AudioAlbumPrice)) > 1)
                     {
-                        if (AudioModel.AddDirs(Edit, AudioModel.AddAudioType(Edit, Name, "Audio", Reference,
-                            Initial, float.Parse(AudioPricePerGB), float.Parse(AudioAlbumPrice)), Dirs.ToList()))
+                        if (Dirs.Count() > 0)
                         {
+                            if (SellModel.AddDirs(Edit, idd, Name, Dirs.ToList()))
+                            {
 
-                            SuccessIsVisible = true;
-                            TFormIsVisible = false;
-                            ERRORIsVisible = false;
+                                SuccessIsVisible = true;
+                                TFormIsVisible = false;
+                                ERRORIsVisible = false;
+                            }
                         }
+
+
+                        SuccessOk();
                     }
-                    else
-                    {
-                        if (AudioModel.AddAudioType(Edit, Name, "Audio", Reference,
-                            Initial, float.Parse(AudioPricePerGB), float.Parse(AudioAlbumPrice)) > 1)
-                        {
-                            SuccessIsVisible = true;
-                            TFormIsVisible = false;
-                            ERRORIsVisible = false;
-                        }
-                    }
-                    SuccessOk();
                 }
                 else if (CurrentType.Equals("Others"))
                 {
+                    if(OthersModel.AddOthersType(Edit, Name, "Others", Reference,
+                            Initial, float.Parse(Price), OGBS, OBIRRS) > 1)
+
                     if (Dirs.Count() > 0)
                     {
-                        if (OthersModel.AddDirs(Edit, OthersModel.AddOthersType(Edit, Name, "Others", Reference,
-                            Initial, float.Parse(Price), OGBS, OBIRRS), Dirs.ToList()))
+                        if (SellModel.AddDirs(Edit, idd, Name, Dirs.ToList()))
                         {
 
                             SuccessIsVisible = true;

@@ -689,6 +689,82 @@ namespace DagiCaliburn.Models
             return false;
         }
 
+        public static bool AddDirs(bool edit, int type, string Namme, List<Dir> dirs)
+        {
+            List<SellModel> todaysSales = new List<SellModel>();
+            MySqlConnection conn = DBUtils.GetDBConnection();
+            int id = 0;
+            foreach (Dir d in dirs)
+            {
+                Console.WriteLine($"dir recived : " + d.dir);
+                Console.WriteLine($"INSERT IGNORE INTO fdb.dirs (dir,type) values('{Utils.BackToFront(d.dir)}',{type})");
+            }
+            string query = $"SELECT id FROM fdb.itemtypes WHERE name = '{Namme}'";
+            if (!edit)
+            {
+
+
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+
+                    conn.Open();
+
+                    MySqlDataReader reader = cmd.ExecuteReader();
+
+                    Console.WriteLine($"Get ID from Name() - {query}");
+
+                    while (reader.Read())
+                    {
+                        id = int.Parse(reader["id"].ToString());
+                    }
+                    conn.Close();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("GetType ID Execption");
+                }
+            }
+            else
+            {
+                id = type;
+            }
+
+
+            if (id > 0)
+            {
+                try
+                {
+                    foreach (Dir dik in dirs)
+                    {
+                        query = $"INSERT IGNORE INTO fdb.dirs (dir,type) values('{Utils.BackToFront(dik.dir)}',{id})";
+
+
+
+                        MySqlConnection conn2 = DBUtils.GetDBConnection();
+                        Console.WriteLine($"INSERT {dik}, {query}");
+                        conn2.Open();
+                        MySqlCommand cmd = new MySqlCommand(query, conn2);
+
+                        cmd.ExecuteNonQuery();
+
+                        conn2.Close();
+
+
+                    }
+                    return true;
+                }
+
+                catch (Exception e)
+                {
+                    Console.WriteLine("Add Dir Execption " + e.Message);
+                }
+            }
+            return false;
+
+        }
+
+
 
     }
 }

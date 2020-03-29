@@ -2,9 +2,11 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.IO.Ports;
 using System.Linq;
 using System.Management;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -146,6 +148,7 @@ namespace DagiCaliburn.Models
         {
             Console.WriteLine($"A USB device is inserted");
             
+            
             List <string> old = new List<string>();
             foreach (Disk dk in StartViewModel.mainview.Drives.ToList())
             {
@@ -168,6 +171,12 @@ namespace DagiCaliburn.Models
                 }
                 
             }
+            
+            foreach(var pt in SerialPort.GetPortNames())
+            {
+                Console.WriteLine("PORT NAME: " + pt);
+            }
+
             StartViewModel.startview.setupListeners();
         }
 
@@ -212,6 +221,19 @@ namespace DagiCaliburn.Models
 
         public static List<Disk> GetDrives()
         {
+            int prv = 0;
+            try
+            {
+                if (!StartViewModel.mainview.Drives.Equals(null))
+                {
+                    prv = StartViewModel.mainview.Drives.Count;
+                }
+            }
+            catch(NullReferenceException e)
+            {
+                Console.WriteLine($"NullReferenceException GETDRIVES, {e.Message}");
+            }
+            Console.WriteLine($"GET DRIVE HAS BEGUN WITH: "+ prv);
             List<Disk> disks = new List<Disk>();
             var driveQuery = new ManagementObjectSearcher("select * from Win32_DiskDrive");
             List<string> serials = new List<string>();
@@ -322,6 +344,7 @@ namespace DagiCaliburn.Models
             {
                 Console.WriteLine($"Disk Failure, {en.Message}");
             }
+            Console.WriteLine($"GET DRIVE HAS ENDED WITH :"+disks.Count);
             return disks;
         }
 

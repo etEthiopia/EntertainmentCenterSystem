@@ -182,40 +182,7 @@ namespace DagiCaliburn.Models
             return false;
         }
 
-        //Adds Dirs by Using itemtype id
-        public static bool AddDirs(bool edit, int id, List<Dir> dirs)
-        {
-            MySqlConnection conn = DBUtils.GetDBConnection();
-            
-            if (id > 0)
-            {
-                foreach (Dir dik in dirs)
-                {
-                   string query = $"INSERT INTO fdb.dirs (dir,type) values('{Utils.BackToFront(dik.dir)}',{id})";
-
-
-                    try
-                    {
-                        MySqlConnection conn2 = DBUtils.GetDBConnection();
-                        Console.WriteLine($"INSERT {dik}, {query}");
-                        conn2.Open();
-                        MySqlCommand cmd = new MySqlCommand(query, conn2);
-
-                        cmd.ExecuteNonQuery();
-
-                        conn2.Close();
-                        return true;
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine("Add Dir Execption " + e.Message);
-                    }
-                }
-            }
-            return false;
-
-        }
-
+       
         public static bool AlbumFolderByReference(string item, out AudioModel audio)
         {
             audio = new AudioModel();
@@ -236,8 +203,9 @@ namespace DagiCaliburn.Models
         }
 
         //Adds the Type in itemTypes
-        public static int AddAudioType(bool edit, string Namme,  string FileTyppe, string Referencce, string Initiaals, float PriceGB, float PriceALbum)
+        public static int AddAudioType(bool edit, string Namme, int idd,  string FileTyppe, string Referencce, string Initiaals, float Pircee, float PriceGB, float PriceALbum)
         {
+
             int id = 0;
             bool done = false;
             string query = "";
@@ -246,8 +214,13 @@ namespace DagiCaliburn.Models
             String today = theDate.ToString("yyyy-MM-dd H:mm:ss");
             query = $"INSERT INTO fdb.itemtypes" +
             $" (name, price, filetype, reference, initials) values" +
-            $" ('{Namme}', {0}, '{FileTyppe}', '{Referencce}', '{Initiaals}')";
+            $" ('{Namme}', {Pircee}, '{FileTyppe}', '{Referencce}', '{Initiaals}')";
 
+            if (edit)
+            {
+                query = $"UPDATE fdb.itemtypes SET name='{Namme}', price = '{Pircee}', filetype = '{FileTyppe}', " +
+                    $"reference = '{Referencce}', initials = '{Initiaals}' where id = {idd}";
+            }
             try
             {
                 
@@ -261,26 +234,37 @@ namespace DagiCaliburn.Models
                 query = $"SELECT id FROM fdb.itemtypes WHERE name = '{Namme}'";
                 try
                 {
-                    MySqlConnection conn1 = DBUtils.GetDBConnection();
-
-                    cmd = new MySqlCommand(query, conn1);
-
-                    conn1.Open();
-
-                    MySqlDataReader reader = cmd.ExecuteReader();
-
-                    Console.WriteLine($"Get ID from Name() - {query}");
-
-                    while (reader.Read())
+                    if (!edit)
                     {
-                        id = int.Parse(reader["id"].ToString());
+                        MySqlConnection conn1 = DBUtils.GetDBConnection();
+
+                        cmd = new MySqlCommand(query, conn1);
+
+                        conn1.Open();
+
+                        MySqlDataReader reader = cmd.ExecuteReader();
+
+                        Console.WriteLine($"Get ID from Name() - {query}");
+
+                        while (reader.Read())
+                        {
+                            id = int.Parse(reader["id"].ToString());
+                        }
+                        conn1.Close();
                     }
-                    conn1.Close();
+                    else
+                    {
+                        id = idd;
+                    }
                     try
                     {
                         query = $"INSERT INTO fdb.audiodetails" +
             $" (type, bysize, byalbum) values" +
             $" ({id}, {PriceGB}, {PriceALbum})";
+                        if (edit)
+                        {
+                            query = $"UPDATE fdb.audiodetails SET type='{id}', bysize = '{PriceGB}', byalbum = '{PriceALbum}' where type = {id}";
+                        }
 
                         MySqlConnection conn2 = DBUtils.GetDBConnection();
                         cmd = new MySqlCommand(query, conn2);

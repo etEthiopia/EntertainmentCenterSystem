@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using static DagiCaliburn.Models.TypeModel;
 
 namespace DagiCaliburn.ViewModels
 {
@@ -75,6 +76,42 @@ namespace DagiCaliburn.ViewModels
                 SettingsViewModel.tvm.AudioAlbumPrice = TypeModel.GetAlbumPrice(SettingsViewModel.tvm.idd).ToString();
                 SettingsViewModel.tvm.AudioPricePerGB = TypeModel.GetGBPrice(SettingsViewModel.tvm.idd).ToString();
             }
+            else if (SettingsViewModel.tvm.DataType == "Others")
+            {
+                String[] OBs = { SettingsViewModel.tvm.OGB1, SettingsViewModel.tvm.OGB2, SettingsViewModel.tvm.OGB3,
+                SettingsViewModel.tvm.OGB4,SettingsViewModel.tvm.OGB5};
+
+                String[] OPs = { SettingsViewModel.tvm.OBIRR1, SettingsViewModel.tvm.OBIRR2, SettingsViewModel.tvm.OBIRR3,
+                SettingsViewModel.tvm.OBIRR4, SettingsViewModel.tvm.OBIRR5};
+
+                List<OtherPrice> obps = TypeModel.GetOthersPrice(SettingsViewModel.tvm.idd);
+                for (int i = 0; i < obps.Count; i++)
+                {
+                    switch (i)
+                    {
+                        case 0:
+                            SettingsViewModel.tvm.OGB1 = obps[i].OtherGB;
+                            SettingsViewModel.tvm.OBIRR1 = obps[i].OtherGBPrice;
+                            break;
+                        case 1:
+                            SettingsViewModel.tvm.OGB2 = obps[i].OtherGB;
+                            SettingsViewModel.tvm.OBIRR2 = obps[i].OtherGBPrice;
+                            break;
+                        case 2:
+                            SettingsViewModel.tvm.OGB3 = obps[i].OtherGB;
+                            SettingsViewModel.tvm.OBIRR3 = obps[i].OtherGBPrice;
+                            break;
+                        case 3:
+                            SettingsViewModel.tvm.OGB4 = obps[i].OtherGB;
+                            SettingsViewModel.tvm.OBIRR4 = obps[i].OtherGBPrice;
+                            break;
+                        case 4:
+                            SettingsViewModel.tvm.OGB5 = obps[i].OtherGB;
+                            SettingsViewModel.tvm.OBIRR5 = obps[i].OtherGBPrice;
+                            break;
+                    }
+                }
+            }
             SettingsViewModel.tvm.TypesIsVisible = false;
             SettingsViewModel.tvm.Edit = true;
             SettingsViewModel.settingsvm.AdType();
@@ -100,6 +137,7 @@ namespace DagiCaliburn.ViewModels
                     SettingsViewModel.tvm.AudioAlbumPrice = TypeModel.GetAlbumPrice(idd).ToString();
                     SettingsViewModel.tvm.AudioPricePerGB = TypeModel.GetGBPrice(idd).ToString();
                 }
+                
                 
                 SettingsViewModel.tvm.Dirs = new BindableCollection<Dir>(TypeModel.GetDirs(TypesViewModel.tmlClicked.Id));
                 SettingsViewModel.tvm.TypesIsVisible = false;
