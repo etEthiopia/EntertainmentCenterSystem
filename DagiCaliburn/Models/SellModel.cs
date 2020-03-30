@@ -733,23 +733,26 @@ namespace DagiCaliburn.Models
 
             if (id > 0)
             {
+                if (edit)
+                {
+                    deleteDirs(id);
+                }
                 try
                 {
                     foreach (Dir dik in dirs)
                     {
-                        query = $"INSERT IGNORE INTO fdb.dirs (dir,type) values('{Utils.BackToFront(dik.dir)}',{id})";
+                        if (dik.dir.Length > 0)
+                        {
+                            query = $"INSERT IGNORE INTO fdb.dirs (dir,type) values('{Utils.BackToFront(dik.dir)}',{id})";
+                            MySqlConnection conn2 = DBUtils.GetDBConnection();
+                            Console.WriteLine($"INSERT {dik}, {query}");
+                            conn2.Open();
+                            MySqlCommand cmd = new MySqlCommand(query, conn2);
 
+                            cmd.ExecuteNonQuery();
 
-
-                        MySqlConnection conn2 = DBUtils.GetDBConnection();
-                        Console.WriteLine($"INSERT {dik}, {query}");
-                        conn2.Open();
-                        MySqlCommand cmd = new MySqlCommand(query, conn2);
-
-                        cmd.ExecuteNonQuery();
-
-                        conn2.Close();
-
+                            conn2.Close();
+                        }
 
                     }
                     return true;
@@ -762,6 +765,37 @@ namespace DagiCaliburn.Models
             }
             return false;
 
+        }
+        // Delete othersdetails
+        public static bool deleteDirs(int type)
+        {
+            string query = $"DELETE FROM dirs WHERE type = {type}";
+            MySqlConnection conn = DBUtils.GetDBConnection();
+            try
+            {
+
+
+                MySqlCommand cmmd = new MySqlCommand(query, conn);
+                Console.WriteLine($"Delete Dir: {query}");
+
+                conn.Open();
+                MySqlDataReader reader = cmmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                }
+                reader.Close();
+                conn.Close();
+
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Delete Dir Exception {e.Message}");
+            }
+            return false;
         }
 
 

@@ -33,7 +33,7 @@ namespace DagiCaliburn.Models
         MySqlConnection conn = DBUtils.GetDBConnection();
 
         //Adds the Type in itemTypes
-        public static int AddOthersType(bool edit,string Namme, string FileTyppe, string Referencce, string Initiaals, float Pricce, int[] gbs, float[] gbprices)
+        public static int AddOthersType(bool edit,string Namme, int idd, string FileTyppe, string Referencce, string Initiaals, float Pricce, int[] gbs, float[] gbprices)
         {
             int id = 0;
             bool done = false;
@@ -44,7 +44,11 @@ namespace DagiCaliburn.Models
             query = $"INSERT INTO fdb.itemtypes" +
             $" (name, price, filetype, reference, initials) values" +
             $" ('{Namme}', {Pricce}, '{FileTyppe}', '{Referencce}', '{Initiaals}')";
-
+            if (edit)
+            {
+                query = $"UPDATE fdb.itemtypes SET name='{Namme}', price = '{Pricce}', filetype = '{FileTyppe}', " +
+                    $"reference = '{Referencce}', initials = '{Initiaals}' where id = {idd}";
+            }
             try
             {
 
@@ -58,7 +62,9 @@ namespace DagiCaliburn.Models
                 query = $"SELECT id FROM fdb.itemtypes WHERE name = '{Namme}'";
                 try
                 {
-                    MySqlConnection conn1 = DBUtils.GetDBConnection();
+                    if (!edit)
+                    {
+                        MySqlConnection conn1 = DBUtils.GetDBConnection();
 
                     cmd = new MySqlCommand(query, conn1);
 
@@ -73,33 +79,51 @@ namespace DagiCaliburn.Models
                         id = int.Parse(reader["id"].ToString());
                     }
                     conn1.Close();
+                    }
+                    else
+                    {
+                        id = idd;
+                    }
+
                     if (id > 0)
                     {
-                        for (int kount = 0; kount < 5; kount++)
+                        if (edit)
                         {
-                            if (gbs[kount] > 0)
+                            deleteDetials(id);
+                        }
+                        if (gbs.Count() < 1)
+                        {
+                            return id;
+                        }
+                        done = true;
+                        for (int kount = 0; kount < 5; kount++)
                             {
-                                try
+                                if (gbs[kount] > 0 && gbprices[kount] > Pricce)
                                 {
-                                    query = $"INSERT INTO fdb.othersdetails" +
-                        $" (gb, price, type) values" +
-                        $" ({gbs[kount]}, {gbprices[kount]}, {id})";
+                                    try
+                                    {
+                                        query = $"INSERT IGNORE INTO fdb.othersdetails" +
+                            $" (gb, price, type) values" +
+                            $" ({gbs[kount]}, {gbprices[kount]}, {id})";
 
-                                    MySqlConnection conn2 = DBUtils.GetDBConnection();
-                                    cmd = new MySqlCommand(query, conn2);
+
+                                        MySqlConnection conn2 = DBUtils.GetDBConnection();
+                                        cmd = new MySqlCommand(query, conn2);
 
 
-                                    conn2.Open();
-                                    cmd.ExecuteNonQuery();
-                                    conn2.Close();
-                                    done = true;
-                                }
-                                catch (Exception expc)
-                                {
-                                    Console.WriteLine("OtherDetial Error " + expc.Message);
+                                        conn2.Open();
+                                        cmd.ExecuteNonQuery();
+                                        conn2.Close();
+                                        
+                                    }
+                                    catch (Exception expc)
+                                    {
+                                    done = false;
+                                        Console.WriteLine("OtherDetial Insert Error " + expc.Message);
+                                    }
                                 }
                             }
-                        }
+                        
                         if (done)
                         {
                             return id;
@@ -120,7 +144,38 @@ namespace DagiCaliburn.Models
             return 0;
         }
 
-       
+        // Delete othersdetails
+        private static bool deleteDetials(int type)
+        {
+              string  query = $"DELETE FROM othersdetails WHERE type = {type}";
+            MySqlConnection conn = DBUtils.GetDBConnection();
+            try
+            {
+
+
+                MySqlCommand cmmd = new MySqlCommand(query, conn);
+                Console.WriteLine($"Delete Otherdetail: {query}");
+
+                conn.Open();
+                MySqlDataReader reader = cmmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                }
+                reader.Close();
+                conn.Close();
+
+                return true;
+                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Delete Otherdetail Exception {e.Message}");
+            }
+            return false;
+        }
+
 
         //Returns OthersModel by reciveing path
         public static OthersModel FinalizeOthersSale(string item)

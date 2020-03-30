@@ -908,6 +908,7 @@ namespace DagiCaliburn.ViewModels
 
                         else
                         {
+                            SellModel.deleteDirs(idd);
                             SuccessIsVisible = true;
                             TFormIsVisible = false;
                             ERRORIsVisible = false;
@@ -930,6 +931,10 @@ namespace DagiCaliburn.ViewModels
                                 ERRORIsVisible = false;
                             }
                         }
+                        else
+                        {
+                            SellModel.deleteDirs(idd);
+                        }
 
 
                         SuccessOk();
@@ -937,30 +942,39 @@ namespace DagiCaliburn.ViewModels
                 }
                 else if (CurrentType.Equals("Others"))
                 {
-                    if(OthersModel.AddOthersType(Edit, Name, "Others", Reference,
+                    if (OthersModel.AddOthersType(Edit, Name, idd, "Others", Reference,
                             Initial, float.Parse(Price), OGBS, OBIRRS) > 1)
-
-                    if (Dirs.Count() > 0)
                     {
-                        if (SellModel.AddDirs(Edit, idd, Name, Dirs.ToList()))
-                        {
 
+                        if (Dirs.Count() > 0)
+                        {
+                            if (SellModel.AddDirs(Edit, idd, Name, Dirs.ToList()))
+                            {
+                                SuccessIsVisible = true;
+                                TFormIsVisible = false;
+                                ERRORIsVisible = false;
+                            }
+                            else
+                            {
+                                DirsC.Add(new Dir("Succesfully Saved\n But there is a problem on the directories !"));
+                                eligdable = false;
+                            }
+                        }
+
+                        else
+                        {
+                            SellModel.deleteDirs(idd);
                             SuccessIsVisible = true;
                             TFormIsVisible = false;
                             ERRORIsVisible = false;
                         }
+                        SuccessOk();
+
                     }
                     else
                     {
-                        if ((OthersModel.AddOthersType(Edit, Name, "Others", Reference,
-                            Initial, float.Parse(Price), OGBS, OBIRRS)) > 1)
-                        {
-                            SuccessIsVisible = true;
-                            TFormIsVisible = false;
-                            ERRORIsVisible = false;
-                        }
+                        Console.WriteLine("Dir add error");
                     }
-                    SuccessOk();
                 }
 
             }
