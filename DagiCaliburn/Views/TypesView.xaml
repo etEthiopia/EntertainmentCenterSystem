@@ -26,7 +26,7 @@
                         Types
                     </TextBlock>
 
-                    <Button Grid.Column="1"  x:Name="AddType" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Right" Height="25" Width="25"
+                    <Button Grid.Column="1"  x:Name="AddType" VerticalAlignment="Top" HorizontalAlignment="Right" Height="25" Width="25"
                       Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
                       ToolTip="MaterialDesignFloatingActionMiniAccentButton">
                                         <materialDesign:PackIcon
@@ -57,6 +57,7 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="*"/>
+                                            
 
                                         </Grid.ColumnDefinitions>
                                         <Grid Grid.Column="0">
@@ -98,17 +99,83 @@
 
                                                 </StackPanel>
 
-
-                                                <Button VerticalAlignment="Top" Tag="{Binding Id}" Click="EditType_Click" HorizontalAlignment="Right" Width="17" Height="17" 
+                                                </Grid>
+                                        </Grid>
+                                        <StackPanel Grid.Column="1" VerticalAlignment="Bottom"  Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1" >
+                                            <Button VerticalAlignment="Top" Tag="{Binding Id}" Click="View_Click" HorizontalAlignment="Right" Margin="0,0,5,0" Width="23" Height="23" 
+                                  Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                                  ToolTip="MaterialDesignFloatingActionMiniLightButton">
+                                                <materialDesign:PackIcon
+                                    Kind="Eye"
+                                    Height="15"
+                                    Width="15" />
+                                            </Button>
+                                            <Button VerticalAlignment="Top" Tag="{Binding Id}" Click="EditType_Click" HorizontalAlignment="Right" Margin="0,0,5,0" Width="23" Height="23" 
+                                  Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                                  ToolTip="MaterialDesignFloatingActionMiniAccentButton">
+                                                <materialDesign:PackIcon
+                                    Kind="Edit"
+                                    Height="15"
+                                    Width="15" />
+                                            </Button>
+                                            <materialDesign:DialogHost
+  HorizontalAlignment="Center"
+  VerticalAlignment="Center"
+DialogClosing="DialogHost_DialogClosing"
+                                                >
+  <materialDesign:DialogHost.DialogContent>
+                                                    <materialDesign:ColorZone
+        Mode="PrimaryMid"
+        Grid.Row="1"
+        Effect="{DynamicResource MaterialDesignShadowDepth5}">
+                                                        <StackPanel
+      Margin="16">
+                                                            <TextBlock>
+      Are you sure?
+                                                            </TextBlock>
+                                                            
+                                                            <StackPanel
+        Orientation="Horizontal"
+        HorizontalAlignment="Right">
+                                                                <Button
+                                                                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+           ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+          Margin="0 8 8 0" Click="YES_click" Tag="{Binding Id}"
+          Command="materialDesign:DialogHost.CloseDialogCommand">
+                                                                    <Button.CommandParameter>
+                                                                        <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                                                            True
+                                                                        </system:Boolean>
+                                                                    </Button.CommandParameter>
+                                                                    YES
+                                                                </Button>
+                                                                <Button IsDefault="True"
+                                                                    Style="{StaticResource MaterialDesignRaisedLightButton}"
+    ToolTip="Resource name: MaterialDesignRaisedLightButton"
+          IsCancel="True" Click="NO_click" Tag="{Binding Id}"
+          Margin="0 8 8 0"
+          Command="materialDesign:DialogHost.CloseDialogCommand">
+                                                                    <Button.CommandParameter>
+                                                                        <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                                                            False
+                                                                        </system:Boolean>
+                                                                    </Button.CommandParameter>
+                                                                    NO
+                                                                </Button>
+                                                            </StackPanel>
+                                                        </StackPanel>
+                                                    </materialDesign:ColorZone>
+                                                </materialDesign:DialogHost.DialogContent>
+                                                <Button VerticalAlignment="Top" Foreground="White" Background="Red" BorderBrush="Red" Tag="{Binding Id}"  Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"  HorizontalAlignment="Right" Margin="0" Width="23" Height="23" 
                                   Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
                                   ToolTip="MaterialDesignFloatingActionMiniDarkButton">
-                                                    <materialDesign:PackIcon
-                                    Kind="Edit"
-                                    Height="10"
-                                    Width="10" />
-                                                </Button>
-                                            </Grid>
-                                        </Grid>
+                                                <materialDesign:PackIcon 
+                                    Kind="Delete"
+                                    Height="15"
+                                    Width="15" />
+                                            </Button>
+                                            </materialDesign:DialogHost>
+                                        </StackPanel>
 
 
 

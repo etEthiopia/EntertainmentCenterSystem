@@ -712,6 +712,116 @@ namespace DagiCaliburn.Models
                 OtherGBPrice = price;
             }
         }
-        
+
+        //Add Directories
+        public static bool AddDirs(bool edit, int type, string Namme, List<Dir> dirs)
+        {
+            List<SellModel> todaysSales = new List<SellModel>();
+            MySqlConnection conn = DBUtils.GetDBConnection();
+            int id = 0;
+            foreach (Dir d in dirs)
+            {
+                Console.WriteLine($"dir recived : " + d.dir);
+                Console.WriteLine($"INSERT IGNORE INTO fdb.dirs (dir,type) values('{Utils.BackToFront(d.dir)}',{type})");
+            }
+            string query = $"SELECT id FROM fdb.itemtypes WHERE name = '{Namme}'";
+            if (!edit)
+            {
+
+
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+
+                    conn.Open();
+
+                    MySqlDataReader reader = cmd.ExecuteReader();
+
+                    Console.WriteLine($"Get ID from Name() - {query}");
+
+                    while (reader.Read())
+                    {
+                        id = int.Parse(reader["id"].ToString());
+                    }
+                    conn.Close();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("GetType ID Execption");
+                }
+            }
+            else
+            {
+                id = type;
+            }
+
+
+            if (id > 0)
+            {
+                if (edit)
+                {
+                    deleteDirs(id);
+                }
+                try
+                {
+                    foreach (Dir dik in dirs)
+                    {
+                        if (dik.dir.Length > 0)
+                        {
+                            query = $"INSERT IGNORE INTO fdb.dirs (dir,type) values('{Utils.BackToFront(dik.dir)}',{id})";
+                            MySqlConnection conn2 = DBUtils.GetDBConnection();
+                            Console.WriteLine($"INSERT {dik}, {query}");
+                            conn2.Open();
+                            MySqlCommand cmd = new MySqlCommand(query, conn2);
+
+                            cmd.ExecuteNonQuery();
+
+                            conn2.Close();
+                        }
+
+                    }
+                    return true;
+                }
+
+                catch (Exception e)
+                {
+                    Console.WriteLine("Add Dir Execption " + e.Message);
+                }
+            }
+            return false;
+
+        }
+        // Delete othersdetails
+        public static bool deleteDirs(int type)
+        {
+            string query = $"DELETE FROM dirs WHERE type = {type}";
+            MySqlConnection conn = DBUtils.GetDBConnection();
+            try
+            {
+
+
+                MySqlCommand cmmd = new MySqlCommand(query, conn);
+                Console.WriteLine($"Delete Dir: {query}");
+
+                conn.Open();
+                MySqlDataReader reader = cmmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                }
+                reader.Close();
+                conn.Close();
+
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Delete Dir Exception {e.Message}");
+            }
+            return false;
+        }
+
     }
 }

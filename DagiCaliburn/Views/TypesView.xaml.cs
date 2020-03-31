@@ -26,6 +26,31 @@ namespace DagiCaliburn.Views
             InitializeComponent();
         }
 
+        
+
+        private void View_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var Iddd = button.Tag;
+            int di = 0;
+            int.TryParse(Iddd.ToString(), out di);
+            if (di > 0)
+            {
+                SettingsViewModel.tsvm.TypeSelected(di.ToString());
+            }
+            //MessageBox.Show($"IDD {Iddd}");
+
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var Iddd = button.Tag;
+            TypesViewModel.EditType(int.Parse(Iddd.ToString()));
+            //MessageBox.Show($"IDD {Iddd}");
+
+        }
+
         private void EditType_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
@@ -33,6 +58,25 @@ namespace DagiCaliburn.Views
             TypesViewModel.EditType(int.Parse(Iddd.ToString()));
             //MessageBox.Show($"IDD {Iddd}");
 
+        }
+
+        private void DialogHost_DialogClosing(object sender, MaterialDesignThemes.Wpf.DialogClosingEventArgs eventArgs)
+        {
+
+            
+        }
+
+        private void NO_click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var Iddd = button.Tag;
+            MessageBox.Show($"IDD NO {Iddd}");
+        }
+        private void YES_click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var Iddd = button.Tag;
+            MessageBox.Show($"IDD YES {Iddd}");
         }
     }
 }

@@ -893,7 +893,7 @@ namespace DagiCaliburn.ViewModels
                     {
                         if (Dirs.Count() > 0)
                         {
-                            if (SellModel.AddDirs(Edit, idd, Name, Dirs.ToList()))
+                            if (TypeModel.AddDirs(Edit, idd, Name, Dirs.ToList()))
                             {
                                 SuccessIsVisible = true;
                                 TFormIsVisible = false;
@@ -908,7 +908,7 @@ namespace DagiCaliburn.ViewModels
 
                         else
                         {
-                            SellModel.deleteDirs(idd);
+                            TypeModel.deleteDirs(idd);
                             SuccessIsVisible = true;
                             TFormIsVisible = false;
                             ERRORIsVisible = false;
@@ -923,7 +923,7 @@ namespace DagiCaliburn.ViewModels
                     {
                         if (Dirs.Count() > 0)
                         {
-                            if (SellModel.AddDirs(Edit, idd, Name, Dirs.ToList()))
+                            if (TypeModel.AddDirs(Edit, idd, Name, Dirs.ToList()))
                             {
 
                                 SuccessIsVisible = true;
@@ -933,7 +933,7 @@ namespace DagiCaliburn.ViewModels
                         }
                         else
                         {
-                            SellModel.deleteDirs(idd);
+                            TypeModel.deleteDirs(idd);
                         }
 
 
@@ -948,7 +948,7 @@ namespace DagiCaliburn.ViewModels
 
                         if (Dirs.Count() > 0)
                         {
-                            if (SellModel.AddDirs(Edit, idd, Name, Dirs.ToList()))
+                            if (TypeModel.AddDirs(Edit, idd, Name, Dirs.ToList()))
                             {
                                 SuccessIsVisible = true;
                                 TFormIsVisible = false;
@@ -963,7 +963,7 @@ namespace DagiCaliburn.ViewModels
 
                         else
                         {
-                            SellModel.deleteDirs(idd);
+                            TypeModel.deleteDirs(idd);
                             SuccessIsVisible = true;
                             TFormIsVisible = false;
                             ERRORIsVisible = false;

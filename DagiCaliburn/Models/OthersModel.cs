@@ -103,14 +103,12 @@ namespace DagiCaliburn.Models
                                     try
                                     {
                                         query = $"INSERT IGNORE INTO fdb.othersdetails" +
-                            $" (gb, price, type) values" +
-                            $" ({gbs[kount]}, {gbprices[kount]}, {id})";
-
-
+                                        $" (gb, price, type) values" +
+                                        $" ({gbs[kount]}, {gbprices[kount]}, {id})";
+                                    
                                         MySqlConnection conn2 = DBUtils.GetDBConnection();
                                         cmd = new MySqlCommand(query, conn2);
-
-
+                                    
                                         conn2.Open();
                                         cmd.ExecuteNonQuery();
                                         conn2.Close();
